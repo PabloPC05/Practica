@@ -41,4 +41,9 @@ public class Position {
 	public int getRow() {
 		return row;
 	}
+	
+	// Funcion para obtener la futura direccion
+	public Position PositionWDir(Direction dir) {
+		return new Position(this.col + dir.getX(), this.row + dir.getY());
+	}
 }

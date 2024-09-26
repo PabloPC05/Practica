@@ -1,8 +1,9 @@
 package tp1.logic.gameobjects;
 
+import tp1.logic.*;
+import tp1.logic.lemmingRoles.WalkerRole;
 import tp1.logic.Direction;
-import tp1.logic.Game;
-import tp1.logic.Position;
+
 
 public class Lemming {
 
@@ -11,7 +12,7 @@ public class Lemming {
 	private Direction direction;
 	private boolean vivo;
 	private int fuerzaCaida;
-	//private WalkerRole rol;
+	private WalkerRole rol;
 	//private Game game;
 	
 	//Constructor por defecto
@@ -20,7 +21,7 @@ public class Lemming {
 		this.direction = Direction.RIGHT;
 		this.vivo = true;
 		this.fuerzaCaida = 0;
-		//this.rol = new WalkerRole();
+		this.rol = new WalkerRole();
 		//this.game = game;
 	}
 
@@ -30,7 +31,7 @@ public class Lemming {
 		this.direction = d;
 		this.vivo = true;
 		this.fuerzaCaida = 0;
-		//this.rol = new WalkerRole();
+		this.rol = new WalkerRole();
 		//this.game = game;
 	}
 	
@@ -38,8 +39,14 @@ public class Lemming {
 	//Funcion para cambiar la posicion segun la direccion
 	public void update() {
 		if (this.vivo) {
-			this.pos.update(this.direction);
+			rol.advance(this);
 		}
+	}
+	
+	// Mueve el lemming
+	public void move() {
+		if (this.direction.getDir() == tp1.logic.Direction.LEFT)
+		this.pos.update(this.direction);
 	}
 
 	// Getters
@@ -54,7 +61,7 @@ public class Lemming {
 	}
 
 	//Funcion para obtener si esta vivo
-	public boolean isDefunciont() {
+	public boolean isVivo() {
 		return vivo;
 	}
 

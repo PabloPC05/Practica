@@ -47,6 +47,9 @@ public enum Direction {
 		return y;
 	}
 
-	
+	// Funcion para devolver la direccion
+	public Direction getDir() {
+		return this;
+	}
 	
 }
