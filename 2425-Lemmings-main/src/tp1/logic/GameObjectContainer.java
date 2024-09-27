@@ -55,6 +55,34 @@ public class GameObjectContainer {
 		return numWalls;
 	}
 
+	// Funcion para obtener la pared en la posicion i
+	public Wall getWall(int i) {
+		return walls[i];
+	}
+
+	// Funcion para ver si hay una pared en la posicion dada, y si la hay devuelve el indice de la pared, si no la hay devuelve -1
+	public int wallAt(Position pos) {
+		for (int i = 0; i < numWalls; i++) {
+			if (walls[i].getPos().getCol() == pos.getCol() && walls[i].getPos().getRow() == pos.getRow()) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	// Funcion para eliminar una pared en la posicion dada y devolver si se ha podido eliminar, usando wallAt
+	public boolean removeWall(Position pos) {
+		int i = wallAt(pos);
+		if (i != -1) {
+			for (int j = i; j < numWalls - 1; j++) {
+				walls[j] = walls[j + 1];
+			}
+			numWalls--;
+			return true;
+		}
+		return false;
+	}
+
 	// Funcion para obtener el array de lemmings
 	public Lemming[] getLemmings() {
 		return lemmings;
@@ -65,24 +93,32 @@ public class GameObjectContainer {
 		return numLemmings;
 	}
 
-	// Funcion para obtener la pared en la posicion i
-	public Wall getWall(int i) {
-		return walls[i];
+	// Funcion para obtener el lemming en la posicion i
+	public Lemming getLemming(int i) {
+		return lemmings[i];
 	}
 
-	// Funcion para ver si hay una pared en la posicion dada, y si la hay devuelve su posicion, si no la hay devuelve una posicion sin sentido (-1,-1)
-	public Position wallAt(Position pos) {
-		for (int i = 0; i < numWalls; i++) {
-			if (walls[i].getPos().getCol() == pos.getCol() && walls[i].getPos().getRow() == pos.getRow()) {
-				return walls[i].getPos();
+	// Funcion para ver si hay un lemming en la posicion dada, y si lo hay devuelve el indice del lemming, si no lo hay devuelve -1
+	public int lemmingAt(Position pos) {
+		for (int i = 0; i < numLemmings; i++) {
+			if (lemmings[i].getPos().getCol() == pos.getCol() && lemmings[i].getPos().getRow() == pos.getRow()) {
+				return i;
 			}
 		}
-		return new Position(-1, -1);
+		return -1;
 	}
 
-	// Funcion para eliminar una pared en la posicion dada y devolver si se ha podido eliminar
-
-
-
-
+	// Funcion para eliminar un lemming en la posicion dada y devolver si se ha podido eliminar, usando lemmingAt
+	public boolean removeLemming(Position pos) {
+		int i = lemmingAt(pos);
+		if (i != -1) {
+			for (int j = i; j < numLemmings - 1; j++) {
+				lemmings[j] = lemmings[j + 1];
+			}
+			numLemmings--;
+			return true;
+		}
+		return false;
+	}
+	
 }

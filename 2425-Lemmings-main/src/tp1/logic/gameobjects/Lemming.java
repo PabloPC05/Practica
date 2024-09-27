@@ -70,4 +70,9 @@ public class Lemming {
 		return fuerzaCaida;
 	}
 
+	//Funcion para obtener el rol
+	public WalkerRole getRol() {
+		return rol;
+	}
+
 }
