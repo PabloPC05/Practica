@@ -24,6 +24,11 @@ public class Wall {
         this.pos = pos;
     }
 
+    // Funcion update
+    public void update(){
+
+    }
+
     // Getters
     // Funcion para obtener la posicion de la pared
     public Position getPos() {

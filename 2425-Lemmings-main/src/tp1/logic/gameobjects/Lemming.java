@@ -15,6 +15,7 @@ public class Lemming {
 	private WalkerRole rol;
 	//private Game game;
 	
+	//Constructores
 	//Constructor por defecto
 	public Lemming() {
 		this.pos = new Position();
@@ -45,8 +46,12 @@ public class Lemming {
 	
 	// Mueve el lemming
 	public void move() {
-		if (this.direction.getDir() == tp1.logic.Direction.LEFT)
-		this.pos.update(this.direction);
+		
+		if (this.direction == Direction.DOWN) {
+			if ()
+
+		}
+
 	}
 
 	// Getters

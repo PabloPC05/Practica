@@ -24,6 +24,11 @@ public class ExitDoor {
         this.pos = pos;
     }
 
+    // Funcion update
+    public void update(){
+
+    }
+
     // Getters
     // Funcion para obtener la posicion de la puerta
     public Position getPos() {

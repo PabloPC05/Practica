@@ -5,48 +5,87 @@ public class Game {
 	public static final int DIM_X = 10;
 	public static final int DIM_Y = 10;
 
-	public Game(int nLevel) {
-		// TODO Auto-generated constructor stub
+	private GameObjectContainer gameObjects;
+	private int level;
+	private int cycle;
+	private int lemmingsToWin = 30;
+
+	// Constructores
+	// Constructor por defecto
+	public Game() {
+		this.gameObjects = new GameObjectContainer();
+		this.level = 0;
+		this.cycle = 0;
 	}
 
+	// Constructor con parametros de nivel
+	public Game(int nivel) {
+		this.gameObjects = new GameObjectContainer();
+		this.level = nivel;
+		this.cycle = 0;
+	}
+
+	// Setters
+
+	// Getters
+	// Funcion para obtener el ciclo
 	public int getCycle() {
-		// TODO Auto-generated method stub
-		return 0;
+		return cycle;
 	}
 
+	// Funcion para obtener el nivel
+	public int getLevel() {
+		return level;
+	}
+
+	// Funcion para obtener el numero de lemmings en el tablero
 	public int numLemmingsInBoard() {
-		// TODO Auto-generated method stub
-		return 0;
+		return gameObjects.getNumLemmings();
 	}
 
+	// Funcion para obtener el numero de lemmings muertos
 	public int numLemmingsDead() {
-		// TODO Auto-generated method stub
-		return 0;
+		return gameObjects.getDeadLemmings();
 	}
 
+	// Funcion para obtener el numero de lemmings que han salido por la puerta
 	public int numLemmingsExit() {
-		// TODO Auto-generated method stub
-		return 0;
+		return gameObjects.getExitLemmings();
 	}
 
+	// Funcion para obtener el numero de lemmings que tienen que salir por la puerta para ganar
 	public int numLemmingsToWin() {
-		// TODO Auto-generated method stub
-		return 0;
+		return lemmingsToWin;
 	}
 
+	// Funcion para obtener el numero de lemmings que faltan por salir por la puerta para ganar
+	public int numLemmingsLeftToWin() {
+		return lemmingsToWin - gameObjects.getExitLemmings();
+	}
+
+	// Funcion para obtener la posicion como un string
 	public String positionToString(int col, int row) {
-		// TODO Auto-generated method stub
-		return null;
+		String aux = "";
+		char charAux = numToChar(col);
+		aux += charAux;
+		aux += row;
+		return aux;
 	}
 
+	// Funcion para pasar de numero a caracter en ASCII
+	public char numToChar(int num) {
+		char aux = (char) (num + 41);
+		return aux;
+	}
+
+	// Funcion para saber si el jugador ha ganado
 	public boolean playerWins() {
-		// TODO Auto-generated method stub
-		return false;
+		return gameObjects.getExitLemmings() >= lemmingsToWin;
 	}
 
+	// Funcion para saber si el jugador ha perdido
 	public boolean playerLooses() {
-		// TODO Auto-generated method stub
-		return false;
+		return gameObjects.getNumLemmings() + gameObjects.getExitLemmings() < lemmingsToWin;
 	}
 
 	public String help() {

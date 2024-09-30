@@ -12,6 +12,8 @@ public class GameObjectContainer {
 	private int maxWalls = 100;
 	private Lemming[] lemmings;
 	private int numLemmings;
+	private int deadLemmings;
+	private int exitLemmings;
 	private int maxLemmings = 100;
 
 	// Constructores
@@ -21,6 +23,8 @@ public class GameObjectContainer {
 		this.numWalls = 0;
 		this.lemmings = new Lemming[maxLemmings];
 		this.numLemmings = 0;
+		this.deadLemmings = 0;
+		this.exitLemmings = 0;
 	}
 
 	// Setters
@@ -34,6 +38,19 @@ public class GameObjectContainer {
 		}
 	}
 
+	// Funcion para eliminar una pared en la posicion dada y devolver si se ha podido eliminar, usando wallAt
+	public boolean removeWall(Position pos) {
+		int i = wallAt(pos);
+		if (i != -1) {
+			for (int j = i; j < numWalls - 1; j++) {
+				walls[j] = walls[j + 1];
+			}
+			numWalls--;
+			return true;
+		}
+		return false;
+	}
+
 	// Funcion para añadir un lemming, si no caben mas (no deberia pasar) lo imprime por pantalla y NO se añade
 	public void addLemming(Lemming lemming) {
 		if (numLemmings < maxLemmings) {
@@ -42,6 +59,19 @@ public class GameObjectContainer {
 		} else {
 			System.out.println("No se pueden añadir mas lemmings, se ha alcanzado el maximo");
 		}
+	}
+
+	// Funcion para eliminar un lemming en la posicion dada y devolver si se ha podido eliminar, usando lemmingAt
+	public boolean removeLemming(Position pos) {
+		int i = lemmingAt(pos);
+		if (i != -1) {
+			for (int j = i; j < numLemmings - 1; j++) {
+				lemmings[j] = lemmings[j + 1];
+			}
+			numLemmings--;
+			return true;
+		}
+		return false;
 	}
 
 	// Getters
@@ -70,19 +100,6 @@ public class GameObjectContainer {
 		return -1;
 	}
 
-	// Funcion para eliminar una pared en la posicion dada y devolver si se ha podido eliminar, usando wallAt
-	public boolean removeWall(Position pos) {
-		int i = wallAt(pos);
-		if (i != -1) {
-			for (int j = i; j < numWalls - 1; j++) {
-				walls[j] = walls[j + 1];
-			}
-			numWalls--;
-			return true;
-		}
-		return false;
-	}
-
 	// Funcion para obtener el array de lemmings
 	public Lemming[] getLemmings() {
 		return lemmings;
@@ -98,6 +115,16 @@ public class GameObjectContainer {
 		return lemmings[i];
 	}
 
+	// Funcion para obtener el numero de lemmings muertos
+	public int getDeadLemmings() {
+		return deadLemmings;
+	}
+
+	// Funcion para obtener el numero de lemmings que han salido por la puerta
+	public int getExitLemmings() {
+		return exitLemmings;
+	}
+
 	// Funcion para ver si hay un lemming en la posicion dada, y si lo hay devuelve el indice del lemming, si no lo hay devuelve -1
 	public int lemmingAt(Position pos) {
 		for (int i = 0; i < numLemmings; i++) {
@@ -108,17 +135,6 @@ public class GameObjectContainer {
 		return -1;
 	}
 
-	// Funcion para eliminar un lemming en la posicion dada y devolver si se ha podido eliminar, usando lemmingAt
-	public boolean removeLemming(Position pos) {
-		int i = lemmingAt(pos);
-		if (i != -1) {
-			for (int j = i; j < numLemmings - 1; j++) {
-				lemmings[j] = lemmings[j + 1];
-			}
-			numLemmings--;
-			return true;
-		}
-		return false;
-	}
+	
 	
 }
