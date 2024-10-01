@@ -2,7 +2,7 @@ package tp1.logic;
 
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.Wall;
-import tp1.logic.Position;
+import tp1.logic.gameobjects.ExitDoor;
 
 public class GameObjectContainer {
 	
@@ -15,6 +15,7 @@ public class GameObjectContainer {
 	private int deadLemmings;
 	private int exitLemmings;
 	private int maxLemmings = 100;
+	private ExitDoor exitDoor;
 
 	// Constructores
 	// Constructor por defecto
@@ -25,11 +26,12 @@ public class GameObjectContainer {
 		this.numLemmings = 0;
 		this.deadLemmings = 0;
 		this.exitLemmings = 0;
+		this.exitDoor = new ExitDoor();
 	}
 
 	// Setters
 	// Funcion para añadir una pared, si no caben mas (no deberia pasar) lo imprime por pantalla y NO se añade
-	public void addWall(Wall wall) {
+	public void add(Wall wall) {
 		if (numWalls < maxWalls) {
 			walls[numWalls] = wall;
 			numWalls++;
@@ -52,7 +54,7 @@ public class GameObjectContainer {
 	}
 
 	// Funcion para añadir un lemming, si no caben mas (no deberia pasar) lo imprime por pantalla y NO se añade
-	public void addLemming(Lemming lemming) {
+	public void add(Lemming lemming) {
 		if (numLemmings < maxLemmings) {
 			lemmings[numLemmings] = lemming;
 			numLemmings++;
@@ -72,6 +74,23 @@ public class GameObjectContainer {
 			return true;
 		}
 		return false;
+	}
+
+	// Funcion que establece la puerta de salida
+	public void add(ExitDoor exitDoor) {
+		this.exitDoor = exitDoor;
+	}
+
+	// Funcion para establecer una nueva posicion para la puerta de salida
+	public void setExitDoor(Position pos) {
+		exitDoor.setPos(pos);
+	}
+
+	// Funcion para actualizar el estado de los lemmings
+	public void update() {
+		for (int i = 0; i < numLemmings; i++) {
+			lemmings[i].update();
+		}
 	}
 
 	// Getters

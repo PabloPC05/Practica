@@ -5,9 +5,9 @@ public class Game {
 	public static final int DIM_X = 10;
 	public static final int DIM_Y = 10;
 
-	private GameObjectContainer gameObjects;
+	public GameObjectContainer gameObjects;
 	private int level;
-	private int cycle;
+	private int turno;
 	private int lemmingsToWin = 30;
 
 	// Constructores
@@ -15,22 +15,27 @@ public class Game {
 	public Game() {
 		this.gameObjects = new GameObjectContainer();
 		this.level = 0;
-		this.cycle = 0;
+		this.turno = 0;
 	}
 
 	// Constructor con parametros de nivel
 	public Game(int nivel) {
 		this.gameObjects = new GameObjectContainer();
 		this.level = nivel;
-		this.cycle = 0;
+		this.turno = 0;
 	}
 
 	// Setters
 
+	public void update() {
+		gameObjects.update();
+		turno++;
+	}
+
 	// Getters
 	// Funcion para obtener el ciclo
-	public int getCycle() {
-		return cycle;
+	public int getTurno() {
+		return turno;
 	}
 
 	// Funcion para obtener el nivel
@@ -86,6 +91,11 @@ public class Game {
 	// Funcion para saber si el jugador ha perdido
 	public boolean playerLooses() {
 		return gameObjects.getNumLemmings() + gameObjects.getExitLemmings() < lemmingsToWin;
+	}
+
+	// Funcion para saber si se sigue jugando
+	public boolean isPlaying() {
+		return !playerWins() && !playerLooses();
 	}
 
 	public String help() {

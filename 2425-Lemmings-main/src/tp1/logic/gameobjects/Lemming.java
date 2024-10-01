@@ -11,9 +11,9 @@ public class Lemming {
 	private Position pos;
 	private Direction direction;
 	private boolean vivo;
-	private int fuerzaCaida;
+	private int fuerzaCaida; // Con 3 se muere
 	private WalkerRole rol;
-	//private Game game;
+	private Game game;
 	
 	//Constructores
 	//Constructor por defecto
@@ -23,7 +23,7 @@ public class Lemming {
 		this.vivo = true;
 		this.fuerzaCaida = 0;
 		this.rol = new WalkerRole();
-		//this.game = game;
+		this.game = game;
 	}
 
 	//Constructor con parametros de posicion y direccion
@@ -33,7 +33,7 @@ public class Lemming {
 		this.vivo = true;
 		this.fuerzaCaida = 0;
 		this.rol = new WalkerRole();
-		//this.game = game;
+		this.game = game;
 	}
 	
 	// Setters
@@ -48,7 +48,15 @@ public class Lemming {
 	public void move() {
 		
 		if (this.direction == Direction.DOWN) {
-			if ()
+			if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) != -1) {
+				if (fuerzaCaida == 3) {
+					this.vivo = false;
+				} else {
+					this.fuerzaCaida++;
+				}
+			} else {
+				this.pos.update(direction);
+			}
 
 		}
 
@@ -70,14 +78,19 @@ public class Lemming {
 		return vivo;
 	}
 
-	//Funcion para obtener la fuerza de caida
+	// Funcion para obtener la fuerza de caida
 	public int getFuerzaCaida() {
 		return fuerzaCaida;
 	}
 
-	//Funcion para obtener el rol
+	// Funcion para obtener el rol
 	public WalkerRole getRol() {
 		return rol;
+	}
+
+	// Funcion para obtener la proxima posicion
+	public Position nextPos() {
+		return pos.PositionWDir(direction);
 	}
 
 }
