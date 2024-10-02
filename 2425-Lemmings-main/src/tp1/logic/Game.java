@@ -8,7 +8,7 @@ public class Game {
 	public GameObjectContainer gameObjects;
 	private int level;
 	private int turno;
-	private int lemmingsToWin = 3;
+	private int lemmingsToWin = 30;
 
 	// Constructores
 	// Constructor por defecto
@@ -24,6 +24,8 @@ public class Game {
 		this.level = nivel;
 		this.turno = 0;
 	}
+
+	// Setters
 
 	public void update() {
 		gameObjects.update();

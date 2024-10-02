@@ -23,7 +23,7 @@ public class GameObjectContainer {
 		this.walls = new Wall[maxWalls];
 		this.numWalls = 0;
 		this.lemmings = new Lemming[maxLemmings];
-		this.numLemmings = 3;
+		this.numLemmings = 0;
 		this.deadLemmings = 0;
 		this.exitLemmings = 0;
 		this.exitDoor = new ExitDoor();
@@ -90,7 +90,6 @@ public class GameObjectContainer {
 	public void update() {
 		for (int i = 0; i < numLemmings; i++) {
 			lemmings[i].update();
-			if(!lemmings[i].isVivo()) removeLemming(lemmings[i].getPos());
 		}
 	}
 

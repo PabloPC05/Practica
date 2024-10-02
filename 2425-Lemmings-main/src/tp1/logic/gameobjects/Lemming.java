@@ -46,6 +46,7 @@ public class Lemming {
 	
 	// Mueve el lemming
 	public void move() {
+		
 		if (this.direction == Direction.DOWN) {
 			if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) != -1) {
 				if (fuerzaCaida == 3) {
@@ -56,7 +57,9 @@ public class Lemming {
 			} else {
 				this.pos.update(direction);
 			}
+
 		}
+
 	}
 
 	// Getters
