@@ -48,7 +48,7 @@ public class ConsoleView extends GameView {
 		StringBuilder buffer = new StringBuilder();
 		/* @formatter:off */
 		buffer
-		.append(Messages.NUMBER_OF_CYCLES).append(SPACE).append(game.getTurno()).append(NEW_LINE)
+		.append(Messages.NUMBER_OF_CYCLES).append(SPACE).append(game.getCycle()).append(NEW_LINE)
 		.append(Messages.NUM_LEMMINGS).append(SPACE).append(game.numLemmingsInBoard()).append(NEW_LINE)
 		.append(Messages.DEAD_LEMMINGS).append(SPACE).append(game.numLemmingsDead()).append(NEW_LINE)
 		.append(Messages.EXIT_LEMMINGS).append(SPACE).append(game.numLemmingsExit())

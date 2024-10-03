@@ -127,4 +127,10 @@ public class Game {
 		return null;
 	}
 
+
+	//Nuevas funciones que no estaban
+	public int getCycle() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
