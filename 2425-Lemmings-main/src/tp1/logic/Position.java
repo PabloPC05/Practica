@@ -46,4 +46,9 @@ public class Position {
 	public Position PositionWDir(Direction dir) {
 		return new Position(this.col + dir.getX(), this.row + dir.getY());
 	}
+
+	//Redefenicion del operador equals
+	public boolean equals(Position pos) {
+		return this.col == pos.getCol() && this.row == pos.getRow();
+	}
 }
