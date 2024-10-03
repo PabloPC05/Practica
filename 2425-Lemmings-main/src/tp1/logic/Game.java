@@ -1,5 +1,9 @@
 package tp1.logic;
 
+import java.security.MessageDigest;
+
+import tp1.view.Messages;
+
 public class Game {
 
 	public static final int DIM_X = 10;
@@ -8,7 +12,7 @@ public class Game {
 	public GameObjectContainer gameObjects;
 	private int level;
 	private int turno;
-	private int lemmingsToWin = 30;
+	private int lemmingsToWin = 3;
 
 	// Constructores
 	// Constructor por defecto
@@ -24,8 +28,6 @@ public class Game {
 		this.level = nivel;
 		this.turno = 0;
 	}
-
-	// Setters
 
 	public void update() {
 		gameObjects.update();
@@ -68,13 +70,35 @@ public class Game {
 		return lemmingsToWin - gameObjects.getExitLemmings();
 	}
 
-	// Funcion para obtener la posicion como un string
+	// Funcion para obtener que hay que mostrar en una posicion
 	public String positionToString(int col, int row) {
-		String aux = "";
-		char charAux = numToChar(col);
-		aux += charAux;
-		aux += row;
-		return aux;
+		
+		Position pos = new Position(col, row);
+		int aux;
+
+		// Si hay un lemming en la posicion
+		if ((aux = gameObjects.lemmingAt(pos)) != -1) {
+			// Devolvemos el lemming segun su direccion
+			if (gameObjects.getLemming(aux).getDirection() == Direction.RIGHT) {
+				return Messages.LEMMING_RIGHT;
+			} else if (gameObjects.getLemming(aux).getDirection() == Direction.LEFT) {
+				return Messages.LEMMING_LEFT;
+			} else  {
+				return Messages.LEMMING_RIGHT;
+			}
+		}
+		// Si hay una pared en la posicion
+		else if ((aux = gameObjects.wallAt(pos)) != -1) {
+			return Messages.WALL;
+		}
+		// Si esta la puerta en la posicion
+		else if (gameObjects.getExit().getPos().equals(pos)) {
+			return Messages.EXIT_DOOR;
+		}
+		// Si no hay nada en la posicion
+		else {
+			return Messages.EMPTY;
+		}
 	}
 
 	// Funcion para pasar de numero a caracter en ASCII

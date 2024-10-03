@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import java.util.ArrayList;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.Wall;
 import tp1.logic.gameobjects.ExitDoor;
@@ -7,10 +8,10 @@ import tp1.logic.gameobjects.ExitDoor;
 public class GameObjectContainer {
 	
 	// Atributos
-	private Wall[] walls;
+	private ArrayList<Wall> walls;
 	private int numWalls;
 	private int maxWalls = 100;
-	private Lemming[] lemmings;
+	private ArrayList<Lemming> lemmings;
 	private int numLemmings;
 	private int deadLemmings;
 	private int exitLemmings;
@@ -23,7 +24,7 @@ public class GameObjectContainer {
 		this.walls = new Wall[maxWalls];
 		this.numWalls = 0;
 		this.lemmings = new Lemming[maxLemmings];
-		this.numLemmings = 0;
+		this.numLemmings = 3;
 		this.deadLemmings = 0;
 		this.exitLemmings = 0;
 		this.exitDoor = new ExitDoor();
@@ -36,7 +37,7 @@ public class GameObjectContainer {
 			walls[numWalls] = wall;
 			numWalls++;
 		} else {
-			System.out.println("No se pueden añadir mas paredes, se ha alcanzado el maximo");
+			//System.out.println("No se pueden añadir mas paredes, se ha alcanzado el maximo");
 		}
 	}
 
@@ -53,13 +54,21 @@ public class GameObjectContainer {
 		return false;
 	}
 
+	// Funcion para eliminar una pared dada su indice en el array
+	public void removeWall(int i) {
+		for (int j = i; j < numWalls - 1; j++) {
+			walls[j] = walls[j + 1];
+		}
+		numWalls--;
+	}
+
 	// Funcion para añadir un lemming, si no caben mas (no deberia pasar) lo imprime por pantalla y NO se añade
 	public void add(Lemming lemming) {
 		if (numLemmings < maxLemmings) {
 			lemmings[numLemmings] = lemming;
 			numLemmings++;
 		} else {
-			System.out.println("No se pueden añadir mas lemmings, se ha alcanzado el maximo");
+			//System.out.println("No se pueden añadir mas lemmings, se ha alcanzado el maximo");
 		}
 	}
 
@@ -76,6 +85,14 @@ public class GameObjectContainer {
 		return false;
 	}
 
+	// Funcion para eliminar un lemming dada su indice en el array
+	public void removeLemming(int i) {
+		for (int j = i; j < numLemmings - 1; j++) {
+			lemmings[j] = lemmings[j + 1];
+		}
+		numLemmings--;
+	}
+
 	// Funcion que establece la puerta de salida
 	public void add(ExitDoor exitDoor) {
 		this.exitDoor = exitDoor;
@@ -90,6 +107,7 @@ public class GameObjectContainer {
 	public void update() {
 		for (int i = 0; i < numLemmings; i++) {
 			lemmings[i].update();
+			if(!lemmings[i].isVivo()) removeLemming(lemmings[i].getPos());
 		}
 	}
 
@@ -154,6 +172,9 @@ public class GameObjectContainer {
 		return -1;
 	}
 
-	
+	// Funcion para obtener la posicion de la puerta de salida
+	public ExitDoor getExit() {
+		return exitDoor;
+	}
 	
 }
