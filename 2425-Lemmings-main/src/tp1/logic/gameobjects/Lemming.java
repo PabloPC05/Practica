@@ -40,7 +40,7 @@ public class Lemming {
 	//Funcion para cambiar la posicion segun la direccion
 	public void update() {
 		if (this.vivo) {
-			rol.advance(this);
+			rol.play(this);
 		}
 	}
 	

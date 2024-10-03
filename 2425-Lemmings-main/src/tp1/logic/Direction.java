@@ -24,32 +24,32 @@ public enum Direction {
 	}
 	
 	// Setters
-	// Funcion para establecer una direccion
-	public void setDirection(Direction dir) {
-		this.x = dir.x;
-		this.y = dir.y;
-	}
+		// Funcion para establecer una direccion
+		public void setDirection(Direction dir) {
+			this.x = dir.x;
+			this.y = dir.y;
+		}
 
-	// Funcion para establecer la direccion simetrica
-	public void setSymmetric() {
-		this.x = -this.x;
-		this.y = -this.y;
-	}
+		// Funcion para establecer la direccion simetrica
+		public void setSymmetric() {
+			this.x = -this.x;
+			this.y = -this.y;
+		}
 
 	// Getters
-	// Funcion para obtener la coordenada x
-	public int getX() {
-		return x;
-	}
+		// Funcion para obtener la coordenada x
+		public int getX() {
+			return x;
+		}
 
-	// Funcion para obtener la coordenada y
-	public int getY() {
-		return y;
-	}
+		// Funcion para obtener la coordenada y
+		public int getY() {
+			return y;
+		}
 
-	// Funcion para devolver la direccion
-	public Direction getDir() {
-		return this;
-	}
+		// Funcion para devolver la direccion
+		public Direction getDir() {
+			return this;
+		}
 	
 }

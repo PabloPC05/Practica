@@ -11,7 +11,7 @@ public class Game {
 
 	public GameObjectContainer gameObjects;
 	private int level;
-	private int turno;
+	private int cycle;
 	private int lemmingsToWin = 3;
 
 	// Constructores
@@ -19,25 +19,25 @@ public class Game {
 	public Game() {
 		this.gameObjects = new GameObjectContainer();
 		this.level = 0;
-		this.turno = 0;
+		this.cycle = 0;
 	}
 
 	// Constructor con parametros de nivel
 	public Game(int nivel) {
 		this.gameObjects = new GameObjectContainer();
 		this.level = nivel;
-		this.turno = 0;
+		this.cycle = 0;
 	}
 
 	public void update() {
 		gameObjects.update();
-		turno++;
+		cycle++;
 	}
 
 	// Getters
 	// Funcion para obtener el ciclo
-	public int getTurno() {
-		return turno;
+	public int getcycle() {
+		return cycle;
 	}
 
 	// Funcion para obtener el nivel
@@ -79,16 +79,10 @@ public class Game {
 		// Si hay un lemming en la posicion
 		if ((aux = gameObjects.lemmingAt(pos)) != -1) {
 			// Devolvemos el lemming segun su direccion
-			if (gameObjects.getLemming(aux).getDirection() == Direction.RIGHT) {
-				return Messages.LEMMING_RIGHT;
-			} else if (gameObjects.getLemming(aux).getDirection() == Direction.LEFT) {
-				return Messages.LEMMING_LEFT;
-			} else  {
-				return Messages.LEMMING_RIGHT;
-			}
+			return gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux));
 		}
 		// Si hay una pared en la posicion
-		else if ((aux = gameObjects.wallAt(pos)) != -1) {
+		else if(gameObjects.wallAt(pos) != -1) {
 			return Messages.WALL;
 		}
 		// Si esta la puerta en la posicion
@@ -123,14 +117,11 @@ public class Game {
 	}
 
 	public String help() {
-		// TODO Auto-generated method stub
-		return null;
+		return Messages.HELP;
 	}
-
 
 	//Nuevas funciones que no estaban
 	public int getCycle() {
-		// TODO Auto-generated method stub
-		return 0;
+		return cycle;
 	}
 }
