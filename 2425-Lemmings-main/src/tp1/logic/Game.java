@@ -36,7 +36,7 @@ public class Game {
 
 	// Getters
 	// Funcion para obtener el ciclo
-	public int getcycle() {
+	public int getCycle() {
 		return cycle;
 	}
 
@@ -112,16 +112,16 @@ public class Game {
 	}
 
 	// Funcion para saber si se sigue jugando
-	public boolean isPlaying() {
+	/*public boolean isPlaying() {
 		return !playerWins() && !playerLooses();
+	}*/
+
+	// Funcion para saber si se ha acabado el juego
+	public boolean isFinished() {
+		return playerWins() || playerLooses();
 	}
 
 	public String help() {
 		return Messages.HELP;
-	}
-
-	//Nuevas funciones que no estaban
-	public int getCycle() {
-		return cycle;
 	}
 }

@@ -23,11 +23,13 @@ public class Controller {
 	 */
 	public void run() {
 		view.showWelcome();
+		view.showGame();
 		//TODO fill your code: The main loop that displays the game, asks the user for input, and executes the action.
-		while (game.isPlaying()) {
-			view.showGame();
+		while (!game.isFinished()) {
+			//view.showGame();
 			String[] action = view.getPrompt();
 			game.update();
+			view.showGame();
 		}
 		view.showEndMessage();
 	}

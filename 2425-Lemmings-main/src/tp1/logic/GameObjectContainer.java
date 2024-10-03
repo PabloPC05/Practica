@@ -27,7 +27,7 @@ public class GameObjectContainer {
 		this.walls = new ArrayList<Wall>();
 		this.numWalls = 0;
 		this.lemmings = new ArrayList<Lemming>();
-		this.numLemmings = 3;
+		this.numLemmings = 0;
 		this.deadLemmings = 0;
 		this.exitLemmings = 0;
 		this.exitDoor = new ExitDoor();
