@@ -46,30 +46,26 @@ public class Lemming {
 	
 	// Mueve el lemming
 	public void move() {
-		if (this.direction == Direction.DOWN) {
-			if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) != -1) {
+		if (direction == Direction.DOWN) {
+			if (game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
 				if (fuerzaCaida >= 3) {
-					this.vivo = false;
+					vivo = false;
 				} else {
-					this.fuerzaCaida = 0;
+					fuerzaCaida = 0;
 				}
 			} else {
-				this.fuerzaCaida++;
-				this.pos.update(direction);
+				fuerzaCaida++;
+				pos.update(direction);
 			}
 		}
-		else if (this.direction == Direction.RIGHT){
-			if (game.gameObjects.wallAt(pos.PositionWDir(Direction.RIGHT)) != -1) {
-				this.direction.setSymmetric();
+		else if (direction == Direction.RIGHT || direction == Direction.LEFT) {
+			if (game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
+				direction.setSymmetric();
 			} else {
 				this.pos.update(direction);
-			}
-		}
-		else if (this.direction == Direction.LEFT){
-			if (game.gameObjects.wallAt(pos.PositionWDir(Direction.LEFT)) != -1) {
-				this.direction = Direction.RIGHT;
-			} else {
-				this.pos.update(direction);
+				if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
+					direction = Direction.DOWN;
+				}
 			}
 		}
 	}
