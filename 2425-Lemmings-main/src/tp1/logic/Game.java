@@ -1,8 +1,10 @@
 package tp1.logic;
 
 import java.security.MessageDigest;
-
 import tp1.view.Messages;
+import tp1.logic.gameobjects.Wall;
+import tp1.logic.gameobjects.ExitDoor;
+import tp1.logic.gameobjects.Lemming;
 
 public class Game {
 
@@ -12,14 +14,36 @@ public class Game {
 	public GameObjectContainer gameObjects;
 	private int level;
 	private int cycle;
-	private int lemmingsToWin = 3;
+	private int lemmingsToWin;
 
 	// Constructores
 	// Constructor por defecto
 	public Game() {
 		this.gameObjects = new GameObjectContainer();
+		this.initObjects();
 		this.level = 0;
 		this.cycle = 0;
+		this.lemmingsToWin = 3;
+	}
+
+	// Funcion para inicializar los objetos del juego
+	private void initObjects() {
+		gameObjects.add(new Wall(0, 6));
+		gameObjects.add(new Wall(1, 6));
+		gameObjects.add(new Wall(2, 6));
+		gameObjects.add(new Wall(3, 6));
+		gameObjects.add(new Wall(4, 6));
+		gameObjects.add(new Wall(5, 6));
+		gameObjects.add(new Wall(6, 6));
+		gameObjects.add(new Wall(6, 5));
+
+		gameObjects.add(new Lemming(0, 4, Direction.RIGHT));
+		gameObjects.add(new Lemming(1, 4, Direction.RIGHT));
+		gameObjects.add(new Lemming(2, 3, Direction.RIGHT));
+		gameObjects.add(new Lemming(3, 3, Direction.RIGHT));
+
+		gameObjects.setExitDoor(new ExitDoor(9, 5));
+
 	}
 
 	// Constructor con parametros de nivel
@@ -119,6 +143,7 @@ public class Game {
 	// Funcion para saber si se ha acabado el juego
 	public boolean isFinished() {
 		return playerWins() || playerLooses();
+		//return false;
 	}
 
 	public String help() {

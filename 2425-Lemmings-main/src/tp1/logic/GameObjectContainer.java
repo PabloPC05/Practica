@@ -34,14 +34,14 @@ public class GameObjectContainer {
 	}
 
 	//Setters
-		// Funcion para establecer una nueva posicion para la puerta de salida
-		public void setExitDoor(Position pos) {
-			exitDoor.setPos(pos);
-		}
-		// Funcion que establece la puerta de salida
-		public void setExitDoor(ExitDoor exitDoor) {
-			this.exitDoor = exitDoor;
-		}
+	// Funcion para establecer una nueva posicion para la puerta de salida
+	public void setExitDoor(Position pos) {
+		exitDoor.setPos(pos);
+	}
+	// Funcion que establece la puerta de salida
+	public void setExitDoor(ExitDoor exitDoor) {
+		this.exitDoor = exitDoor;
+	}
 
 	// Funcion para actualizar el estado de los lemmings
 	public void update() {
@@ -49,6 +49,33 @@ public class GameObjectContainer {
 			lemmings.get(i).update();
 			if(!lemmings.get(i).isVivo()) removeLemming(lemmings.get(i).getPos());
 		}
+	}
+
+	// Funcion para inicializar los lemmings
+	public void initLemmings() {
+		lemmings.add(new Lemming(0, 0, Direction.RIGHT));
+		lemmings.add(new Lemming(1, 0, Direction.RIGHT));
+		lemmings.add(new Lemming(2, 0, Direction.RIGHT));
+		numLemmings = 3;
+	}
+
+	// Funcion para inicializar las paredes
+	public void initWalls() {
+		walls.add(new Wall(3, 0));
+		walls.add(new Wall(3, 1));
+		walls.add(new Wall(3, 2));
+		walls.add(new Wall(3, 3));
+		walls.add(new Wall(3, 4));
+		walls.add(new Wall(3, 5));
+		walls.add(new Wall(3, 6));
+		walls.add(new Wall(3, 7));
+		walls.add(new Wall(3, 8));
+		walls.add(new Wall(3, 9));
+	}
+
+	// Funcion para inicializar la puerta de salida
+	public void initExitDoor() {
+		exitDoor.setPos(new Position(9, 0));
 	}
 
 	// Getters

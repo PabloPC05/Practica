@@ -26,9 +26,19 @@ public class Lemming {
 		this.game = game;
 	}
 
-	//Constructor con parametros de posicion y direccion
+	// Constructor con parametros de posicion y direccion
 	public Lemming(int c, int r, Direction d) {
 		this.pos = new Position(c, r);
+		this.direction = d;
+		this.vivo = true;
+		this.fuerzaCaida = 0;
+		this.rol = new WalkerRole();
+		this.game = game;
+	}
+
+	// Constructor con parametros de posicion (objeto) y direccion
+	public Lemming(Position pos, Direction d) {
+		this.pos = pos;
 		this.direction = d;
 		this.vivo = true;
 		this.fuerzaCaida = 0;

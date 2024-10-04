@@ -18,6 +18,11 @@ public class Wall {
         this.pos = new Position(c, r);
     }
 
+    // Constructor con parametros de posicion (objeto)
+    public Wall(Position pos) {
+        this.pos = pos;
+    }
+
     // Setters
     // Funcion para establecer la posicion de la pared
     public void setPos(Position pos) {
