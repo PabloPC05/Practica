@@ -83,12 +83,13 @@ public class Lemming {
 	// Getters
 	//Funcion para obtener la posicion
 	public Position getPos() {
-		return pos;
+		return new Position(this.pos.getCol(), this.pos.getRow());
 	}
 
 	//Funcion para obtener la direccion
 	public Direction getDirection() {
-		return direction;
+		Direction newDirection = direction;
+		return newDirection;
 	}
 
 	//Funcion para obtener si esta vivo
@@ -103,7 +104,7 @@ public class Lemming {
 
 	// Funcion para obtener el rol
 	public WalkerRole getRol() {
-		return rol;
+		return new WalkerRole();
 	}
 
 	// Funcion para obtener la proxima posicion

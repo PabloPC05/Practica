@@ -91,7 +91,7 @@ public class GameObjectContainer {
 
 		// Funcion para obtener la pared en la posicion i
 		public Wall getWall(int i) {
-			return walls.get(i);
+			return new Wall(walls.get(i).getPos());
 		}
 
 		// Funcion para obtener el array de lemmings
@@ -106,7 +106,7 @@ public class GameObjectContainer {
 
 		// Funcion para obtener el lemming en la posicion i
 		public Lemming getLemming(int i) {
-			return lemmings.get(i);
+			return new Lemming(lemmings.get(i).getPos(), lemmings.get(i).getDirection());
 		}
 
 		// Funcion para obtener el numero de lemmings muertos
@@ -121,7 +121,7 @@ public class GameObjectContainer {
 		
 		// Funcion para obtener la posicion de la puerta de salida
 		public ExitDoor getExit() {
-			return exitDoor;
+			return new ExitDoor(exitDoor.getPos());
 		}
 
 	// Metodos para añadir objetos del juego
@@ -172,8 +172,10 @@ public class GameObjectContainer {
 		// Funcion para ver si hay una pared en la posicion dada, y si la hay devuelve el indice de la pared, si no la hay devuelve -1
 		public int wallAt(Position pos) {
 			int i = 0; 
-			while(i < numWalls && !walls.get(i).getPos().equals(pos)) i++;
-			if(i <= numWalls) i = -1;
+			while(i < numWalls && !walls.get(i).getPos().equals(pos)) {
+				i++;
+			}
+			if(i >= numWalls) i = -1;
 			return i;
 		}
 
@@ -183,7 +185,7 @@ public class GameObjectContainer {
 			while(i < numLemmings && !lemmings.get(i).getPos().equals(pos)){
 				i++;
 			}
-			if(i <= numLemmings) return i = -1;
+			if(i >= numLemmings) return i = -1;
 			return i;
 		}
 

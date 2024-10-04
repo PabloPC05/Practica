@@ -26,6 +26,15 @@ public class Game {
 		this.lemmingsToWin = 3;
 	}
 
+	// Constructor con parametros de nivel
+	public Game(int nivel) {
+		this.gameObjects = new GameObjectContainer();
+		this.initObjects();
+		this.level = nivel;
+		this.cycle = 0;
+		this.lemmingsToWin = 3;
+	}
+
 	// Funcion para inicializar los objetos del juego
 	private void initObjects() {
 		gameObjects.add(new Wall(0, 6));
@@ -46,13 +55,7 @@ public class Game {
 
 	}
 
-	// Constructor con parametros de nivel
-	public Game(int nivel) {
-		this.gameObjects = new GameObjectContainer();
-		this.level = nivel;
-		this.cycle = 0;
-	}
-
+	// Funcion para ejecutar un ciclo
 	public void update() {
 		gameObjects.update();
 		cycle++;
@@ -143,7 +146,6 @@ public class Game {
 	// Funcion para saber si se ha acabado el juego
 	public boolean isFinished() {
 		return playerWins() || playerLooses();
-		//return false;
 	}
 
 	public String help() {

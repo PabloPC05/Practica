@@ -37,7 +37,7 @@ public class ExitDoor {
     // Getters
     // Funcion para obtener la posicion de la puerta
     public Position getPos() {
-        return pos;
+        return new Position(this.pos.getCol(), this.pos.getRow());
     }
 
     // Funcion para obtener la columna de la puerta
