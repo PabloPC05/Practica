@@ -46,10 +46,10 @@ public class Game {
 		gameObjects.add(new Wall(6, 6));
 		gameObjects.add(new Wall(6, 5));
 
-		gameObjects.add(new Lemming(0, 4, Direction.RIGHT));
-		gameObjects.add(new Lemming(1, 4, Direction.RIGHT));
-		gameObjects.add(new Lemming(2, 3, Direction.RIGHT));
-		gameObjects.add(new Lemming(3, 3, Direction.RIGHT));
+		gameObjects.add(new Lemming(0, 4, Direction.RIGHT, this));
+		gameObjects.add(new Lemming(1, 4, Direction.RIGHT, this));
+		gameObjects.add(new Lemming(2, 3, Direction.RIGHT, this));
+		gameObjects.add(new Lemming(3, 3, Direction.RIGHT, this));
 
 		gameObjects.setExitDoor(new ExitDoor(9, 5));
 

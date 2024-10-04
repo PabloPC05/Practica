@@ -27,7 +27,7 @@ public class Lemming {
 	}
 
 	// Constructor con parametros de posicion y direccion
-	public Lemming(int c, int r, Direction d) {
+	public Lemming(int c, int r, Direction d, Game game) {
 		this.pos = new Position(c, r);
 		this.direction = d;
 		this.vivo = true;
@@ -37,7 +37,7 @@ public class Lemming {
 	}
 
 	// Constructor con parametros de posicion (objeto) y direccion
-	public Lemming(Position pos, Direction d) {
+	public Lemming(Position pos, Direction d, Game game) {
 		this.pos = pos;
 		this.direction = d;
 		this.vivo = true;
@@ -110,6 +110,11 @@ public class Lemming {
 	// Funcion para obtener la proxima posicion
 	public Position nextPos() {
 		return pos.PositionWDir(direction);
+	}
+
+	// Funcion para obtener el juego
+	public Game getGame() {
+		return new Game(this.game.getLevel());
 	}
 
 }

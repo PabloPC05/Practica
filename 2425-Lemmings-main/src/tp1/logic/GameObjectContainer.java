@@ -53,9 +53,9 @@ public class GameObjectContainer {
 
 	// Funcion para inicializar los lemmings
 	public void initLemmings() {
-		lemmings.add(new Lemming(0, 0, Direction.RIGHT));
-		lemmings.add(new Lemming(1, 0, Direction.RIGHT));
-		lemmings.add(new Lemming(2, 0, Direction.RIGHT));
+		//lemmings.add(new Lemming(0, 0, Direction.RIGHT));
+		//lemmings.add(new Lemming(1, 0, Direction.RIGHT));
+		//lemmings.add(new Lemming(2, 0, Direction.RIGHT));
 		numLemmings = 3;
 	}
 
@@ -106,7 +106,7 @@ public class GameObjectContainer {
 
 		// Funcion para obtener el lemming en la posicion i
 		public Lemming getLemming(int i) {
-			return new Lemming(lemmings.get(i).getPos(), lemmings.get(i).getDirection());
+			return new Lemming(lemmings.get(i).getPos(), lemmings.get(i).getDirection(), lemmings.get(i).getGame());
 		}
 
 		// Funcion para obtener el numero de lemmings muertos
