@@ -37,21 +37,46 @@ public class Game {
 
 	// Funcion para inicializar los objetos del juego
 	private void initObjects() {
-		gameObjects.add(new Wall(0, 6));
-		gameObjects.add(new Wall(1, 6));
-		gameObjects.add(new Wall(2, 6));
-		gameObjects.add(new Wall(3, 6));
-		gameObjects.add(new Wall(4, 6));
-		gameObjects.add(new Wall(5, 6));
-		gameObjects.add(new Wall(6, 6));
+
+		gameObjects.add(new Wall(0, 5));
+		gameObjects.add(new Wall(1, 5));
+		gameObjects.add(new Wall(2, 5));
+		gameObjects.add(new Wall(3, 5));
+		gameObjects.add(new Wall(4, 5));
+		gameObjects.add(new Wall(5, 5));
 		gameObjects.add(new Wall(6, 5));
+		gameObjects.add(new Wall(7, 5));
+		gameObjects.add(new Wall(8, 5));
+		gameObjects.add(new Wall(9, 5));
 
+		gameObjects.add(new Wall(0, 7));
+		gameObjects.add(new Wall(1, 7));
+		gameObjects.add(new Wall(2, 7));
+		gameObjects.add(new Wall(3, 7));
+		gameObjects.add(new Wall(4, 7));
+		gameObjects.add(new Wall(5, 7));
+		gameObjects.add(new Wall(6, 7));
+		gameObjects.add(new Wall(7, 7));
+		gameObjects.add(new Wall(8, 7));
+		gameObjects.add(new Wall(9, 7));
+
+		gameObjects.add(new Wall(0, 9));
+		gameObjects.add(new Wall(1,9));
+		gameObjects.add(new Wall(2,9));
+		gameObjects.add(new Wall(3,9));
+		gameObjects.add(new Wall(4,9));
+		gameObjects.add(new Wall(5,9));
+		gameObjects.add(new Wall(6,9));
+		gameObjects.add(new Wall(7,9));
+		gameObjects.add(new Wall(8,9));
+		gameObjects.add(new Wall(9,9));
+
+		gameObjects.add(new Lemming(0, 2, Direction.RIGHT, this));
 		gameObjects.add(new Lemming(0, 4, Direction.RIGHT, this));
-		gameObjects.add(new Lemming(1, 4, Direction.RIGHT, this));
-		gameObjects.add(new Lemming(2, 3, Direction.RIGHT, this));
-		gameObjects.add(new Lemming(3, 3, Direction.RIGHT, this));
+		gameObjects.add(new Lemming(3, 6, Direction.RIGHT, this));
+		gameObjects.add(new Lemming(5, 8, Direction.RIGHT, this));
 
-		gameObjects.setExitDoor(new ExitDoor(9, 5));
+		gameObjects.setExitDoor(new ExitDoor(8, 4));
 
 	}
 

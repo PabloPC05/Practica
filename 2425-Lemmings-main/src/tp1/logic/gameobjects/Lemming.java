@@ -25,7 +25,7 @@ public class Lemming {
 		this.vivo = true;
 		this.fuerzaCaida = 0;
 		this.rol = new WalkerRole();
-		this.game = game;
+		//this.game = game;
 	}
 
 	// Constructor con parametros de posicion y direccion
@@ -36,6 +36,11 @@ public class Lemming {
 		this.fuerzaCaida = 0;
 		this.rol = new WalkerRole();
 		this.game = game;
+		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
+		if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
+			previousDirection = direction;
+			direction = Direction.DOWN;
+		}
 	}
 
 	// Constructor con parametros de posicion (objeto) y direccion
@@ -46,6 +51,11 @@ public class Lemming {
 		this.fuerzaCaida = 0;
 		this.rol = new WalkerRole();
 		this.game = game;
+		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
+		if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
+			previousDirection = direction;
+			direction = Direction.DOWN;
+		}
 	}
 	
 	// Setters
@@ -80,9 +90,13 @@ public class Lemming {
 		// Si esta yendo a la derecha o izquierda
 		else if (direction == Direction.RIGHT || direction == Direction.LEFT) {
 			// Si hay una pared en la siguiente posicion, se cambia la direccion a la simetrica y se guarda la anterior
-			if (game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
+			if (pos.PositionWDir(direction).getCol() < 0 || pos.PositionWDir(direction).getCol() >= Game.DIM_X || game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
 				previousDirection = direction;
-				direction.setSymmetric();
+				if (direction == Direction.RIGHT) {
+					direction = Direction.LEFT;
+				} else {
+					direction = Direction.RIGHT;
+				}
 			// Si no hay una pared a la izquierad o derecha, se actualiza la posicion con la direccion
 			} else {
 				// Se actualiza la posicion con la direccion
