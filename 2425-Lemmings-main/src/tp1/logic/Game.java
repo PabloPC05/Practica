@@ -71,8 +71,10 @@ public class Game {
 		gameObjects.add(new Wall(8,9));
 		gameObjects.add(new Wall(9,9));
 
-		gameObjects.add(new Lemming(0, 2, Direction.RIGHT, this));
-		gameObjects.add(new Lemming(0, 4, Direction.RIGHT, this));
+		gameObjects.add(new Lemming(0, 1, Direction.RIGHT, this));
+		//gameObjects.add(new Lemming(0, 2, Direction.RIGHT, this));
+		//gameObjects.add(new Lemming(0, 3, Direction.RIGHT, this));
+		//gameObjects.add(new Lemming(0, 4, Direction.RIGHT, this));
 		gameObjects.add(new Lemming(3, 6, Direction.RIGHT, this));
 		gameObjects.add(new Lemming(5, 8, Direction.RIGHT, this));
 
@@ -83,7 +85,14 @@ public class Game {
 	// Funcion para ejecutar un ciclo
 	public void update() {
 		gameObjects.update();
-		cycle++;
+		cycle++;	
+	}
+
+	// Funcion para reiniciar el juego
+	public void reset() {
+		gameObjects = new GameObjectContainer();
+		initObjects();
+		cycle = 0;
 	}
 
 	// Getters

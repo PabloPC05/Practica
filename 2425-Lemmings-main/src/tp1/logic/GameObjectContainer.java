@@ -45,16 +45,16 @@ public class GameObjectContainer {
 
 	// Funcion para actualizar el estado de los lemmings
 	public void update() {
+		// Updateamos los lemmings vivos que no estan en la salida
 		for (int i = 0; i < numLemmings; i++) {
-			if(!lemmings.get(i).isVivo()) {
-				removeLemming(lemmings.get(i));
+			if(lemmings.get(i).isVivo() && !lemmings.get(i).getPos().equals(exitDoor.getPos())) {
+				lemmings.get(i).update();
 			}
-			if(lemmings.get(i).getPos().equals(exitDoor.getPos())) {
-				exitLemmings++;
-				removeLemming(lemmings.get(i));
-			}
-			lemmings.get(i).update();
 		}
+		// Eliminamos los lemmings muertos
+		removeDeadLemmings();
+		// Comprobamos si hay lemmings en la salida, y si los hay los eliminamos
+		removeExitLemmings();
 	}
 
 	// Funcion para inicializar los lemmings
@@ -186,11 +186,23 @@ public class GameObjectContainer {
 			return false;
 		}
 
-		// Funcion para eliminar todos los lemmings mueertos
+		// Funcion para eliminar todos los lemmings muertos
 		public void removeDeadLemmings() {
 			for (int i = 0; i < numLemmings; i++) {
 				if (!lemmings.get(i).isVivo()) {
+					numLemmings--;
 					deadLemmings++;
+					lemmings.remove(i);
+				}
+			}
+		}
+		
+		// Funcion para eliminar los lemmings que esten en la salida
+		public void removeExitLemmings() {
+			for (int i = 0; i < numLemmings; i++) {
+				if (lemmings.get(i).getPos().equals(exitDoor.getPos())) {
+					numLemmings--;
+					exitLemmings++;
 					lemmings.remove(i);
 				}
 			}
