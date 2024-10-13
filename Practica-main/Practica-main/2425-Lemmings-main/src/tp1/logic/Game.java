@@ -95,20 +95,29 @@ public class Game {
 	public String positionToString(int col, int row) {
 		
 		Position pos = new Position(col, row);
-		int aux;
+		int aux = 0;
+		StringBuilder stringBuilder = new StringBuilder();
 
-		// Si hay un lemming en la posicion
-		if ((aux = gameObjects.lemmingAt(pos)) != -1) {
-			// Devolvemos el lemming segun su direccion
-			return gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux));
+
+		// Si esta la puerta en la posicion
+		if (gameObjects.getExitDoor().getPos().equals(pos)) {
+			if(gameObjects.getExitLemmings() > 0) {
+				stringBuilder.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
+			}
+			// Agrega el símbolo de la puerta de salida al final
+			stringBuilder.append(Messages.EXIT_DOOR);
+			return stringBuilder.toString();
+			//Lo que estaba originalmente
+			//return Messages.EXIT_DOOR;
 		}
 		// Si hay una pared en la posicion
 		else if(gameObjects.wallAt(pos) != -1) {
 			return Messages.WALL;
 		}
-		// Si esta la puerta en la posicion
-		else if (gameObjects.getExit().getPos().equals(pos)) {
-			return Messages.EXIT_DOOR;
+		// Si hay un lemming en la posicion
+		else if ((aux = gameObjects.lemmingAt(pos)) != -1) {
+			// Devolvemos el lemming segun su direccion
+			return gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux));
 		}
 		// Si no hay nada en la posicion
 		else {

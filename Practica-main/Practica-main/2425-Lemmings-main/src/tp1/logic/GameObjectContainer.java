@@ -35,13 +35,14 @@ public class GameObjectContainer {
 
 	//Setters
 	// Funcion para establecer una nueva posicion para la puerta de salida
-	public void setExitDoor(Position pos) {
+	/*public void setExitDoor(Position pos) {
 		exitDoor.setPos(pos);
-	}
+	}*/
+
 	// Funcion que establece la puerta de salida
-	public void setExitDoor(ExitDoor exitDoor) {
+	/*public void setExitDoor(ExitDoor exitDoor) {
 		this.exitDoor = exitDoor;
-	}
+	}*/
 
 	// Funcion para actualizar el estado de los lemmings
 	public void update() {
@@ -109,25 +110,15 @@ public class GameObjectContainer {
 	}
 
 	// Getters
-		// Funcion para obtener el array de paredes
-		public ArrayList<Wall> getWalls() {
-			return walls;
-		}
-
 		// Funcion para obtener el numero de paredes
-		public int getNumWalls() {
+		/*public int getNumWalls() {
 			return numWalls;
-		}
+		}*/
 
 		// Funcion para obtener la pared en la posicion i
-		public Wall getWall(int i) {
+		/*public Wall getWall(int i) {
 			return new Wall(walls.get(i).getPos());
-		}
-
-		// Funcion para obtener el array de lemmings
-		public ArrayList<Lemming> getLemmings() {
-			return lemmings;
-		}
+		}*/
 
 		// Funcion para obtener el numero de lemmings
 		public int getNumLemmings() {
@@ -150,12 +141,11 @@ public class GameObjectContainer {
 		}
 		
 		// Funcion para obtener la posicion de la puerta de salida
-		public ExitDoor getExit() {
+		public ExitDoor getExitDoor() {
 			return new ExitDoor(exitDoor.getPos());
 		}
 
 	// Metodos para añadir objetos del juego
-
 		// Funcion para añadir un lemming al final de la lista, si no caben mas (no deberia pasar) lo imprime por pantalla y NO se añade
 		public void add(Lemming lemming) {
 			if (numLemmings < MAXLEMMINGS) {
@@ -178,7 +168,7 @@ public class GameObjectContainer {
 		
 	// Metodos para eliminar objetos del juego
 		// Funcion para eliminar una pared en la posicion dada y devolver si se ha podido eliminar, usando wallAt
-		public boolean removeWall(Position pos) {
+		/*public boolean removeWall(Position pos) {
 			int i = wallAt(pos);
 			if (i != -1) {
 				numWalls--;
@@ -186,10 +176,10 @@ public class GameObjectContainer {
 				return true;
 			}
 			return false;
-		}
+		}*/
 
 		// Funcion para eliminar un lemming en la posicion dada y devolver si se ha podido eliminar, usando lemmingAt
-		public boolean removeLemming(Position pos) {
+		/*public boolean removeLemming(Position pos) {
 			int i = lemmingAt(pos);
 			if (i != -1) {
 				deadLemmings++;
@@ -197,10 +187,10 @@ public class GameObjectContainer {
 				return true;
 			}
 			return false;
-		}
+		}*/
 
 		// Funcion para eliminar un lemming pasando un obejto lemming y devolver si se ha podido eliminar, usando lemmingAt
-		public boolean removeLemming(Lemming lemming) {
+		/*public boolean removeLemming(Lemming lemming) {
 			int i = lemmingAt(lemming);
 			if (i != -1) {
 				numLemmings--;
@@ -209,7 +199,7 @@ public class GameObjectContainer {
 				return true;
 			}
 			return false;
-		}
+		}*/
 
 		// Funcion para eliminar todos los lemmings muertos
 		public void removeDeadLemmings() {
@@ -255,14 +245,12 @@ public class GameObjectContainer {
 		}
 
 		// Funcion para ver si hay un lemming que coincida con un lemming dado, y si lo hay devuelve el indice del lemming, si no lo hay devuelve -1
-		public int lemmingAt(Lemming lemming) {
+		/*public int lemmingAt(Lemming lemming) {
 			int i = 0; 
 			while(i < numLemmings && !lemmings.get(i).equals(lemming)){
 				i++;
 			}
 			if(i >= numLemmings) return i = -1;
 			return i;
-		}
-
-	
+		}*/
 }

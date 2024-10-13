@@ -2,7 +2,6 @@ package tp1.logic.gameobjects;
 
 import tp1.logic.*;
 import tp1.logic.lemmingRoles.WalkerRole;
-import tp1.logic.Direction;
 
 
 public class Lemming {
@@ -128,9 +127,9 @@ public class Lemming {
 		}
 
 		// Funcion para obtener la fuerza de caida
-		public int getFuerzaCaida() {
+		/*public int getFuerzaCaida() {
 			return fuerzaCaida;
-		}
+		}*/
 
 		// Funcion para obtener el rol
 		public WalkerRole getRol() {
@@ -138,9 +137,9 @@ public class Lemming {
 		}
 
 		// Funcion para obtener la proxima posicion
-		public Position nextPos() {
+		/*public Position nextPos() {
 			return pos.PositionWDir(direction);
-		}
+		}*/
 
 		// Funcion para obtener el juego
 		public Game getGame() {

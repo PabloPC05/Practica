@@ -27,6 +27,11 @@ public class Position {
 	// Setters
 	// Funcion para actualizar la posicion
 	public void update(Direction dir) {
+		this.add(dir);
+	}
+
+	// Funcion para establecer la posicion
+	private void add(Direction dir) {
 		this.col = this.col + dir.getX();
 		this.row = this.row + dir.getY();
 	}
