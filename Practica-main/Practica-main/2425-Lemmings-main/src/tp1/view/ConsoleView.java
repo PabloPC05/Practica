@@ -77,31 +77,10 @@ public class ConsoleView extends GameView {
 			colName = Character.toString('A'+row%27);
 			str.append(colName);
 			str.append(VERTICAL_DELIMITER);
-
 			//Linea modificada para incluir colores en el juego
 			for (int col = 0; col < Game.DIM_X; col++) {
-				if(game.gameObjects.lemmingAt(new Position(col, row)) != (-1)){
-					str.append(ConsoleColorsAnsiCodes.ANSI_GREEN);
-					str.append(consoleCell(game.positionToString(col, row)));
-					str.append(ConsoleColorsAnsiCodes.ANSI_RESET);
-				}
-				else if(game.gameObjects.wallAt(new Position(col, row)) != (-1)){
-					str.append(ConsoleColorsAnsiCodes.ANSI_ORANGE);
-					str.append(consoleCell(game.positionToString(col, row)));
-					str.append(ConsoleColorsAnsiCodes.ANSI_RESET);
-				}
-				else if(game.gameObjects.getExitDoor().getPos().equals(new Position(col, row))){
-					str.append(ConsoleColorsAnsiCodes.ANSI_BLUE);
-					str.append(consoleCell(game.positionToString(col, row)));
-					str.append(ConsoleColorsAnsiCodes.ANSI_RESET);
-				}
-				else str.append(consoleCell(game.positionToString(col, row)));
-				//str.append(VERTICAL_DELIMITER);
+				str.append(consoleCell(game.positionToString(col, row))); 
 			}
-
-			//Linea original sin los colores en la terminal
-			//str.append(consoleCell(game.positionToString(col, row))); 
-
 			str.append(VERTICAL_DELIMITER);
 			str.append(colName);
 			str.append(NEW_LINE);

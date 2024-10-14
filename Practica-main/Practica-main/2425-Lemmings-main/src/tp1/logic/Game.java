@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import tp1.view.ConsoleColorsAnsiCodes;
 //import java.security.MessageDigest;
 import tp1.view.Messages;
 //import tp1.logic.gameobjects.Wall;
@@ -98,17 +99,13 @@ public class Game {
 		int aux = 0;
 		StringBuilder stringBuilder = new StringBuilder();
 
-
 		// Si esta la puerta en la posicion
 		if (gameObjects.getExitDoor().getPos().equals(pos)) {
-			if(gameObjects.getExitLemmings() > 0) {
+			/*if(gameObjects.getExitLemmings() > 0) {
 				stringBuilder.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
-			}
-			// Agrega el símbolo de la puerta de salida al final
-			stringBuilder.append(Messages.EXIT_DOOR);
-			return stringBuilder.toString();
-			//Lo que estaba originalmente
-			//return Messages.EXIT_DOOR;
+			}*/
+			return Messages.EXIT_DOOR;
+
 		}
 		// Si hay una pared en la posicion
 		else if(gameObjects.wallAt(pos) != -1) {
@@ -116,7 +113,6 @@ public class Game {
 		}
 		// Si hay un lemming en la posicion
 		else if ((aux = gameObjects.lemmingAt(pos)) != -1) {
-			// Devolvemos el lemming segun su direccion
 			return gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux));
 		}
 		// Si no hay nada en la posicion
