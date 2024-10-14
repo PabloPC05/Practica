@@ -80,6 +80,10 @@ public class Lemming {
 					direction = previousDirection;
 				}
 			}
+			// Si la posicion es mayor o igual a la altura del juego, muere
+			else if(pos.PositionWDir(direction).getRow() >= Game.DIM_Y) {
+				vivo = false;
+			}
 			// Si no hay una pared abajo, aumenta la fuerza de caida y se actualiza la posicion con la direccion
 			else {
 				fuerzaCaida++;

@@ -60,53 +60,39 @@ public class GameObjectContainer {
 
 	// Funcion para inicializar los lemmings
 	public void initLemmings(Game game) {
-		add(new Lemming(0, 1, Direction.RIGHT, game));
-		add(new Lemming(0, 2, Direction.RIGHT, game));
-		add(new Lemming(0, 3, Direction.RIGHT, game));
-		add(new Lemming(0, 4, Direction.RIGHT, game));
-		add(new Lemming(3, 6, Direction.RIGHT, game));
-		add(new Lemming(5, 8, Direction.RIGHT, game));
+		add(new Lemming(0, 8, Direction.RIGHT, game));
+		add(new Lemming(2, 3, Direction.RIGHT, game));
+		add(new Lemming(9, 0, Direction.RIGHT, game));
 	}
 
 	// Funcion para inicializar las paredes
 	public void initWalls() {
-		add(new Wall(0, 5));
-		add(new Wall(1, 5));
-		add(new Wall(2, 5));
-		add(new Wall(3, 5));
-		add(new Wall(4, 5));
-		add(new Wall(5, 5));
-		add(new Wall(6, 5));
-		add(new Wall(7, 5));
-		add(new Wall(8, 5));
-		add(new Wall(9, 5));
+		add(new Wall(9, 1));
+		add(new Wall(8, 1));
 
-		add(new Wall(0, 7));
-		add(new Wall(1, 7));
-		add(new Wall(2, 7));
-		add(new Wall(3, 7));
-		add(new Wall(4, 7));
-		add(new Wall(5, 7));
-		add(new Wall(6, 7));
-		add(new Wall(7, 7));
-		add(new Wall(8, 7));
-		add(new Wall(9, 7));
+		add(new Wall(2, 4));
+		add(new Wall(3, 4));
+		add(new Wall(4, 4));
+		add(new Wall(7, 5));
+		add(new Wall(4, 6));
+		add(new Wall(5, 6));
+		add(new Wall(6, 6));
+		add(new Wall(7, 6));
 
 		add(new Wall(0, 9));
-		add(new Wall(1,9));
-		add(new Wall(2,9));
-		add(new Wall(3,9));
-		add(new Wall(4,9));
-		add(new Wall(5,9));
-		add(new Wall(6,9));
-		add(new Wall(7,9));
-		add(new Wall(8,9));
-		add(new Wall(9,9));
+		add(new Wall(1, 9));
+
+		add(new Wall(9, 9));
+		add(new Wall(8, 9));
+		add(new Wall(8, 8));
+		add(new Wall(1, 8));
+
+
 	}
 
 	// Funcion para inicializar la puerta de salida
 	public void initExitDoor() {
-		exitDoor.setPos(new Position(8, 4));
+		exitDoor.setPos(new Position(4, 5));
 	}
 
 	// Getters
