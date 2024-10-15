@@ -10,9 +10,11 @@ public class WalkerRole {
 		lemming.move();
 	 }
 
-	public String getIcon(Lemming lemming) {
-		if(lemming.getDirection().equals(Direction.LEFT)) return Messages.LEMMING_LEFT;
-		else return Messages.LEMMING_RIGHT;
-	}
-	
+	 public String getIcon(Lemming lemming) {
+        if (lemming.getDirection().equals(Direction.DOWN)) {
+            if (lemming.getPreviousDirection().equals(Direction.LEFT)) return Messages.LEMMING_LEFT;
+            else return Messages.LEMMING_RIGHT;
+        } else if (lemming.getDirection().equals(Direction.LEFT)) return Messages.LEMMING_LEFT;
+        else return Messages.LEMMING_RIGHT;
+    }
 }

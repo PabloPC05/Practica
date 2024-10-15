@@ -51,6 +51,5 @@ public enum Direction {
 		public Direction getDir() {
 			Direction newDirection = this;
 			return newDirection;
-		}
-	
+		}	
 }

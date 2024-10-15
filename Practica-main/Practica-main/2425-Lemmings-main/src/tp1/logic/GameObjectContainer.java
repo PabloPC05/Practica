@@ -60,15 +60,13 @@ public class GameObjectContainer {
 
 	// Funcion para inicializar los lemmings
 	public void initLemmings(Game game) {
-		add(new Lemming(0, 8, Direction.RIGHT, game));
-		add(new Lemming(2, 3, Direction.RIGHT, game));
-		add(new Lemming(9, 0, Direction.RIGHT, game));
+		add(new Lemming(9, 1, Direction.RIGHT, Direction.NONE, game));
 	}
 
 	// Funcion para inicializar las paredes
 	public void initWalls() {
-		add(new Wall(9, 1));
-		add(new Wall(8, 1));
+		add(new Wall(9, 2));
+		add(new Wall(8, 2));
 
 		add(new Wall(2, 4));
 		add(new Wall(3, 4));
@@ -81,13 +79,13 @@ public class GameObjectContainer {
 
 		add(new Wall(0, 9));
 		add(new Wall(1, 9));
+		add(new Wall(7, 4));
+
 
 		add(new Wall(9, 9));
 		add(new Wall(8, 9));
 		add(new Wall(8, 8));
 		add(new Wall(1, 8));
-
-
 	}
 
 	// Funcion para inicializar la puerta de salida
@@ -113,7 +111,7 @@ public class GameObjectContainer {
 
 		// Funcion para obtener el lemming en la posicion i
 		public Lemming getLemming(int i) {
-			return new Lemming(lemmings.get(i).getPos(), lemmings.get(i).getDirection(), lemmings.get(i).getGame());
+			return new Lemming(lemmings.get(i).getPos(), lemmings.get(i).getDirection(), lemmings.get(i).getPreviousDirection(), lemmings.get(i).getGame());
 		}
 
 		// Funcion para obtener el numero de lemmings muertos

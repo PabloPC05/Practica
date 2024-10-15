@@ -4,7 +4,6 @@ import static tp1.util.MyStringUtils.repeat;
 
 import tp1.logic.Game;
 import tp1.util.MyStringUtils;
-import tp1.view.*;
 
 public class ConsoleColorsView extends ConsoleView {
 	
