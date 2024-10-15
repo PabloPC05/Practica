@@ -5,7 +5,8 @@ import java.util.Locale;
 import tp1.control.Controller;
 import tp1.logic.Game;
 import tp1.view.ConsoleColorsView;
-import tp1.view.ConsoleView;
+//Ya que usamos la consola con colores, no sirve importar la vista de consola normal
+//import tp1.view.ConsoleView;
 import tp1.view.GameView;
 import tp1.view.Messages;
 

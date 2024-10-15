@@ -28,33 +28,35 @@ public class Lemming {
 	}
 
 	// Constructor con parametros de posicion y direccion
-	public Lemming(int c, int r, Direction d, Game game) {
+	public Lemming(int c, int r, Direction d, Direction pd, Game game) {
 		this.pos = new Position(c, r);
 		this.direction = d;
 		this.vivo = true;
 		this.fuerzaCaida = 0;
 		this.rol = new WalkerRole();
 		this.game = game;
+		this.previousDirection = pd;
 		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
-		if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
-			previousDirection = direction;
+		/*if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
+			previousDirection = direction.copy();
 			direction = Direction.DOWN;
-		}
+		}*/
 	}
 
 	// Constructor con parametros de posicion (objeto) y direccion
-	public Lemming(Position pos, Direction d, Game game) {
+	public Lemming(Position pos, Direction d, Direction pd, Game game) {
 		this.pos = pos;
 		this.direction = d;
 		this.vivo = true;
 		this.fuerzaCaida = 0;
 		this.rol = new WalkerRole();
 		this.game = game;
+		this.previousDirection = pd;
 		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
-		if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
-			previousDirection = direction;
+		/*if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
+			previousDirection = direction.copy();
 			direction = Direction.DOWN;
-		}
+		}*/
 	}
 	
 	// Setters
@@ -67,50 +69,50 @@ public class Lemming {
 	
 	// Mueve el lemming
 	public void move() {
-		// Si la direccion es hacia abajo
-		if (direction == Direction.DOWN) {
-			// Si hay una pared abajo
-			if (game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
-				// Si la fuerza de caida es mayor o igual a 3, muere
-				if (fuerzaCaida >= 3) {
-					vivo = false;
-				// Si no, se reinicia la fuerza de caida
-				} else {
-					fuerzaCaida = 0;
-					direction = previousDirection;
-				}
-			}
-			// Si la posicion es mayor o igual a la altura del juego, muere
-			else if(pos.PositionWDir(direction).getRow() >= Game.DIM_Y) {
-				vivo = false;
-			}
-			// Si no hay una pared abajo, aumenta la fuerza de caida y se actualiza la posicion con la direccion
-			else {
-				fuerzaCaida++;
-				pos.update(direction);
-			}
-		}
-		// Si esta yendo a la derecha o izquierda
-		else if (direction == Direction.RIGHT || direction == Direction.LEFT) {
-			// Si hay una pared en la siguiente posicion, se cambia la direccion a la simetrica y se guarda la anterior
-			if (pos.PositionWDir(direction).getCol() < 0 || pos.PositionWDir(direction).getCol() >= Game.DIM_X || game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
-				previousDirection = direction;
-				if (direction == Direction.RIGHT) {
-					direction = Direction.LEFT;
-				} else {
-					direction = Direction.RIGHT;
-				}
-			// Si no hay una pared a la izquierad o derecha, se actualiza la posicion con la direccion
-			} else {
-				// Se actualiza la posicion con la direccion
-				pos.update(direction);
-				// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
-				if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
-					previousDirection = direction;
-					direction = Direction.DOWN;
-				}
-			}
-		}
+	    // Si la direccion es hacia abajo
+	    if (direction == Direction.DOWN) {
+	        // Si hay una pared abajo
+	        if (game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
+	            // Si la fuerza de caida es mayor o igual a 3, muere
+	            if (fuerzaCaida >= 3) {
+	                vivo = false;
+	            // Si no, se reinicia la fuerza de caida
+	            } else {
+	                fuerzaCaida = 0;
+	                direction = previousDirection; // Asigna directamente la dirección anterior
+	            }
+	        }
+	        // Si la posicion es mayor o igual a la altura del juego, muere
+	        else if(pos.PositionWDir(direction).getRow() >= Game.DIM_Y) {
+	            vivo = false;
+	        }
+	        // Si no hay una pared abajo, aumenta la fuerza de caida y se actualiza la posicion con la direccion
+	        else {
+	            fuerzaCaida++;
+	            pos.update(direction);
+	        }
+	    }
+	    // Si esta yendo a la derecha o izquierda
+	    else if (direction == Direction.RIGHT || direction == Direction.LEFT) {
+	        // Si hay una pared en la siguiente posicion, se cambia la direccion a la simetrica y se guarda la anterior
+	        if (pos.PositionWDir(direction).getCol() < 0 || pos.PositionWDir(direction).getCol() >= Game.DIM_X || game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
+	            previousDirection = direction; // Asigna directamente la dirección actual
+	            if (direction == Direction.RIGHT) {
+	                direction = Direction.LEFT;
+	            } else {
+	                direction = Direction.RIGHT;
+	            }
+	        // Si no hay una pared a la izquierda o derecha, se actualiza la posicion con la direccion
+	        } else {
+	            // Se actualiza la posicion con la direccion
+	            pos.update(direction);
+	            // Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
+	            if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
+	                previousDirection = direction; // Asigna directamente la dirección actual
+	                direction = Direction.DOWN;
+	            }
+	        }
+	    }
 	}
 
 	// Getters
@@ -150,4 +152,8 @@ public class Lemming {
 			return new Game(this.game.getLevel());
 		}
 
+		public Direction getPreviousDirection() {
+			Direction newDirection = previousDirection;
+			return newDirection;
+		}
 }

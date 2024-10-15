@@ -33,7 +33,7 @@ public class Game {
 		this.initObjects();
 		this.level = nivel;
 		this.cycle = 0;
-		this.lemmingsToWin = 3;
+		this.lemmingsToWin = 1;
 	}
 
 	// Funcion para inicializar los objetos del juego
