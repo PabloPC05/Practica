@@ -1,6 +1,6 @@
 package tp1.logic;
 
-import tp1.view.ConsoleColorsAnsiCodes;
+//import tp1.view.ConsoleColorsAnsiCodes;
 //import java.security.MessageDigest;
 import tp1.view.Messages;
 //import tp1.logic.gameobjects.Wall;
@@ -97,15 +97,10 @@ public class Game {
 		
 		Position pos = new Position(col, row);
 		int aux = 0;
-		StringBuilder stringBuilder = new StringBuilder();
 
 		// Si esta la puerta en la posicion
 		if (gameObjects.getExitDoor().getPos().equals(pos)) {
-			/*if(gameObjects.getExitLemmings() > 0) {
-				stringBuilder.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
-			}*/
 			return Messages.EXIT_DOOR;
-
 		}
 		// Si hay una pared en la posicion
 		else if(gameObjects.wallAt(pos) != -1) {
