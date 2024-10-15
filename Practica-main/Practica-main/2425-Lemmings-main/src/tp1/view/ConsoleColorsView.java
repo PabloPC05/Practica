@@ -11,8 +11,8 @@ public class ConsoleColorsView extends ConsoleView {
 	private static final String EMPTY_CELL = CELL_TXT;
 	private static final String WALL_CELL = ConsoleColorsAnsiCodes.ANSI_ORANGE_BACKGROUND + CELL_TXT + ConsoleColorsAnsiCodes.ANSI_RESET;
 	private static final String EXIT_TEXT = ConsoleColorsAnsiCodes.ANSI_WHITE + MyStringUtils.center(Messages.EXIT_DOOR, CELL_SIZE);
-	private static final String EXIT_CELL = ConsoleColorsAnsiCodes.ANSI_PURPLE_BACKGROUND + EXIT_TEXT + ConsoleColorsAnsiCodes.ANSI_RESET;
-	private static final String EXIT_PLUS = ConsoleColorsAnsiCodes.ANSI_PURPLE_BACKGROUND + "%s" + ConsoleColorsAnsiCodes.ANSI_RESET;
+	private static final String EXIT_CELL = /*ConsoleColorsAnsiCodes.ANSI_PURPLE_BACKGROUND +*/ EXIT_TEXT + ConsoleColorsAnsiCodes.ANSI_RESET;
+	private static final String EXIT_PLUS = /*ConsoleColorsAnsiCodes.ANSI_PURPLE_BACKGROUND + */"%s" + ConsoleColorsAnsiCodes.ANSI_RESET;
 
 	public ConsoleColorsView(Game game) {
 		super(game);

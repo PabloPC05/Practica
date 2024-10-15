@@ -46,16 +46,18 @@ public class GameObjectContainer {
 
 	// Funcion para actualizar el estado de los lemmings
 	public void update() {
-		// Updateamos los lemmings vivos que no estan en la salida
-		for (int i = 0; i < numLemmings; i++) {
-			if(lemmings.get(i).isVivo() && !lemmings.get(i).getPos().equals(exitDoor.getPos())) {
-				lemmings.get(i).update();
-			}
-		}
+
 		// Eliminamos los lemmings muertos
 		removeDeadLemmings();
 		// Comprobamos si hay lemmings en la salida, y si los hay los eliminamos
-		removeExitLemmings();
+		removeExitLemmings();	
+
+		// Updateamos los lemmings vivos que no estan en la salida
+		for (int i = 0; i < numLemmings; i++) {
+			if(lemmings.get(i).isVivo()) {
+				lemmings.get(i).update();
+			}
+		}
 	}
 
 	// Funcion para inicializar los lemmings

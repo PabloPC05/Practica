@@ -97,23 +97,28 @@ public class Game {
 		
 		Position pos = new Position(col, row);
 		int aux = 0;
+		StringBuilder str = new StringBuilder();
 
 		// Si esta la puerta en la posicion
 		if (gameObjects.getExitDoor().getPos().equals(pos)) {
-			return Messages.EXIT_DOOR;
+			if((aux = gameObjects.lemmingAt(pos)) != -1){
+				str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
+			}
+			str.append(Messages.EXIT_DOOR);
 		}
 		// Si hay una pared en la posicion
 		else if(gameObjects.wallAt(pos) != -1) {
-			return Messages.WALL;
+			str.append(Messages.WALL);
 		}
 		// Si hay un lemming en la posicion
 		else if ((aux = gameObjects.lemmingAt(pos)) != -1) {
-			return gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux));
+			str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
 		}
 		// Si no hay nada en la posicion
 		else {
-			return Messages.EMPTY;
+			str.append(Messages.EMPTY);
 		}
+		return str.toString();
 	}
 
 	// Funcion para pasar de numero a caracter en ASCII
