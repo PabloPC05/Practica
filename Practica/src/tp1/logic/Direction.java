@@ -30,12 +30,6 @@ public enum Direction {
 			y = dir.y;
 		}
 
-		// Funcion para establecer la direccion simetrica
-		/*public void setSymmetric() {
-			this.x = -this.x;
-			this.y = -this.y;
-		}*/
-
 	// Getters
 		// Funcion para obtener la coordenada x
 		public int getX() {

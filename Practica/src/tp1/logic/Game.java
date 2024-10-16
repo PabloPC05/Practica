@@ -137,11 +137,6 @@ public class Game {
 		return gameObjects.getNumLemmings() + gameObjects.getExitLemmings() < lemmingsToWin;
 	}
 
-	// Funcion para saber si se sigue jugando
-	/*public boolean isPlaying() {
-		return !playerWins() && !playerLooses();
-	}*/
-
 	// Funcion para saber si se ha acabado el juego
 	public boolean isFinished() {
 		return playerWins() || playerLooses();

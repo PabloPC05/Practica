@@ -24,7 +24,7 @@ public class Lemming {
 		vivo = true;
 		fuerzaCaida = 0;
 		rol = new WalkerRole();
-		//this.game = game;
+		//game = new Game();
 	}
 
 	// Constructor con parametros de posicion y direccion
@@ -36,11 +36,6 @@ public class Lemming {
 		rol = new WalkerRole();
 		this.game = game;
 		previousDirection = pd;
-		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
-		/*if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
-			previousDirection = direction.copy();
-			direction = Direction.DOWN;
-		}*/
 	}
 
 	// Constructor con parametros de posicion (objeto) y direccion
@@ -52,11 +47,6 @@ public class Lemming {
 		rol = new WalkerRole();
 		this.game = game;
 		previousDirection = pd;
-		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
-		/*if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
-			previousDirection = direction.copy();
-			direction = Direction.DOWN;
-		}*/
 	}
 	
 	// Setters
@@ -132,26 +122,18 @@ public class Lemming {
 			return vivo;
 		}
 
-		// Funcion para obtener la fuerza de caida
-		/*public int getFuerzaCaida() {
-			return fuerzaCaida;
-		}*/
 
 		// Funcion para obtener el rol
 		public WalkerRole getRol() {
 			return new WalkerRole();
 		}
 
-		// Funcion para obtener la proxima posicion
-		/*public Position nextPos() {
-			return pos.PositionWDir(direction);
-		}*/
-
 		// Funcion para obtener el juego
 		public Game getGame() {
 			return new Game(game.getLevel());
 		}
 
+		// Funcion para obtener la direccion previa al movimiento
 		public Direction getPreviousDirection() {
 			Direction newDirection = previousDirection;
 			return newDirection;
