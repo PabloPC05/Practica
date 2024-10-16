@@ -10,12 +10,12 @@ public class Wall {
     // Constructores
         // Constructor por defecto
         public Wall() {
-            this.pos = new Position();
+            pos = new Position();
         }
 
         // Constructor con parametros de posicion
         public Wall(int c, int r) {
-            this.pos = new Position(c, r);
+            pos = new Position(c, r);
         }
 
         // Constructor con parametros de posicion (objeto)
@@ -36,7 +36,7 @@ public class Wall {
     // Getters
         // Funcion para obtener la posicion de la pared
         public Position getPos() {
-            return new Position(this.pos.getCol(), this.pos.getRow());
+            return new Position(pos.getCol(), pos.getRow());
         }
 
         // Funcion para obtener la columna de la pared

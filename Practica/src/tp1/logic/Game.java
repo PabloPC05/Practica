@@ -20,20 +20,20 @@ public class Game {
 	// Constructores
 	// Constructor por defecto
 	public Game() {
-		this.gameObjects = new GameObjectContainer();
-		this.initObjects();
-		this.level = 0;
-		this.cycle = 0;
-		this.lemmingsToWin = 3;
+		gameObjects = new GameObjectContainer();
+		initObjects();
+		level = 0;
+		cycle = 0;
+		lemmingsToWin = 3;
 	}
 
 	// Constructor con parametros de nivel
 	public Game(int nivel) {
-		this.gameObjects = new GameObjectContainer();
-		this.initObjects();
-		this.level = nivel;
-		this.cycle = 0;
-		this.lemmingsToWin = 1;
+		gameObjects = new GameObjectContainer();
+		initObjects();
+		level = nivel;
+		cycle = 0;
+		lemmingsToWin = 1;
 	}
 
 	// Funcion para inicializar los objetos del juego

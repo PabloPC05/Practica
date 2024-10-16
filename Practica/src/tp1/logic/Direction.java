@@ -13,21 +13,21 @@ public enum Direction {
 	// Constructores
 		// Constructor por defecto
 		private Direction() {
-			this.x=0;
-			this.y=0;
+			x=0;
+			y=0;
 		}
 
 		// Constructor con parametros
-		private Direction(int x, int y) {
-			this.x=x;
-			this.y=y;
+		private Direction(int c, int r) {
+			x=c;
+			y=r;
 		}
 	
 	// Setters
 		// Funcion para establecer una direccion
 		public void setDirection(Direction dir) {
-			this.x = dir.x;
-			this.y = dir.y;
+			x = dir.x;
+			y = dir.y;
 		}
 
 		// Funcion para establecer la direccion simetrica

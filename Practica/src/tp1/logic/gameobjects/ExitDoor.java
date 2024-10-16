@@ -10,7 +10,7 @@ public class ExitDoor {
     // Constructores
         // Constructor por defecto
         public ExitDoor() {
-            this.pos = new Position();
+            pos = new Position();
         }
 
         // Constructor con parametros de posicion
@@ -30,14 +30,14 @@ public class ExitDoor {
     }
 
     // Funcion update
-    public void update(){
+    /*public void update(){
 
-    }
+    }*/
 
     // Getters
     // Funcion para obtener la posicion de la puerta
     public Position getPos() {
-        return new Position(this.pos.getCol(), this.pos.getRow());
+        return new Position(pos.getCol(), pos.getRow());
     }
 
     // Funcion para obtener la columna de la puerta

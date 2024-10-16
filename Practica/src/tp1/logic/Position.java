@@ -14,26 +14,26 @@ public class Position {
 	// Constructores
 	// Constructor por defecto
 	public Position() {
-		this.col = 0;
-		this.row = 0;
+		col = 0;
+		row = 0;
 	}
 
 	// Constructor con parametros
 	public Position(int c, int r) {
-		this.col = c;
-		this.row = r;
+		col = c;
+		row = r;
 	}
 
 	// Setters
 	// Funcion para actualizar la posicion
 	public void update(Direction dir) {
-		this.add(dir);
+		add(dir);
 	}
 
 	// Funcion para establecer la posicion
 	private void add(Direction dir) {
-		this.col = this.col + dir.getX();
-		this.row = this.row + dir.getY();
+		col = col + dir.getX();
+		row = row + dir.getY();
 	}
 
 	// Getters
@@ -49,11 +49,11 @@ public class Position {
 	
 	// Funcion para obtener la futura direccion
 	public Position PositionWDir(Direction dir) {
-		return new Position(this.col + dir.getX(), this.row + dir.getY());
+		return new Position(col + dir.getX(), row + dir.getY());
 	}
 
 	//Redefenicion del operador equals
 	public boolean equals(Position pos) {
-		return this.col == pos.getCol() && this.row == pos.getRow();
+		return col == pos.getCol() && row == pos.getRow();
 	}
 }

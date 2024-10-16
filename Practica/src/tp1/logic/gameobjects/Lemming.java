@@ -18,24 +18,24 @@ public class Lemming {
 	//Constructores
 	//Constructor por defecto
 	public Lemming() {
-		this.pos = new Position();
-		this.direction = Direction.RIGHT;
-		this.previousDirection = Direction.NONE;
-		this.vivo = true;
-		this.fuerzaCaida = 0;
-		this.rol = new WalkerRole();
+		pos = new Position();
+		direction = Direction.RIGHT;
+		previousDirection = Direction.NONE;
+		vivo = true;
+		fuerzaCaida = 0;
+		rol = new WalkerRole();
 		//this.game = game;
 	}
 
 	// Constructor con parametros de posicion y direccion
 	public Lemming(int c, int r, Direction d, Direction pd, Game game) {
-		this.pos = new Position(c, r);
-		this.direction = d;
-		this.vivo = true;
-		this.fuerzaCaida = 0;
-		this.rol = new WalkerRole();
+		pos = new Position(c, r);
+		direction = d;
+		vivo = true;
+		fuerzaCaida = 0;
+		rol = new WalkerRole();
 		this.game = game;
-		this.previousDirection = pd;
+		previousDirection = pd;
 		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
 		/*if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
 			previousDirection = direction.copy();
@@ -46,12 +46,12 @@ public class Lemming {
 	// Constructor con parametros de posicion (objeto) y direccion
 	public Lemming(Position pos, Direction d, Direction pd, Game game) {
 		this.pos = pos;
-		this.direction = d;
-		this.vivo = true;
-		this.fuerzaCaida = 0;
-		this.rol = new WalkerRole();
+		direction = d;
+		vivo = true;
+		fuerzaCaida = 0;
+		rol = new WalkerRole();
 		this.game = game;
-		this.previousDirection = pd;
+		previousDirection = pd;
 		// Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
 		/*if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
 			previousDirection = direction.copy();
@@ -62,7 +62,7 @@ public class Lemming {
 	// Setters
 	//Funcion para cambiar la posicion segun la direccion
 	public void update() {
-		if (this.vivo) {
+		if (vivo) {
 			rol.play(this);
 		}
 	}
@@ -118,7 +118,7 @@ public class Lemming {
 	// Getters
 		//Funcion para obtener la posicion
 		public Position getPos() {
-			return new Position(this.pos.getCol(), this.pos.getRow());
+			return new Position(pos.getCol(), pos.getRow());
 		}
 
 		//Funcion para obtener la direccion
@@ -149,7 +149,7 @@ public class Lemming {
 
 		// Funcion para obtener el juego
 		public Game getGame() {
-			return new Game(this.game.getLevel());
+			return new Game(game.getLevel());
 		}
 
 		public Direction getPreviousDirection() {
