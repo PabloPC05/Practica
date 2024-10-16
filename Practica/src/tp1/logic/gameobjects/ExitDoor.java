@@ -13,11 +13,6 @@ public class ExitDoor {
             pos = new Position();
         }
 
-        // Constructor con parametros de posicion
-        /*public ExitDoor(int c, int r) {
-            this.pos = new Position(c, r);
-        }*/
-
         // Constructor con parametros de posicion (objeto)
         public ExitDoor(Position pos) {
             this.pos = pos;
@@ -29,25 +24,10 @@ public class ExitDoor {
         this.pos = pos;
     }
 
-    // Funcion update
-    /*public void update(){
-
-    }*/
-
     // Getters
     // Funcion para obtener la posicion de la puerta
     public Position getPos() {
         return new Position(pos.getCol(), pos.getRow());
     }
 
-    // Funcion para obtener la columna de la puerta
-    /*public int getCol() {
-        return pos.getCol();
-    }*/
-
-    // Funcion para obtener la fila de la puerta
-    /*public int getRow() {
-        return pos.getRow();
-    }*/
-	
 }
