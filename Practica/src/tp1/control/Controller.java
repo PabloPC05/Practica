@@ -35,28 +35,34 @@ public class Controller {
 	private boolean command(){
 		// Leemos el comando
 		String[] action = view.getPrompt();
+		boolean returnValue;
 		switch(action[0].toLowerCase()){
 			case "":
 			case "n":
 			case "none":
 				game.update();
-				return true;
+				returnValue = true;
+				break;
 			case "r":
 			case "reset":
 				game.reset();
-				return true;
+				returnValue = true;
+				break;
 			case "h":
 			case "help":
 				view.showMessage(Messages.HELP);
-				return true;
+				returnValue = true;
+				break;
 			case "e":
 			case "exit":
-				return false;
+				returnValue = false;
+				break;
 			default:
 				view.showError(Messages.UNKNOWN_COMMAND);
-				return true;	
+				returnValue = true;
+				break;
 		}
-
+		return returnValue;
 	}
 
 }
