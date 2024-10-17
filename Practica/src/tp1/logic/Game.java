@@ -16,6 +16,7 @@ public class Game {
 	private int level;
 	private int cycle;
 	private int lemmingsToWin;
+	private boolean exit;
 
 	// Constructores
 	// Constructor por defecto
@@ -25,6 +26,7 @@ public class Game {
 		level = 0;
 		cycle = 0;
 		lemmingsToWin = 3;
+		exit = false;
 	}
 
 	// Constructor con parametros de nivel
@@ -34,6 +36,7 @@ public class Game {
 		level = nivel;
 		cycle = 0;
 		lemmingsToWin = 1;
+		exit = false;
 	}
 
 	// Funcion para inicializar los objetos del juego
@@ -137,9 +140,13 @@ public class Game {
 		return gameObjects.getNumLemmings() + gameObjects.getExitLemmings() < lemmingsToWin;
 	}
 
+	public void exit() {
+		exit = true;
+	}
+
 	// Funcion para saber si se ha acabado el juego
 	public boolean isFinished() {
-		return playerWins() || playerLooses();
+		return playerWins() || playerLooses() || exit;
 	}
 
 	public String help() {
