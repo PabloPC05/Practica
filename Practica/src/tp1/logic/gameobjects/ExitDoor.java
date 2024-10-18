@@ -1,3 +1,29 @@
+<<<<<<< HEAD
+package tp1.logic.gameobjects;
+
+import tp1.logic.Position;
+import tp1.logic.Game;
+
+public class ExitDoor extends GameObject {
+
+    // Constructores
+        // Constructor por defecto
+        public ExitDoor() {
+            super();
+        }
+
+        // Constructor con parametros de posicion (objeto)
+        public ExitDoor(int c, int r, Game game) {
+            super(new Position(c, r), game);
+        }
+
+    // Setters
+        // Funcion update
+        public void update() {
+            // No hace nada
+        }
+}
+=======
 package tp1.logic.gameobjects;
 
 import tp1.logic.Position;
@@ -31,3 +57,4 @@ public class ExitDoor {
     }
 
 }
+>>>>>>> 9d560ad3000b5e0fb3e69c9e24aa2c08415a1c9d

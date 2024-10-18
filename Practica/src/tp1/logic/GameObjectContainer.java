@@ -1,3 +1,139 @@
+<<<<<<< HEAD
+package tp1.logic;
+
+import java.util.ArrayList;
+import tp1.logic.gameobjects.*;
+
+public class GameObjectContainer {
+	
+	// Atributos
+	private ArrayList<GameObject> gameObjects;
+	private int numWalls;
+	private int numLemmings;
+	private int deadLemmings;
+	private int exitLemmings;
+
+	//Constantes
+	private static final int MAXWALLS = 100;
+	private static final int MAXLEMMINGS = 100;
+
+
+	// Constructores
+	// Constructor por defecto
+	public GameObjectContainer() {
+		this.gameObjects = new ArrayList<GameObject>();
+		numWalls = 0;
+		numLemmings = 0;
+		deadLemmings = 0;
+		exitLemmings = 0;
+	}
+
+	//Setters
+	// Funcion para actualizar el estado de los lemmings
+	public void update() {
+
+		// Eliminamos los lemmings muertos
+		removeDeadLemmings();
+		// Comprobamos si hay lemmings en la salida, y si los hay los eliminamos
+		removeExitLemmings();	
+
+		// Updateamos los lemmings vivos que no estan en la salida
+		for (int i = 0; i < numLemmings; i++) {
+			if(gameObjects.get(i).isVivo()) {
+				gameObjects.get(i).update();
+			}
+		}
+	}
+		// Funcion para obtener el numero de lemmings
+		public int getNumLemmings() {
+			return numLemmings;
+		}
+
+	// Getters
+		// Funcion para obtener el lemming en la posicion i
+		public Lemming getLemming(int i) {
+			return new Lemming(gameObjects.get(i).getPos(), gameObjects.get(i).getDirection(), gameObjects.get(i).getPreviousDirection(), gameObjects.get(i).getGame());
+		}
+
+		// Funcion para obtener el numero de lemmings muertos
+		public int getDeadLemmings() {
+			return deadLemmings;
+		}
+
+		// Funcion para obtener el numero de lemmings que han salido por la puerta
+		public int getExitLemmings() {
+			return exitLemmings;
+		}
+		
+		// Funcion para obtener la posicion de la puerta de salida
+		public ExitDoor getExitDoor() {
+			return new ExitDoor(exitDoor.getPos());
+		}
+
+	// Metodos para añadir objetos del juego
+		// Funcion para añadir un lemming al final de la lista, si no caben mas (no deberia pasar) lo imprime por pantalla y NO se añade
+		public void add(Lemming lemming) {
+			if (numLemmings < MAXLEMMINGS) {
+				lemmings.add(lemming);
+				numLemmings++;
+			} 
+			/*else {
+				System.out.println("No se pueden añadir mas lemmings, se ha alcanzado el maximo");
+			}*/
+		}
+
+		// Funcion para añadir una pared, si no caben mas (no deberia pasar) lo imprime por pantalla y NO se añade
+		public void add(Wall wall) {
+			if (numWalls < MAXWALLS) {
+				walls.add(wall);
+				numWalls++;
+			} 
+			/*else {
+				System.out.println("No se pueden añadir mas paredes, se ha alcanzado el maximo");
+			}*/
+		}
+		
+		// Funcion para eliminar todos los lemmings muertos
+		public void removeDeadLemmings() {
+			for (int i = 0; i < numLemmings; i++) {
+				if (!lemmings.get(i).isVivo()) {
+					numLemmings--;
+					deadLemmings++;
+					lemmings.remove(i);
+				}
+			}
+		}
+		
+		// Funcion para eliminar los lemmings que esten en la salida
+		public void removeExitLemmings() {
+			for (int i = 0; i < numLemmings; i++) {
+				if (lemmings.get(i).getPos().equals(exitDoor.getPos())) {
+					numLemmings--;
+					exitLemmings++;
+					lemmings.remove(i);
+				}
+			}
+		}
+
+	// Metodos de busqueda
+		// Funcion para ver si hay una pared en la posicion dada, y si la hay devuelve el indice de la pared, si no la hay devuelve -1
+		public int wallAt(Position pos) {
+			int i = 0; 
+			while(i < numWalls && !walls.get(i).getPos().equals(pos)) i++;
+			if(i >= numWalls) i = -1;
+			return i;
+		}
+
+		// Funcion para ver si hay un lemming en la posicion dada, y si lo hay devuelve el indice del lemming, si no lo hay devuelve -1
+		public int lemmingAt(Position pos) {
+			int i = 0; 
+			while(i < numLemmings && !lemmings.get(i).getPos().equals(pos)) i++;
+			if(i >= numLemmings) i = -1;
+			return i;
+		}
+
+}
+=======
 package tp1.logic;
 
 import java.util.ArrayList;
@@ -183,3 +319,4 @@ public class GameObjectContainer {
 		}
 
 }
+>>>>>>> 9d560ad3000b5e0fb3e69c9e24aa2c08415a1c9d
