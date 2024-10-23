@@ -18,9 +18,9 @@ public abstract class GameObject {
         }
 
         // Constructor con parametros
-        protected GameObject(Position pos, Game game) {
+        protected GameObject(Position pos, boolean vivo, Game game) {
             this.pos = pos;
-            this.vivo = true;
+            this.vivo = vivo;
             this.game = game;
         }
     
@@ -59,10 +59,10 @@ public abstract class GameObject {
             return vivo;
         }
 
-        /*
+        
         //  Funcion para obtener el juego
         public Game getGame() {
             return new Game(game.getLevel());
         }
-        */
+        
 }

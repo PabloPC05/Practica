@@ -7,7 +7,7 @@ public class CommandGenerator {
 
 	private static final List<Command> availableCommands = Arrays.asList(
 		new UpdateCommand(),
-        //new ResetCommand(),
+        new ResetCommand(),
         new HelpCommand(),
         new ExitCommand()
 	);
