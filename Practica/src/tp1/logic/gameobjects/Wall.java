@@ -12,8 +12,8 @@ public class Wall extends GameObject {
         }
 
         // Constructor con parametros de posicion
-        public Wall(int c, int r, Game game) {
-            super(new Position(c, r), game);
+        public Wall(Position pos, boolean vivo, Game game) {
+            super(pos, vivo, game);
         }
 
     // Setters

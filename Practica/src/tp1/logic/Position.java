@@ -32,23 +32,8 @@ public class Position {
 	}
 
 	// Getters
-	// Funcion para obtener la columna
-	public int getCol() {
-		return col;
-	}
-
-	// Funcion para obtener la fila
-	public int getRow() {
-		return row;
-	}
-	
 	// Funcion para obtener la futura direccion
 	public Position PositionWDir(Direction dir) {
 		return new Position(col + dir.getX(), row + dir.getY());
-	}
-
-	//Redefenicion del operador equals
-	public boolean equals(Position pos) {
-		return col == pos.getCol() && row == pos.getRow();
 	}
 }

@@ -22,18 +22,9 @@ public class Lemming extends GameObject {
 		rol = new WalkerRole();
 	}
 
-	// Constructor con parametros de posicion y direccion
-	public Lemming(int c, int r, Direction d, Direction pd, Game game) {
-		super(new Position(c, r), game);
-		direction = d;
-		previousDirection = pd;
-		fuerzaCaida = 0;
-		rol = new WalkerRole();
-	}
-
 	// Constructor con parametros de posicion (objeto) y direccion
-	public Lemming(Position pos, Direction d, Direction pd, Game game) {
-		super(pos, game);
+	public Lemming(Position pos, boolean vivo, Direction d, Direction pd, Game game) {
+		super(pos, vivo, game);
 		direction = d;
 		previousDirection = pd;
 		fuerzaCaida = 0;

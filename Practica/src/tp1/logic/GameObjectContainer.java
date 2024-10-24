@@ -7,21 +7,15 @@ public class GameObjectContainer {
 	
 	// Atributos
 	private ArrayList<GameObject> gameObjects;
-	private int numLemmings;
-	private int numWalls;
-	private int numExitDoors;
 
 	//Constantes
-	private static final int MAXOBJECTS = 100;
+	//private static final int MAXOBJECTS = 100;
 
 
 	// Constructores
 	// Constructor por defecto
 	public GameObjectContainer() {
 		this.gameObjects = new ArrayList<GameObject>();
-		this.numLemmings = 0;
-		this.numWalls = 0;
-		this.numExitDoors = 0;
 	}
 
 	//Setters
@@ -42,20 +36,7 @@ public class GameObjectContainer {
 	}
 
 	// Getters
-		// Funcion para obtener el numero de lemmings
-		public int getNumLemmings() {
-			return numLemmings;
-		}
-
-		// Funcion para obtener el numero de paredes
-		public int getNumWalls() {
-			return numWalls;
-		}
-
-		// Funcion para obtener el numero de puertas
-		public int getNumDoors() {
-			return numExitDoors;
-		}
+		
 
 	// Metodos para añadir objetos del juego
 		// Funcion para añadir un objeto
@@ -64,25 +45,27 @@ public class GameObjectContainer {
 		}
 		
 		// Funcion para eliminar todos los lemmings muertos
-		public void removeDeadLemmings() {
-			for (int i = 0; i < numLemmings; i++) {
+		public int removeDeadLemmings() {
+			int deadLemmings = 0;
+			for (int i = 0; i < gameObjects.size(); i++) {
 				if (!gameObjects.get(i).isVivo()) {
-					numLemmings--;
 					deadLemmings++;
 					gameObjects.remove(i);
 				}
 			}
+			return deadLemmings;
 		}
 		
 		// Funcion para eliminar los lemmings que esten en la salida
-		public void removeExitLemmings() {
-			for (int i = 0; i < numLemmings; i++) {
+		public int removeExitLemmings() {
+			int exitLemmings = 0;
+			for (int i = 0; i < gameObjects.size(); i++) {
 				if (gameObjects.get(i).getPos().equals(exitDoor.getPos())) {
-					numLemmings--;
 					exitLemmings++;
 					gameObjects.remove(i);
 				}
 			}
+			return exitLemmings;
 		}
 
 	// Metodos de busqueda

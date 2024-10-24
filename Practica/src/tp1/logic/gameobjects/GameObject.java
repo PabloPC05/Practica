@@ -64,5 +64,9 @@ public abstract class GameObject {
         public Game getGame() {
             return new Game(game.getLevel());
         }
+
+        public boolean isInPosition(Position pos) {
+            return this.pos.equals(pos);
+        }	
         
 }
