@@ -36,6 +36,10 @@ public class GameObjectContainer {
 	}
 
 	// Getters
+	// Metodo para obtener el objeto dado un indice
+	public GameObject get(int index) {
+		return gameObjects.get(index);
+	}
 		
 
 	// Metodos para añadir objetos del juego

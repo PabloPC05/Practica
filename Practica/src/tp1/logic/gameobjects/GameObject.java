@@ -39,7 +39,7 @@ public abstract class GameObject {
         public abstract void update();
 
     // Getters
-        // Funcion para obtener la posicion del objeto
+        /*// Funcion para obtener la posicion del objeto
         public Position getPos() {
             return new Position(pos.getCol(), pos.getRow());
         }
@@ -53,20 +53,20 @@ public abstract class GameObject {
         public int getRow() {
             return pos.getRow();
         }
-
+*/
         // Funcion para saber si el objeto esta vivo
         public boolean isVivo() {
             return vivo;
         }
 
-        
         //  Funcion para obtener el juego
         public Game getGame() {
             return new Game(game.getLevel());
         }
 
-        public boolean isInPosition(Position pos) {
-            return this.pos.equals(pos);
-        }	
+        abstract boolean isInPosition(Position pos);
+        abstract public String toString();
+
+
         
 }

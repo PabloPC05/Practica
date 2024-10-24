@@ -92,133 +92,137 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	}
 	*/
 
-	// Metodos de GameWorld
-	// Funcion para saber si un objeto esta en el aire
-	public boolean isInAir(Position pos) {
-		return gameObjects.objectAt(pos.PositionWDir(Direction.DOWN)) == -1;
-	}
+	// Metodos de GameWorld********************************************************************************
+		// Funcion para saber si un objeto esta en el aire
+		public boolean isInAir(Position pos) {
+			return gameObjects.objectAt(pos.PositionWDir(Direction.DOWN)) == -1;
+		}
 
-	// Funcion para saber si un lemming ha llegado a la puerta de salida
-	public boolean lemmingArrived() {
-		//return gameObjects.getExitDoor().getPos().equals(pos);
-		return false;
-	}
+		// Funcion para saber si un lemming ha llegado a la puerta de salida
+		public boolean lemmingArrived() {
+			//return gameObjects.getExitDoor().getPos().equals(pos);
+			return false;
+		}
 
-	// Funcion para eliminar los lemmings muertos
-	public void removeDeadLemmings() {
-		deadLemmings += gameObjects.removeDeadLemmings();
-	}
+		// Funcion para eliminar los lemmings muertos
+		public void removeDeadLemmings() {
+			deadLemmings += gameObjects.removeDeadLemmings();
+		}
 
-	// Funcion para eliminar los lemmings que han salido por la puerta
-	public void removeExitLemmings() {
-		exitLemmings += gameObjects.removeExitLemmings();
-	}
+		// Funcion para eliminar los lemmings que han salido por la puerta
+		public void removeExitLemmings() {
+			exitLemmings += gameObjects.removeExitLemmings();
+		}
 	
 
+	// Metodos de GameStatus********************************************************************************
+		// Funcion para obtener el ciclo
+		public int getCycle() {
+			return cycle;
+		}
+		// Funcion para obtener el nivel
+		public int getLevel() {
+			return level;
+		}
 
+		// Funcion para obtener el numero de lemmings en el tablero
+		public int numLemmingsInBoard() {
+			return numLemmings;
+		}
 
+		// Funcion para obtener el numero de lemmings muertos
+		public int numLemmingsDead() {
+			return deadLemmings;
+		}
 
+		// Funcion para obtener el numero de lemmings que han salido por la puerta
+		public int numLemmingsExit() {
+			return exitLemmings;
+		}
 
+		// Funcion para obtener el numero de lemmings que tienen que salir por la puerta para ganar
+		public int numLemmingsToWin() {
+			return lemmingsToWin;
+		}
 
+		// Funcion para obtener el numero de lemmings que faltan por salir por la puerta para ganar
+		public int numLemmingsLeftToWin() {
+			return lemmingsToWin - exitLemmings;
+		}
 
-	// Funcion para obtener que hay que mostrar en una posicion
-	public String positionToString(int col, int row) {
-		
-		Position pos = new Position(col, row);
-		int aux = 0;
-		StringBuilder str = new StringBuilder();
+		// Funcion para obtener que hay que mostrar en una posicion
+		/*public String positionToString(int col, int row) {	
+			Position pos = new Position(col, row);
+			int aux = 0;
+			StringBuilder str = new StringBuilder();
 
-		// Si esta la puerta en la posicion
-		if (gameObjects.getExitDoor().getPos().equals(pos)) {
-			if((aux = gameObjects.objectAt(pos)) != -1){
+			// Si esta la puerta en la posicion
+			if (gameObjects.getExitDoor().getPos().equals(pos)) {
+				if((aux = gameObjects.objectAt(pos)) != -1){
+					str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
+				}
+				str.append(Messages.EXIT_DOOR);
+			}
+			// Si hay una pared en la posicion
+			//wall.isInPosition(pos)
+			else if(gameObjects.objectAt(pos) != -1) {
+				str.append(Messages.WALL);
+			}
+			// Si hay un lemming en la posicion
+			else if ((aux = gameObjects.objectAt(pos)) != -1) {
 				str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
 			}
-			str.append(Messages.EXIT_DOOR);
+			// Si no hay nada en la posicion
+			else {
+				str.append(Messages.EMPTY);
+			}
+			return str.toString();
+		}*/
+
+
+		public String positionToString(int col, int row) {	
+			Position pos = new Position(col, row);
+			int aux = 0;
+			StringBuilder str = new StringBuilder();
+			if((aux = gameObjects.objectAt(pos)) != -1) {
+				str.append(gameObjects.get(aux).toString());
+			}
+			return str.toString();
 		}
-		// Si hay una pared en la posicion
-		else if(gameObjects.objectAt(pos) != -1) {
-			str.append(Messages.WALL);
+
+	// Metodos de GameModel********************************************************************************
+		// Funcion para saber si se ha acabado el juego
+		public boolean isFinished() {
+			return playerWins() || playerLooses() || exit;
 		}
-		// Si hay un lemming en la posicion
-		else if ((aux = gameObjects.objectAt(pos)) != -1) {
-			str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
+
+		// Funcion para ejecutar un ciclo
+		public void update() {
+			gameObjects.update();
+			cycle++;	
 		}
-		// Si no hay nada en la posicion
-		else {
-			str.append(Messages.EMPTY);
+
+		// Funcion para reiniciar el juego
+		public void reset() {
+			gameObjects = new GameObjectContainer();
+			//initObjects();
+			cycle = 0;
 		}
-		return str.toString();
-	}
+		// Funcion para saber si el jugador ha ganado
+		public boolean playerWins() {
+			return exitLemmings >= lemmingsToWin;
+		}
+	
+		// Funcion para saber si el jugador ha perdido
+		public boolean playerLooses() {
+			return numLemmings + exitLemmings < lemmingsToWin;
+		}
 
-	// Funcion para ejecutar un ciclo
-	public void update() {
-		gameObjects.update();
-		cycle++;	
-	}
+		public void exit() {
+			exit = true;
+		}
 
-	// Funcion para reiniciar el juego
-	public void reset() {
-		gameObjects = new GameObjectContainer();
-		//initObjects();
-		cycle = 0;
-	}
-
-	// Getters
-	// Funcion para obtener el ciclo
-	public int getCycle() {
-		return cycle;
-	}
-
-	// Funcion para obtener el nivel
-	public int getLevel() {
-		return level;
-	}
-
-	// Funcion para obtener el numero de lemmings en el tablero
-	public int numLemmingsInBoard() {
-		return numLemmings;
-	}
-
-	// Funcion para obtener el numero de lemmings muertos
-	public int numLemmingsDead() {
-		return deadLemmings;
-	}
-
-	// Funcion para obtener el numero de lemmings que han salido por la puerta
-	public int numLemmingsExit() {
-		return exitLemmings;
-	}
-
-	// Funcion para obtener el numero de lemmings que tienen que salir por la puerta para ganar
-	public int numLemmingsToWin() {
-		return lemmingsToWin;
-	}
-
-	// Funcion para obtener el numero de lemmings que faltan por salir por la puerta para ganar
-	public int numLemmingsLeftToWin() {
-		return lemmingsToWin - exitLemmings;
-	}
-
-	// Funcion para saber si el jugador ha ganado
-	public boolean playerWins() {
-		return exitLemmings >= lemmingsToWin;
-	}
-
-	// Funcion para saber si el jugador ha perdido
-	public boolean playerLooses() {
-		return numLemmings + exitLemmings < lemmingsToWin;
-	}
-
-	public void exit() {
-		exit = true;
-	}
-
-	// Funcion para saber si se ha acabado el juego
-	public boolean isFinished() {
-		return playerWins() || playerLooses() || exit;
-	}
-
-	public String help() {
-		return Messages.HELP;
-	}
+		public String help() {
+			return Messages.HELP;
+		}
 }

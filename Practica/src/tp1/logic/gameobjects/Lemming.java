@@ -104,4 +104,15 @@ public class Lemming extends GameObject {
 			Direction newDirection = previousDirection;
 			return newDirection;
 		}
+
+
+		@Override
+		public boolean isInPosition(Position pos) {
+            return this.pos.equals(pos);
+        }	
+
+		@Override
+		public String toString(){
+			return rol.getIcon(this);
+		}
 }
