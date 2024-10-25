@@ -39,21 +39,6 @@ public abstract class GameObject {
         public abstract void update();
 
     // Getters
-        /*// Funcion para obtener la posicion del objeto
-        public Position getPos() {
-            return new Position(pos.getCol(), pos.getRow());
-        }
-
-        // Funcion para obtener la columna del objeto
-        public int getCol() {
-            return pos.getCol();
-        }
-
-        // Funcion para obtener la fila del objeto
-        public int getRow() {
-            return pos.getRow();
-        }
-*/
         // Funcion para saber si el objeto esta vivo
         public boolean isVivo() {
             return vivo;
@@ -64,9 +49,14 @@ public abstract class GameObject {
             return new Game(game.getLevel());
         }
 
-        abstract boolean isInPosition(Position pos);
-        abstract public String toString();
+        // Funcion para saber si el objeto esta en una posicion
+        public boolean isInPosition(Position pos) {
+            return this.pos.equals(pos);
+        }
 
-
+        // Funcion para obtener la representacion del objeto
+        public abstract String toString();     
         
+        // Funcion para saber si un objeto es solido
+        public abstract boolean isSolid();
 }

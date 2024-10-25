@@ -23,14 +23,16 @@ public class Wall extends GameObject {
             // No hace nada
         }
 
-        @Override
-        public boolean isInPosition(Position pos) {
-            return this.pos.equals(pos);
-        }
-
+        // Funcion para obtener la representacion de la pared
         @Override
         public String toString(){
             return Messages.WALL;
+        }
+
+        // Funcion para saber si una pared es solida
+        @Override
+        public boolean isSolid() {
+            return true;
         }
 
 }

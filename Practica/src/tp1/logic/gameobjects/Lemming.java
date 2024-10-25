@@ -44,7 +44,7 @@ public class Lemming extends GameObject {
 	    // Si la direccion es hacia abajo
 	    if (direction == Direction.DOWN) {
 	        // Si hay una pared abajo
-	        if (game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
+	        if (!game.isFalling(pos)) {
 	            // Si la fuerza de caida es mayor o igual a 3, muere
 	            if (fuerzaCaida >= 3) {
 	                vivo = false;
@@ -55,7 +55,7 @@ public class Lemming extends GameObject {
 	            }
 	        }
 	        // Si la posicion es mayor o igual a la altura del juego, muere
-	        else if(pos.PositionWDir(direction).getRow() >= Game.DIM_Y) {
+	        else if(!game.isInsideLimits(pos.PositionWDir(Direction.DOWN))) {
 	            vivo = false;
 	        }
 	        // Si no hay una pared abajo, aumenta la fuerza de caida y se actualiza la posicion con la direccion
@@ -67,7 +67,10 @@ public class Lemming extends GameObject {
 	    // Si esta yendo a la derecha o izquierda
 	    else if (direction == Direction.RIGHT || direction == Direction.LEFT) {
 	        // Si hay una pared en la siguiente posicion, se cambia la direccion a la simetrica y se guarda la anterior
-	        if (pos.PositionWDir(direction).getCol() < 0 || pos.PositionWDir(direction).getCol() >= Game.DIM_X || game.gameObjects.wallAt(pos.PositionWDir(direction)) != -1) {
+			// Buscamos el objeto en la posicion a la que se va a mover
+			int indiceAux = game.gameObjects.objectAt(pos.PositionWDir(direction));
+			// Si se sale de los limites o el objeto es solido, se cambia la direccion
+	        if (!game.isInsideLimits(pos.PositionWDir(direction)) || (indiceAux != -1 && game.gameObjects.get(indiceAux).isSolid())) {
 	            previousDirection = direction; // Asigna directamente la dirección actual
 	            if (direction == Direction.RIGHT) {
 	                direction = Direction.LEFT;
@@ -79,7 +82,7 @@ public class Lemming extends GameObject {
 	            // Se actualiza la posicion con la direccion
 	            pos.update(direction);
 	            // Si no hay una pared abajo, se cambia la direccion a DOWN y se guarda la anterior
-	            if (game.gameObjects.wallAt(pos.PositionWDir(Direction.DOWN)) == -1) {
+	            if (game.isFalling(pos)) {
 	                previousDirection = direction; // Asigna directamente la dirección actual
 	                direction = Direction.DOWN;
 	            }
@@ -105,14 +108,15 @@ public class Lemming extends GameObject {
 			return newDirection;
 		}
 
-
-		@Override
-		public boolean isInPosition(Position pos) {
-            return this.pos.equals(pos);
-        }	
-
+		// Funcion para obtener el icono del lemming
 		@Override
 		public String toString(){
 			return rol.getIcon(this);
+		}
+
+		// Funcion para saber si un lemming es solido
+		@Override
+		public boolean isSolid() {
+			return false;
 		}
 }

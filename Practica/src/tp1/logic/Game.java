@@ -1,11 +1,11 @@
 package tp1.logic;
 
-import tp1.logic.gameobjects.ExitDoor;
-import tp1.logic.gameobjects.Lemming;
-import tp1.logic.gameobjects.Wall;
+//import tp1.logic.gameobjects.ExitDoor;
+//import tp1.logic.gameobjects.Lemming;
+//import tp1.logic.gameobjects.Wall;
 //import tp1.view.ConsoleColorsAnsiCodes;
 //import java.security.MessageDigest;
-import tp1.view.Messages;
+//import tp1.view.Messages;
 //import tp1.logic.gameobjects.Wall;
 //import tp1.logic.gameobjects.ExitDoor;
 //import tp1.logic.gameobjects.Lemming;
@@ -35,7 +35,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		//initObjects();
 		level = 0;
 		cycle = 0;
-		lemmingsToWin = 3;
+		lemmingsToWin = 1;
 		exit = false;
 		numLemmings = 0;
 		deadLemmings = 0;
@@ -93,9 +93,23 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	*/
 
 	// Metodos de GameWorld********************************************************************************
-		// Funcion para saber si un objeto esta en el aire
+		// Funcion para saber si una posicion es aire
 		public boolean isInAir(Position pos) {
-			return gameObjects.objectAt(pos.PositionWDir(Direction.DOWN)) == -1;
+			return gameObjects.objectAt(pos) == -1;
+		}
+
+		// Funcion para saber si un objeto esta cayendo
+		public boolean isFalling(Position pos) {
+			// Comprobamos si hay un objeto en la posicion
+			int indiceAux = gameObjects.objectAt(pos);
+			if (indiceAux != -1) {
+				// Si hay un objeto, comprobamos el objeto de debajo
+			 	int indiceDebajo = gameObjects.objectAt(pos.PositionWDir(Direction.DOWN));
+				// Si no hay objeto debajo o el objeto de debajo no para la caida, el objeto esta cayendo
+				return indiceDebajo == -1 || !gameObjects.get(indiceAux).isSolid();
+			}
+			// Si no hay objeto en la posicion o hay un objeto que para la caida, no esta cayendo
+			return false;
 		}
 
 		// Funcion para saber si un lemming ha llegado a la puerta de salida
@@ -114,6 +128,12 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			exitLemmings += gameObjects.removeExitLemmings();
 		}
 	
+		// Funcion para saber si un objeto esta dentro de los limites del tablero
+		public boolean isInsideLimits(Position pos) {
+			//return pos.getCol() >= 0 && pos.getCol() < DIM_X && pos.getRow() >= 0 && pos.getRow() < DIM_Y;
+			return true;
+		}
+
 
 	// Metodos de GameStatus********************************************************************************
 		// Funcion para obtener el ciclo
@@ -223,6 +243,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		public String help() {
-			return Messages.HELP;
+			//return Messages.HELP;
+			return "";
 		}
 }

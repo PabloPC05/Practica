@@ -64,7 +64,7 @@ public class GameObjectContainer {
 		public int removeExitLemmings() {
 			int exitLemmings = 0;
 			for (int i = 0; i < gameObjects.size(); i++) {
-				if (gameObjects.get(i).getPos().equals(exitDoor.getPos())) {
+				if (gameObjects.get(i).isInPosition(gameObjects.get(i).getGame().getExitDoor().getPos())) {
 					exitLemmings++;
 					gameObjects.remove(i);
 				}
@@ -76,7 +76,7 @@ public class GameObjectContainer {
 		// Funcion para ver si hay un objeto en la posicion dada, y si la hay devuelve el indice del objeto, si no lo hay devuelve -1
 		public int objectAt(Position pos) {
 			for (int i = 0; i < gameObjects.size(); i++) {
-				if (gameObjects.get(i).getPos().equals(pos)) {
+				if (gameObjects.get(i).isInPosition(pos)) {
 					return i;
 				}
 			}

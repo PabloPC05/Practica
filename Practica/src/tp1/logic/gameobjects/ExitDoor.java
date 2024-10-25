@@ -23,13 +23,15 @@ public class ExitDoor extends GameObject {
             // No hace nada
         }
 
-        @Override
-        public boolean isInPosition(Position pos) {
-            return this.pos.equals(pos);
-        }
-
+        // Funcion para obtener la representacion de la puerta de salida
         @Override
         public String toString(){
             return Messages.EXIT_DOOR;
+        }
+
+        // Funcion para saber si una puerta es solida
+        @Override
+        public boolean isSolid() {
+            return false;
         }
 }

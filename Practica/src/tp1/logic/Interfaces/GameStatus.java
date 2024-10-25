@@ -3,7 +3,7 @@ package tp1.logic.Interfaces;
 public interface GameStatus {
     abstract int getCycle();
     abstract int getLevel();
-    abstract int getNumLemmings();
+    //abstract int getNumLemmings();
     abstract int numLemmingsInBoard();
     abstract int numLemmingsDead();
     abstract int numLemmingsExit();
