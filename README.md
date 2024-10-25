@@ -9,3 +9,4 @@ Desarrollos en Java de la practica de TP de Diego y Pablo
 -Implementacion de gameobjectcontainer privada
 -Interfaces ✔️ (posiblemente falte alguna funcion)
 -double-dispatch
+-Poder saber si un lemming esta en la puerta
