@@ -49,14 +49,25 @@ public abstract class GameObject {
             return new Game(game.getLevel());
         }
 
-        // Funcion para saber si el objeto esta en una posicion
-        public boolean isInPosition(Position pos) {
-            return this.pos.equals(pos);
-        }
-
         // Funcion para obtener la representacion del objeto
         public abstract String toString();     
         
         // Funcion para saber si un objeto es solido
         public abstract boolean isSolid();
+
+        // Funcion para saber si es la puerta o no
+        public abstract boolean isExitDoor();
+
+        // Funcion para saber si es un lemming
+        public abstract boolean isLemming();
+
+        // Funcion para saber si la posicion de un objeto coincide con otra posicion
+        public boolean isInPosition(Position pos) {
+            return this.pos.equals(pos);
+        }
+
+        // Funcion para saber si la posicion de un objeto coincide con la de otro
+        public boolean isInPosition(GameObject other) {
+            return other.pos.equals(this.pos);
+        }
 }

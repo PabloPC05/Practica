@@ -41,7 +41,6 @@ public class GameObjectContainer {
 		return gameObjects.get(index);
 	}
 		
-
 	// Metodos para añadir objetos del juego
 		// Funcion para añadir un objeto
 		public void add(GameObject gameObject) {
@@ -51,10 +50,10 @@ public class GameObjectContainer {
 		// Funcion para eliminar todos los lemmings muertos
 		public int removeDeadLemmings() {
 			int deadLemmings = 0;
-			for (int i = 0; i < gameObjects.size(); i++) {
-				if (!gameObjects.get(i).isVivo()) {
+			for(GameObject obj : gameObjects){
+				if(obj.isLemming() && !obj.isVivo()){
+					gameObjects.remove(gameObjects.indexOf(obj));
 					deadLemmings++;
-					gameObjects.remove(i);
 				}
 			}
 			return deadLemmings;
@@ -62,11 +61,14 @@ public class GameObjectContainer {
 		
 		// Funcion para eliminar los lemmings que esten en la salida
 		public int removeExitLemmings() {
-			int exitLemmings = 0;
-			for (int i = 0; i < gameObjects.size(); i++) {
-				if (gameObjects.get(i).isInPosition(gameObjects.get(i).getGame().getExitDoor().getPos())) {
+			int exitLemmings = 0, indexExitDoor = exitDoorIndex();
+			GameObject exit = gameObjects.get(indexExitDoor);
+			// Recorremos los objetos
+			for(GameObject obj : gameObjects){
+				// Si es un lemming y esta en la misma posicion que la puerta de saida
+				if(obj.isLemming() && obj.isInPosition(exit)){
 					exitLemmings++;
-					gameObjects.remove(i);
+					gameObjects.remove(gameObjects.indexOf(obj));
 				}
 			}
 			return exitLemmings;
@@ -75,11 +77,23 @@ public class GameObjectContainer {
 	// Metodos de busqueda
 		// Funcion para ver si hay un objeto en la posicion dada, y si la hay devuelve el indice del objeto, si no lo hay devuelve -1
 		public int objectAt(Position pos) {
-			for (int i = 0; i < gameObjects.size(); i++) {
-				if (gameObjects.get(i).isInPosition(pos)) {
-					return i;
+			int i = 0; 
+			while(i < gameObjects.size() && !gameObjects.get(i).isInPosition(pos)) {
+				i++;
+			}
+			if(i == gameObjects.size()) i = -1;
+			return i;
+		}
+
+		// Funcion para devolver el indice de la exitDoor
+		public int exitDoorIndex() {
+			int index = -1;
+			for (GameObject gameObject : gameObjects) {
+				if(gameObject.isExitDoor()) {
+					index = gameObjects.indexOf(gameObject);
+					break;
 				}
 			}
-			return -1;
+			return index; 
 		}
 }

@@ -1,6 +1,6 @@
 package tp1;
 
-import static org.junit.jupiter.api.Assertions.fail;
+/*import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -12,7 +12,18 @@ import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;*/
+import org.junit.Test;
+import static org.junit.Assert.fail;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Tests {
 

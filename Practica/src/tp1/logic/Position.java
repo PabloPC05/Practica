@@ -1,5 +1,6 @@
 package tp1.logic;
 
+
 public class Position {
 
 	// Atributos
@@ -35,5 +36,10 @@ public class Position {
 	// Funcion para obtener la futura direccion
 	public Position PositionWDir(Direction dir) {
 		return new Position(col + dir.getX(), row + dir.getY());
+	}
+
+	// Funcion para comprobar si una posicion esta dentro de unos limites
+	public boolean isInsideLimits(int limitX, int limitY) {
+		return this.col >= 0 && this.col < limitX && this.row >= 0 && this.row < limitY;
 	}
 }

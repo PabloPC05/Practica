@@ -130,8 +130,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	
 		// Funcion para saber si un objeto esta dentro de los limites del tablero
 		public boolean isInsideLimits(Position pos) {
-			//return pos.getCol() >= 0 && pos.getCol() < DIM_X && pos.getRow() >= 0 && pos.getRow() < DIM_Y;
-			return true;
+			return pos.isInsideLimits(DIM_X, DIM_Y);
 		}
 
 
