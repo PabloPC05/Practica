@@ -23,6 +23,13 @@ public abstract class GameObject {
             this.vivo = vivo;
             this.game = game;
         }
+
+        // Constructor solo pasando como parametro la posicion
+        protected GameObject(Position pos) {
+            this.pos = pos;
+            this.vivo = true;
+            this.game = new Game();
+        }
     
     // Setters
         // Funcion para establecer la posicion del objeto

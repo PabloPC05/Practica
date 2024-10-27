@@ -102,8 +102,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		public boolean isFalling(Position pos) {
 			// Comprobamos si hay un objeto en la posicion
 			int indiceAux = gameObjects.objectAt(pos);
+			// Si hay un objeto, comprobamos el objeto de debajo y vemos si es solido
 			if (indiceAux != -1) {
-				// Si hay un objeto, comprobamos el objeto de debajo
 			 	int indiceDebajo = gameObjects.objectAt(pos.PositionWDir(Direction.DOWN));
 				// Si no hay objeto debajo o el objeto de debajo no para la caida, el objeto esta cayendo
 				return indiceDebajo == -1 || !gameObjects.get(indiceAux).isSolid();
@@ -197,7 +197,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			}
 			return str.toString();
 		}*/
-
 
 		public String positionToString(int col, int row) {	
 			Position pos = new Position(col, row);
