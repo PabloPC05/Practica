@@ -10,3 +10,5 @@ Desarrollos en Java de la practica de TP de Diego y Pablo
 -Interfaces ✔️ (posiblemente falte alguna funcion)
 -double-dispatch
 -Poder saber si un lemming esta en la puerta
+
+-Pablo avisame por guasap cuando cambies algo
