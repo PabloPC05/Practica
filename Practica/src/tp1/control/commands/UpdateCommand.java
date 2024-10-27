@@ -16,6 +16,14 @@ public class UpdateCommand extends NoParamsCommand{
 		super(NAME, SHORTCUT, DETAILS, HELP); 
 	}
 
+	public Command parse(String[] commandWords){
+		Command com = null;
+		// Si es un comando sin parametros deberia devolver this
+		// Si es un comando con parametros deberia devolver un nuevo objeto del tipo de comando correspondiente
+		if(matchCommandName(commandWords[0])) com = new UpdateCommand();
+		return com;
+	}
+
 	@Override
 	public void execute(Game game, GameView view){
 		game.update();

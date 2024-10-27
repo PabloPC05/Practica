@@ -24,12 +24,12 @@ public abstract class Command {
 	protected String getDetails() { return details; }
 	protected String getHelp() { return help; }
 
+	// Metodos abstractos
 	public abstract void execute(Game game, GameView view);	  
 	public abstract Command parse(String[] commandWords);
-
+	// Usa los metodos de la clase String para saber que comando se ha introducido
 	protected boolean matchCommandName(String name) {
-		return getShortcut().equalsIgnoreCase(name) || 
-				getName().equalsIgnoreCase(name);
+		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name);
 	}
 
 	public String helpText(){

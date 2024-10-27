@@ -6,9 +6,4 @@ public abstract class NoParamsCommand extends Command {
 		super(name, shortcut, details, help);
 	}
 
-	@Override
-	public Command parse(String[] commandWords) {
-		//TODO fill with your code
-		return null;
-	}
 }

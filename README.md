@@ -2,7 +2,7 @@
 
 Desarrollos en Java de la practica de TP de Diego y Pablo
 
--Revisar los comandos
+-Revisar los comandos (Yo creo que está terminado, pero no lo sé)
 -Actualizar postion ✔️
 -Funciones sobre la posicion de las cosas ✔️ (posiblemente hagamos alguna mas)
 -Error test
