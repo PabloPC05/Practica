@@ -6,9 +6,9 @@ package tp1.logic;
 //import tp1.view.ConsoleColorsAnsiCodes;
 //import java.security.MessageDigest;
 //import tp1.view.Messages;
-//import tp1.logic.gameobjects.Wall;
-//import tp1.logic.gameobjects.ExitDoor;
-//import tp1.logic.gameobjects.Lemming;
+import tp1.logic.gameobjects.Wall;
+import tp1.logic.gameobjects.ExitDoor;
+import tp1.logic.gameobjects.Lemming;
 import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Interfaces.GameStatus;
 import tp1.logic.Interfaces.GameWorld;
@@ -34,13 +34,13 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects = new GameObjectContainer();
 		//initObjects();
 		level = 0;
+		initBoard();
 		cycle = 0;
 		lemmingsToWin = 1;
 		exit = false;
 		numLemmings = 0;
 		deadLemmings = 0;
 		exitLemmings = 0;
-		
 	}
 
 	// Constructor con parametros de nivel
@@ -48,6 +48,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects = new GameObjectContainer();
 		//initObjects();
 		level = nivel;
+		initBoard();
 		cycle = 0;
 		lemmingsToWin = 1;
 		exit = false;
@@ -55,6 +56,35 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		exitLemmings = 0;
 	}
 
+	public void InitLevel1(){
+		// initWalls();
+		gameObjects.add(new Wall(1, 8, this));
+		gameObjects.add(new Wall(1, 9, this));
+		gameObjects.add(new Wall(4, 2, this));
+		gameObjects.add(new Wall(4, 3, this));
+		gameObjects.add(new Wall(4, 4, this));
+		gameObjects.add(new Wall(4, 4, this));
+		gameObjects.add(new Wall(5, 7, this));
+		gameObjects.add(new Wall(6, 4, this));
+		gameObjects.add(new Wall(6, 5, this));
+		gameObjects.add(new Wall(6, 6, this));
+		gameObjects.add(new Wall(6, 7, this));
+		gameObjects.add(new Wall(8, 8, this));
+		gameObjects.add(new Wall(9, 8, this));
+		gameObjects.add(new Wall(9, 9, this));
+		gameObjects.add(new Wall(9, 0, this));
+		gameObjects.add(new Wall(9, 1, this));
+
+		//InitExitDoor();
+		gameObjects.add(new ExitDoor(5, 4, this));
+
+		//InitLemmings();
+		gameObjects.add(new Lemming(0, 9, this));
+		gameObjects.add(new Lemming(3, 2, this));
+		gameObjects.add(new Lemming(8, 0, this));
+		numLemmings = 3;
+
+	}
 	/* 
 	// Funcion para inicializar los objetos del juego
 	private void initObjects() {
@@ -243,5 +273,16 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		public String help() {
 			//return Messages.HELP;
 			return "";
+		}
+
+		// Funcion para obtener el tablero segun el nivel
+		public void initBoard(){
+			switch(level){
+				case 1:
+					InitLevel1();
+					break;
+				default:
+					break;
+			}
 		}
 }

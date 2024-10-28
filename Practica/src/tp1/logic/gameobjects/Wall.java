@@ -16,6 +16,10 @@ public class Wall extends GameObject {
         public Wall(Position pos, boolean vivo, Game game) {
             super(pos, vivo, game);
         }
+        // Constructor con parametros de posicion
+        public Wall(int x, int y, Game game) {
+            super(new Position(y, x), false, game);
+        }
 
     // Setters
         // Funcion update
@@ -37,7 +41,7 @@ public class Wall extends GameObject {
 
         // Funcion para saber si es un objeto es la salida
         @Override
-        public boolean isExitDoor() {
+        public boolean isExit() {
             return false;
         }
         

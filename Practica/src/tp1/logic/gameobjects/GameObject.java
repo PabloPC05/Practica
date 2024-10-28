@@ -63,14 +63,14 @@ public abstract class GameObject {
         public abstract boolean isSolid();
 
         // Funcion para saber si es la puerta o no
-        public abstract boolean isExitDoor();
+        public abstract boolean isExit();
 
         // Funcion para saber si es un lemming
         public abstract boolean isLemming();
 
         // Funcion para saber si la posicion de un objeto coincide con otra posicion
         public boolean isInPosition(Position pos) {
-            return this.pos.equals(pos);
+            return this.pos.isEquals(pos);
         }
 
         // Funcion para saber si la posicion de un objeto coincide con la de otro

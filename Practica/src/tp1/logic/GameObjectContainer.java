@@ -64,13 +64,15 @@ public class GameObjectContainer {
 			int exitLemmings = 0, indexExitDoor = exitDoorIndex();
 			GameObject exit = gameObjects.get(indexExitDoor);
 			// Recorremos los objetos
-			for(GameObject obj : gameObjects){
+			if(gameObjects.removeIf(n -> n.isLemming() && n.isInPosition(exit))) exitLemmings++;
+
+			/*for(GameObject obj : gameObjects){
 				// Si es un lemming y esta en la misma posicion que la puerta de saida
 				if(obj.isLemming() && obj.isInPosition(exit)){
 					exitLemmings++;
 					gameObjects.remove(gameObjects.indexOf(obj));
 				}
-			}
+			}*/
 			return exitLemmings;
 		}
 
@@ -89,7 +91,7 @@ public class GameObjectContainer {
 		public int exitDoorIndex() {
 			int index = -1;
 			for (GameObject gameObject : gameObjects) {
-				if(gameObject.isExitDoor()) {
+				if(gameObject.isExit()) {
 					index = gameObjects.indexOf(gameObject);
 					break;
 				}

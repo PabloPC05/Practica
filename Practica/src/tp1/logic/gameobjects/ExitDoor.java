@@ -17,6 +17,11 @@ public class ExitDoor extends GameObject {
             super(pos, vivo, game);
         }
 
+        // Constructor con parametros de posicion (objeto)
+        public ExitDoor(int x, int y, Game game) {
+            super(new Position(y, x), false, game);
+        }
+
     // Setters
         // Funcion update
         public void update() {
@@ -37,7 +42,7 @@ public class ExitDoor extends GameObject {
 
         // Funcion para saber si es un objeto es la salida
         @Override
-        public boolean isExitDoor() {
+        public boolean isExit() {
             return true;
         }
 

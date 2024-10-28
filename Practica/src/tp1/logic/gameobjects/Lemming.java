@@ -21,6 +21,14 @@ public class Lemming extends GameObject {
 		fuerzaCaida = 0;
 		rol = new WalkerRole();
 	}
+	//Constructor por defecto
+	public Lemming(int x, int y, Game game) {
+		super(new Position(y, x), true, game);
+		direction = Direction.RIGHT;
+		previousDirection = Direction.NONE;
+		fuerzaCaida = 0;
+		rol = new WalkerRole();
+	}
 
 	// Constructor con parametros de posicion (objeto) y direccion
 	public Lemming(Position pos, boolean vivo, Direction d, Direction pd, Game game) {
@@ -122,7 +130,7 @@ public class Lemming extends GameObject {
 
         // Funcion para saber si es un objeto es la salida
         @Override
-        public boolean isExitDoor() {
+        public boolean isExit() {
             return false;
         }
 

@@ -25,6 +25,11 @@ public class UpdateCommand extends NoParamsCommand{
 	}
 
 	@Override
+	protected boolean matchCommandName(String name) {
+		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name) || name.equals(Messages.EMPTY);
+	}
+
+	@Override
 	public void execute(GameModel game, GameView view){
 		game.update();
 	}
