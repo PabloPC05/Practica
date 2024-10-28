@@ -23,9 +23,9 @@ public class GameObjectContainer {
 	public void update() {
 
 		// Eliminamos los lemmings muertos
-		removeDeadLemmings();
+		//removeDeadLemmings();
 		// Comprobamos si hay lemmings en la salida, y si los hay los eliminamos
-		removeExitLemmings();	
+		//removeExitLemmings();	
 
 		// Updateamos los lemmings vivos que no estan en la salida
 		for (int i = 0; i < gameObjects.size(); i++) {
@@ -50,29 +50,31 @@ public class GameObjectContainer {
 		// Funcion para eliminar todos los lemmings muertos
 		public int removeDeadLemmings() {
 			int deadLemmings = 0;
-			for(GameObject obj : gameObjects){
+			// Recorremos los objetos
+			if(gameObjects.removeIf(n -> n.isLemming() && !n.isVivo())) deadLemmings++;
+			/*for(GameObject obj : gameObjects){
 				if(obj.isLemming() && !obj.isVivo()){
 					gameObjects.remove(gameObjects.indexOf(obj));
 					deadLemmings++;
 				}
-			}
+			}*/
 			return deadLemmings;
 		}
 		
 		// Funcion para eliminar los lemmings que esten en la salida
 		public int removeExitLemmings() {
 			int exitLemmings = 0, indexExitDoor = exitDoorIndex();
-			GameObject exit = gameObjects.get(indexExitDoor);
+			//GameObject exit = gameObjects.get(indexExitDoor);
 			// Recorremos los objetos
-			if(gameObjects.removeIf(n -> n.isLemming() && n.isInPosition(exit))) exitLemmings++;
+			//if(gameObjects.removeIf(n -> n.isLemming() && n.isInPosition(exit))) exitLemmings++;
 
-			/*for(GameObject obj : gameObjects){
+			for(int i = 0; i < gameObjects.size(); i++){
 				// Si es un lemming y esta en la misma posicion que la puerta de saida
-				if(obj.isLemming() && obj.isInPosition(exit)){
+				if(gameObjects.get(i).isLemming() && gameObjects.get(i).isInPosition(gameObjects.get(indexExitDoor))){
+				    gameObjects.remove(i);
 					exitLemmings++;
-					gameObjects.remove(gameObjects.indexOf(obj));
 				}
-			}*/
+			}
 			return exitLemmings;
 		}
 
@@ -89,13 +91,11 @@ public class GameObjectContainer {
 
 		// Funcion para devolver el indice de la exitDoor
 		public int exitDoorIndex() {
-			int index = -1;
-			for (GameObject gameObject : gameObjects) {
-				if(gameObject.isExit()) {
-					index = gameObjects.indexOf(gameObject);
-					break;
+			for (int i = 0; i < gameObjects.size(); i++) {
+				if(gameObjects.get(i).isExit()) {
+					return i;
 				}
 			}
-			return index; 
+			return -1;
 		}
 }

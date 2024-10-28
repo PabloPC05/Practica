@@ -136,7 +136,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			if (indiceAux != -1) {
 			 	int indiceDebajo = gameObjects.objectAt(pos.PositionWDir(Direction.DOWN));
 				// Si no hay objeto debajo o el objeto de debajo no para la caida, el objeto esta cayendo
-				return indiceDebajo == -1 || !gameObjects.get(indiceAux).isSolid();
+				return indiceDebajo == -1 || !gameObjects.get(indiceDebajo).isSolid();
 			}
 			// Si no hay objeto en la posicion o hay un objeto que para la caida, no esta cayendo
 			return false;
@@ -246,6 +246,11 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		// Funcion para ejecutar un ciclo
 		public void update() {
+			// Eliminamos los lemmings muertos
+			removeDeadLemmings();
+			// Eliminamos los lemmings que han salido por la puerta
+			removeExitLemmings();
+			// Actualizamos los objetos
 			gameObjects.update();
 			cycle++;	
 		}
