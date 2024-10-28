@@ -70,7 +70,7 @@ public abstract class GameObject {
 
         // Funcion para saber si la posicion de un objeto coincide con otra posicion
         public boolean isInPosition(Position pos) {
-            return this.pos.isEquals(pos);
+            return this.pos.equals(pos);
         }
 
         // Funcion para saber si la posicion de un objeto coincide con la de otro

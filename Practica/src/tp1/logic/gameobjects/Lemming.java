@@ -1,6 +1,7 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.*;
+import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.logic.lemmingRoles.WalkerRole;
 
 
@@ -10,7 +11,7 @@ public class Lemming extends GameObject {
 	private Direction direction;
 	private Direction previousDirection;
 	private int fuerzaCaida; // Con 3 se muere
-	private WalkerRole rol;
+	private LemmingRole rol;
 	
 	//Constructores
 	//Constructor por defecto

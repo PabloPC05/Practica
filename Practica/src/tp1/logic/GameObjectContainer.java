@@ -21,18 +21,16 @@ public class GameObjectContainer {
 	//Setters
 	// Funcion para actualizar el estado de los lemmings
 	public void update() {
-
-		// Eliminamos los lemmings muertos
-		//removeDeadLemmings();
-		// Comprobamos si hay lemmings en la salida, y si los hay los eliminamos
-		//removeExitLemmings();	
-
 		// Updateamos los lemmings vivos que no estan en la salida
-		for (int i = 0; i < gameObjects.size(); i++) {
+		/*for (int i = 0; i < gameObjects.size(); i++) {
 			if(gameObjects.get(i).isVivo()) {
 				gameObjects.get(i).update();
 			}
-		}
+		}*/
+
+		// La comprobacion de si esta vivo o no, se hace en el metodo update de la clase Lemming 
+		// asi que no hace falta que se compruebe aqui
+		gameObjects.forEach(n -> n.update());
 	}
 
 	// Getters
@@ -51,27 +49,24 @@ public class GameObjectContainer {
 		public int removeDeadLemmings() {
 			int deadLemmings = 0;
 			// Recorremos los objetos
-			if(gameObjects.removeIf(n -> n.isLemming() && !n.isVivo())) deadLemmings++;
-			/*for(GameObject obj : gameObjects){
-				if(obj.isLemming() && !obj.isVivo()){
-					gameObjects.remove(gameObjects.indexOf(obj));
+			for(GameObject obj : gameObjects) {
+				// Si es un lemming y no esta vivo lo eliminamos
+				if(obj.isLemming() && !obj.isVivo()) {
+					gameObjects.remove(obj);
 					deadLemmings++;
 				}
-			}*/
+			}
 			return deadLemmings;
 		}
 		
 		// Funcion para eliminar los lemmings que esten en la salida
 		public int removeExitLemmings() {
-			int exitLemmings = 0, indexExitDoor = exitDoorIndex();
-			//GameObject exit = gameObjects.get(indexExitDoor);
+			int exitLemmings = 0;
+			GameObject exit = gameObjects.get(exitDoorIndex());
 			// Recorremos los objetos
-			//if(gameObjects.removeIf(n -> n.isLemming() && n.isInPosition(exit))) exitLemmings++;
-
-			for(int i = 0; i < gameObjects.size(); i++){
-				// Si es un lemming y esta en la misma posicion que la puerta de saida
-				if(gameObjects.get(i).isLemming() && gameObjects.get(i).isInPosition(gameObjects.get(indexExitDoor))){
-				    gameObjects.remove(i);
+			for(GameObject obj : gameObjects) {
+				if(obj.isLemming() && obj.isInPosition(exit)) {
+					gameObjects.remove(obj);
 					exitLemmings++;
 				}
 			}
@@ -81,19 +76,23 @@ public class GameObjectContainer {
 	// Metodos de busqueda
 		// Funcion para ver si hay un objeto en la posicion dada, y si la hay devuelve el indice del objeto, si no lo hay devuelve -1
 		public int objectAt(Position pos) {
-			int i = 0; 
-			while(i < gameObjects.size() && !gameObjects.get(i).isInPosition(pos)) {
+			for(GameObject obj : gameObjects) {
+				if(obj.isInPosition(pos)) {
+					return gameObjects.indexOf(obj);
+				}
+			}
+			/*while(i < gameObjects.size() && !gameObjects.get(i).isInPosition(pos)) {
 				i++;
 			}
-			if(i == gameObjects.size()) i = -1;
-			return i;
+			if(i == gameObjects.size()) i = -1;*/
+			return -1;
 		}
 
 		// Funcion para devolver el indice de la exitDoor
 		public int exitDoorIndex() {
-			for (int i = 0; i < gameObjects.size(); i++) {
-				if(gameObjects.get(i).isExit()) {
-					return i;
+			for(GameObject obj : gameObjects) {
+				if(obj.isExit()) {
+					return gameObjects.indexOf(obj);
 				}
 			}
 			return -1;

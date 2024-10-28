@@ -22,7 +22,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	private int level;
 	private int cycle;
 	private int lemmingsToWin;
-	private boolean exit;
+	//private boolean exit;
 	private int numLemmings;
 	private int	deadLemmings;
 	private int exitLemmings;
@@ -37,7 +37,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		initBoard();
 		cycle = 0;
 		lemmingsToWin = 1;
-		exit = false;
+		//exit = false;
 		numLemmings = 0;
 		deadLemmings = 0;
 		exitLemmings = 0;
@@ -51,7 +51,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		initBoard();
 		cycle = 0;
 		lemmingsToWin = 1;
-		exit = false;
+		//exit = false;
 		deadLemmings = 0;
 		exitLemmings = 0;
 	}
@@ -143,9 +143,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		// Funcion para saber si un lemming ha llegado a la puerta de salida
-		public boolean lemmingArrived() {
-			//return gameObjects.getExitDoor().getPos().equals(pos);
-			return false;
+		public boolean lemmingArrived(Lemming lem) {
+			return gameObjects.get(gameObjects.exitDoorIndex()).isInPosition(lem);
 		}
 
 		// Funcion para eliminar los lemmings muertos
@@ -241,7 +240,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	// Metodos de GameModel********************************************************************************
 		// Funcion para saber si se ha acabado el juego
 		public boolean isFinished() {
-			return playerWins() || playerLooses() || exit;
+			return playerWins() || playerLooses();//|| exit;
 		}
 
 		// Funcion para ejecutar un ciclo
@@ -271,9 +270,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return numLemmings + exitLemmings < lemmingsToWin;
 		}
 
-		public void exit() {
+		/*public void exit() {
 			exit = true;
-		}
+		}*/
 
 		public String help() {
 			//return Messages.HELP;

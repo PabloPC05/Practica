@@ -43,7 +43,7 @@ public class Position {
 		return this.col >= 0 && this.col < limitX && this.row >= 0 && this.row < limitY;
 	}
 
-	public boolean isEquals(Position pos) {
+	public boolean equals(Position pos) {
 		return this.col == pos.col && this.row == pos.row;
 	}
 }
