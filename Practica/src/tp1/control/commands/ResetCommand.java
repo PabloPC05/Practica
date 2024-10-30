@@ -29,7 +29,10 @@ public class ResetCommand extends NoParamsCommand{
 
 	@Override
 	public void execute(GameModel game, GameView view){
-		game.reset();
+
+		
+
+		game.reset(1);
 	}
 
 }

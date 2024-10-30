@@ -22,7 +22,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	private int level;
 	private int cycle;
 	private int lemmingsToWin;
-	//private boolean exit;
+	private boolean exit;
 	private int numLemmings;
 	private int	deadLemmings;
 	private int exitLemmings;
@@ -34,10 +34,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects = new GameObjectContainer();
 		//initObjects();
 		level = 0;
-		initBoard();
+		initBoard(1);
 		cycle = 0;
 		lemmingsToWin = 1;
-		//exit = false;
+		exit = false;
 		numLemmings = 0;
 		deadLemmings = 0;
 		exitLemmings = 0;
@@ -48,16 +48,19 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects = new GameObjectContainer();
 		//initObjects();
 		level = nivel;
-		initBoard();
+		initBoard(nivel);
 		cycle = 0;
 		lemmingsToWin = 1;
-		//exit = false;
+		exit = false;
 		deadLemmings = 0;
 		exitLemmings = 0;
 	}
 
-	public void InitLevel1(){
-		// initWalls();
+	public void InitLevel(int level) {
+
+		switch (level) {
+			case 1:
+				// initWalls();
 		gameObjects.add(new Wall(1, 8, this));
 		gameObjects.add(new Wall(1, 9, this));
 		gameObjects.add(new Wall(4, 2, this));
@@ -83,44 +86,15 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects.add(new Lemming(3, 2, this));
 		gameObjects.add(new Lemming(8, 0, this));
 		numLemmings = 3;
+				break;
+		
+			default:
+				break;
+		}
+
+		
 
 	}
-	/* 
-	// Funcion para inicializar los objetos del juego
-	private void initObjects() {
-		initWalls();
-		initExitDoor();
-		initLemmings();
-	}
-
-	
-	// Funcion para inicializar los lemmings
-	public void initLemmings() {
-		gameObjects.add(new Lemming(9, 1, Direction.RIGHT, Direction.NONE, this));
-	}
-
-	// Funcion para inicializar las paredes
-	public void initWalls() {
-		gameObjects.add(new Wall(9, 2, this));
-		gameObjects.add(new Wall(9, 3, this));
-
-		gameObjects.add(new Wall(8, 3, this));
-		gameObjects.add(new Wall(7, 3, this));
-		gameObjects.add(new Wall(6, 3, this));
-		gameObjects.add(new Wall(5, 3, this));
-		gameObjects.add(new Wall(4, 3, this));
-		gameObjects.add(new Wall(3, 3, this));
-		gameObjects.add(new Wall(2, 3, this));
-		gameObjects.add(new Wall(1, 3, this));
-		gameObjects.add(new Wall(0, 3, this));
-
-	}
-
-	// Funcion para inicializar la puerta de salida
-	public void initExitDoor() {
-		gameObjects.add(new ExitDoor(0, 4, this));
-	}
-	*/
 
 	// Metodos de GameWorld********************************************************************************
 		// Funcion para saber si una posicion es aire
@@ -240,7 +214,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	// Metodos de GameModel********************************************************************************
 		// Funcion para saber si se ha acabado el juego
 		public boolean isFinished() {
-			return playerWins() || playerLooses();//|| exit;
+			return playerWins() || playerLooses() || exit;
 		}
 
 		// Funcion para ejecutar un ciclo
@@ -255,9 +229,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		// Funcion para reiniciar el juego
-		public void reset() {
+		public void reset(int level) {
 			gameObjects = new GameObjectContainer();
-			//initObjects();
+			initBoard(level);
 			cycle = 0;
 		}
 		// Funcion para saber si el jugador ha ganado
@@ -270,9 +244,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return numLemmings + exitLemmings < lemmingsToWin;
 		}
 
-		/*public void exit() {
-			exit = true;
-		}*/
+		public void exit() {
+			this.exit = true;
+		}
 
 		public String help() {
 			//return Messages.HELP;
@@ -280,10 +254,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		// Funcion para obtener el tablero segun el nivel
-		public void initBoard(){
+		public void initBoard(int level){
 			switch(level){
 				case 1:
-					InitLevel1();
+					InitLevel(1);
 					break;
 				default:
 					break;

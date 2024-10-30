@@ -3,6 +3,6 @@ package tp1.logic.Interfaces;
 public interface GameModel {
     public boolean isFinished();
 	public void update();
-	public void reset();
-	//public void exit();
+	public void reset(int level);
+	public void exit();
 }

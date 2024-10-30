@@ -67,7 +67,7 @@ public class Messages {
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
 
 	
-	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";
+	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR;
 	public static final String COMMAND_HELP_TEXT = "%s: %s";
 
 	@Deprecated

@@ -11,7 +11,7 @@ import tp1.view.Messages;
 
 public class Main {
 
-	/**
+	/*
 	 * Lemmings entry point
 	 * 
 	 * @param args Arguments for the game.

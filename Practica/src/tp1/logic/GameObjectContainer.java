@@ -49,10 +49,10 @@ public class GameObjectContainer {
 		public int removeDeadLemmings() {
 			int deadLemmings = 0;
 			// Recorremos los objetos
-			for(GameObject obj : gameObjects) {
+			for(int i = 0; i < gameObjects.size(); i++) {
 				// Si es un lemming y no esta vivo lo eliminamos
-				if(obj.isLemming() && !obj.isVivo()) {
-					gameObjects.remove(obj);
+				if(gameObjects.get(i).isLemming() && !gameObjects.get(i).isVivo()) {
+					gameObjects.remove(i);
 					deadLemmings++;
 				}
 			}
@@ -64,9 +64,10 @@ public class GameObjectContainer {
 			int exitLemmings = 0;
 			GameObject exit = gameObjects.get(exitDoorIndex());
 			// Recorremos los objetos
-			for(GameObject obj : gameObjects) {
-				if(obj.isLemming() && obj.isInPosition(exit)) {
-					gameObjects.remove(obj);
+			for(int i = 0; i < gameObjects.size(); i++) {
+				// Si es un lemming y esta en la salida lo eliminamos
+				if (gameObjects.get(i).isLemming() && gameObjects.get(i).isInPosition(exit)) {
+					gameObjects.remove(i);
 					exitLemmings++;
 				}
 			}

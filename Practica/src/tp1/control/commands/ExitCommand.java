@@ -27,7 +27,7 @@ public class ExitCommand extends NoParamsCommand{
 
 	@Override
 	public void execute(GameModel game, GameView view){
-		//game.exit();
+		game.exit();
 	}
 
 }
