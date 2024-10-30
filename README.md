@@ -18,6 +18,8 @@ Desarrollos en Java de la practica de TP de Diego y Pablo
 
 -Implementacion de gameobjectcontainer privada
 
+-Poder saltar a cualquier nivel con reset
+
 -Interfaces ✔️ (posiblemente falte alguna funcion)
 
 -double-dispatch
