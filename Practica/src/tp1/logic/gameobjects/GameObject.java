@@ -2,7 +2,7 @@ package tp1.logic.gameobjects;
 import tp1.logic.Position;
 import tp1.logic.Game;
 
-public abstract class GameObject {
+public abstract class GameObject implements GameItem {
     
     // Atributos
     protected Position pos;

@@ -135,11 +135,37 @@ public class Lemming extends GameObject {
             return false;
         }
 
-		
         // Funcion para saber si es un objeto es un lemming
         @Override
         public boolean isLemming() {
             return true;
         }
+
+		private boolean dies() {
+			if(fuerzaCaida >= 3){
+				vivo = false;
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public boolean interactWith(Wall wall){
+	    	// Si la direccion es hacia abajo
+	    	if (direction == Direction.DOWN) {
+	        	// Si hay una pared abajo
+	        	if (!game.isFalling(pos)) {
+	            	// Si la fuerza de caida es mayor o igual a 3, muere
+	            	if (!dies()){
+	                	fuerzaCaida = 0;
+	                	direction = previousDirection; // Asigna directamente la dirección anterior
+	            	}
+	        	}
+			}
+			else if(direction == Direction.RIGHT || direction == Direction.LEFT){
+
+			}
+		return false;
+	}
 
 }
