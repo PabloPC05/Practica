@@ -23,8 +23,8 @@ public class Lemming extends GameObject {
 		rol = new WalkerRole();
 	}
 	//Constructor por defecto
-	public Lemming(int x, int y, Game game) {
-		super(new Position(x, y), true, game);
+	public Lemming(int col, int row, Game game) {
+		super(new Position(col, row), true, game);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		rol = new WalkerRole();
@@ -61,11 +61,7 @@ public class Lemming extends GameObject {
 
 	public void isFalling(){
 		fuerzaCaida++;
-		pos.update(direction);
-	}
-
-	public boolean isInsideLimits(){
-		return game.isInsideLimits(pos.nextPosition(direction));
+		pos.update(Direction.DOWN);
 	}
 
 	public void inverseDirection(){
@@ -78,18 +74,21 @@ public class Lemming extends GameObject {
 
 	// Funcion para realizar lo que ocurriria si el lemming se mueve en el eje x
 	public void walk(){
-		if(game.isWall(pos.nextPosition(direction))) inverseDirection();
-		else pos.update(direction);
+		if(game.isWall(pos.nextPosition(direction)) || game.crashingIntoLimits(pos.nextPosition(direction))) inverseDirection();
+		pos.update(direction);
 	}
 
 	public boolean isGonnaDie(){
-		return fuerzaCaida >= 3 || !game.isInsideLimits(pos.nextPosition(direction));
+		return fuerzaCaida >= 3 || game.leavingTheBoard(pos.nextPosition(direction));
 	}
 	
 	// Mueve el lemming
 	public void move() {
-		if(game.isInAir(pos)) isFalling();
-		else if(isGonnaDie()) dies();
+		if(isGonnaDie()){
+			dies();
+			game.addDeadLemmings();
+		}
+		else if(game.isInAir(pos)) isFalling();
 		else walk();
 	}
 
@@ -111,9 +110,7 @@ public class Lemming extends GameObject {
 		}
 
 		public void removeExitLemmings(){
-			if(lemmingIsInExit()){
-				game.addExitLemmings();
-			}
+			if(lemmingIsInExit()) game.addExitLemmings();
 		}
 
 

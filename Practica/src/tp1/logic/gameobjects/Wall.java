@@ -17,8 +17,8 @@ public class Wall extends GameObject {
             super(pos, vivo, game);
         }
         // Constructor con parametros de posicion
-        public Wall(int x, int y, Game game) {
-            super(new Position(x, y), true, game);
+        public Wall(int col, int row, Game game) {
+            super(new Position(col, row), true, game);
         }
 
     // Setters

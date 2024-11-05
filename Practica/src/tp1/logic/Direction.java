@@ -7,38 +7,38 @@ package tp1.logic;
 public enum Direction {
 	LEFT(-1,0), RIGHT(1,0), DOWN(0,1), UP(0,-1), NONE(0,0);
 	
-	private int x;
-	private int y;
+	private int col;
+	private int row;
 	
 	// Constructores
 		// Constructor por defecto
 		private Direction() {
-			x=0;
-			y=0;
+			col=0;
+			row=0;
 		}
 
 		// Constructor con parametros
 		private Direction(int c, int r) {
-			x=c;
-			y=r;
+			col=c;
+			row=r;
 		}
 	
 	// Setters
 		// Funcion para establecer una direccion
 		public void setDirection(Direction dir) {
-			x = dir.x;
-			y = dir.y;
+			col = dir.col;
+			row = dir.row;
 		}
 
 	// Getters
 		// Funcion para obtener la coordenada x
-		public int getX() {
-			return x;
+		public int getcol() {
+			return col;
 		}
 
-		// Funcion para obtener la coordenada y
-		public int getY() {
-			return y;
+		// Funcion para obtener la coordenada row
+		public int getrow() {
+			return row;
 		}
 
 		// Funcion para devolver la direccion

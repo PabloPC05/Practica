@@ -61,30 +61,35 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		switch (level) {
 			case 1:
 				// initWalls();
-		gameObjects.add(new Wall(1, 8, this));
-		gameObjects.add(new Wall(1, 9, this));
-		gameObjects.add(new Wall(4, 2, this));
-		gameObjects.add(new Wall(4, 3, this));
-		gameObjects.add(new Wall(4, 4, this));
-		gameObjects.add(new Wall(4, 4, this));
-		gameObjects.add(new Wall(5, 7, this));
-		gameObjects.add(new Wall(6, 4, this));
-		gameObjects.add(new Wall(6, 5, this));
-		gameObjects.add(new Wall(6, 6, this));
-		gameObjects.add(new Wall(6, 7, this));
-		gameObjects.add(new Wall(8, 8, this));
-		gameObjects.add(new Wall(9, 8, this));
-		gameObjects.add(new Wall(9, 9, this));
-		gameObjects.add(new Wall(9, 0, this));
+		gameObjects.add(new Wall(8, 1, this));
 		gameObjects.add(new Wall(9, 1, this));
 
+
+		gameObjects.add(new Wall(2, 4, this));
+		gameObjects.add(new Wall(3, 4, this));
+		gameObjects.add(new Wall(4, 4, this));
+
+		gameObjects.add(new Wall(7, 5, this));
+
+		gameObjects.add(new Wall(4, 6, this));
+		gameObjects.add(new Wall(5, 6, this));
+		gameObjects.add(new Wall(6, 6, this));
+		gameObjects.add(new Wall(7, 6, this));
+
+		gameObjects.add(new Wall(0, 9, this));
+		gameObjects.add(new Wall(1, 9, this));
+
+		gameObjects.add(new Wall(9, 9, this));
+		gameObjects.add(new Wall(8, 9, this));
+		gameObjects.add(new Wall(8, 8, this));
+
 		//InitExitDoor();
-		gameObjects.add(new ExitDoor(5, 4, this));
+		gameObjects.add(new ExitDoor(4, 5, this));
 
 		//InitLemmings();
-		gameObjects.add(new Lemming(0, 9, this));
-		gameObjects.add(new Lemming(3, 2, this));
-		gameObjects.add(new Lemming(8, 0, this));
+		gameObjects.add(new Lemming(0, 8, this));
+		gameObjects.add(new Lemming(2, 3, this));
+		gameObjects.add(new Lemming(9, 0, this));
 		numLemmings = 3;
 				break;
 		
@@ -97,11 +102,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		// Funcion para saber si en la posicion de debajo hay una pared
 		public boolean isInAir(Position pos) {
 			return !gameObjects.wallAt(pos.nextPosition(Direction.DOWN));
-		}
-
-		// Funcion para saber si un objeto esta dentro de los limites del tablero
-		public boolean isInsideLimits(Position pos) {
-			return pos.isInsideLimits(DIM_X, DIM_Y);
 		}
 
 
@@ -209,36 +209,19 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			exitLemmings++;
 		}
 
+		public void addDeadLemmings(){
+			deadLemmings++;
+		}
+
 		public void updateNumLemmings(){
 			numLemmings = gameObjects.numLemmings();
 		}
 
-		// Funcion para obtener que hay que mostrar en una posicion
-		/*public String positionToString(int col, int row) {	
-			Position pos = new Position(col, row);
-			int aux = 0;
-			StringBuilder str = new StringBuilder();
+		public boolean leavingTheBoard(Position pos){
+			return !pos.insideRowsLimits(DIM_Y);
+		}
 
-			// Si esta la puerta en la posicion
-			if (gameObjects.getExitDoor().getPos().equals(pos)) {
-				if((aux = gameObjects.objectAt(pos)) != -1){
-					str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
-				}
-				str.append(Messages.EXIT_DOOR);
-			}
-			// Si hay una pared en la posicion
-			//wall.isInPosition(pos)
-			else if(gameObjects.objectAt(pos) != -1) {
-				str.append(Messages.WALL);
-			}
-			// Si hay un lemming en la posicion
-			else if ((aux = gameObjects.objectAt(pos)) != -1) {
-				str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
-			}
-			// Si no hay nada en la posicion
-			else {
-				str.append(Messages.EMPTY);
-			}
-			return str.toString();
-		}*/
+		public boolean crashingIntoLimits(Position pos){
+			return !pos.insideColsLimits(DIM_X);
+		}
 }

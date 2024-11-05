@@ -18,8 +18,8 @@ public class ExitDoor extends GameObject {
         }
 
         // Constructor con parametros de posicion (objeto)
-        public ExitDoor(int x, int y, Game game) {
-            super(new Position(x, y), true, game);
+        public ExitDoor(int col, int row, Game game) {
+            super(new Position(col, row), true, game);
         }
 
     // Setters

@@ -28,22 +28,25 @@ public class Position {
 
 	// Funcion para establecer la posicion
 	private void add(Direction dir) {
-		col = col + dir.getX();
-		row = row + dir.getY();
+		col = col + dir.getcol();
+		row = row + dir.getrow();
 	}
 
 	// Getters
 	// Funcion para obtener la futura direccion
 	public Position nextPosition(Direction dir) {
-		return new Position(col + dir.getX(), row + dir.getY());
+		return new Position(col + dir.getcol(), row + dir.getrow());
 	}
 
-	// Funcion para comprobar si una posicion esta dentro de unos limites
-	public boolean isInsideLimits(int limitX, int limitY) {
-		return this.col >= 0 && this.col < limitX && this.row >= 0 && this.row < limitY;
+	public boolean insideColsLimits(int limitX) {
+		return this.col >= 0 && this.col < limitX;
 	}
 
-	public boolean equals(Position pos) {
+	public boolean insideRowsLimits(int limitY) {
+		return this.row >= 0 && this.row < limitY;
+	}
+
+	public boolean isEqualTo(Position pos) {
 		return this.col == pos.col && this.row == pos.row;
 	}
 }
