@@ -18,7 +18,7 @@ public class Wall extends GameObject {
         }
         // Constructor con parametros de posicion
         public Wall(int x, int y, Game game) {
-            super(new Position(y, x), false, game);
+            super(new Position(x, y), true, game);
         }
 
     // Setters
@@ -44,12 +44,4 @@ public class Wall extends GameObject {
         public boolean isExit() {
             return false;
         }
-        
-        // Funcion para saber si es un objeto es un lemming
-        @Override
-        public boolean isLemming() {
-            return false;
-        }
-
-
 }

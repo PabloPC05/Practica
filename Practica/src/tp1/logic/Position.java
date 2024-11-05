@@ -34,7 +34,7 @@ public class Position {
 
 	// Getters
 	// Funcion para obtener la futura direccion
-	public Position PositionWDir(Direction dir) {
+	public Position nextPosition(Direction dir) {
 		return new Position(col + dir.getX(), row + dir.getY());
 	}
 

@@ -19,7 +19,7 @@ public class ExitDoor extends GameObject {
 
         // Constructor con parametros de posicion (objeto)
         public ExitDoor(int x, int y, Game game) {
-            super(new Position(y, x), false, game);
+            super(new Position(x, y), true, game);
         }
 
     // Setters
@@ -44,11 +44,5 @@ public class ExitDoor extends GameObject {
         @Override
         public boolean isExit() {
             return true;
-        }
-
-        // Funcion para saber si es un objeto es un lemming
-        @Override
-        public boolean isLemming() {
-            return false;
         }
 }

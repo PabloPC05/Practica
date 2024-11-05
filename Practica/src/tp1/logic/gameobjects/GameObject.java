@@ -2,7 +2,7 @@ package tp1.logic.gameobjects;
 import tp1.logic.Position;
 import tp1.logic.Game;
 
-public abstract class GameObject implements GameItem {
+public abstract class GameObject{
     
     // Atributos
     protected Position pos;
@@ -44,6 +44,12 @@ public abstract class GameObject implements GameItem {
 
         // Funcion update
         public abstract void update();
+        // Funcion para obtener la representacion del objeto
+        public abstract String toString(); 
+        // Funcion para saber si un objeto es solido
+        public abstract boolean isSolid();
+        // Funcion para saber si es la puerta o no
+        public abstract boolean isExit();
 
     // Getters
         // Funcion para saber si el objeto esta vivo
@@ -56,18 +62,6 @@ public abstract class GameObject implements GameItem {
             return new Game(game.getLevel());
         }
 
-        // Funcion para obtener la representacion del objeto
-        public abstract String toString();     
-        
-        // Funcion para saber si un objeto es solido
-        public abstract boolean isSolid();
-
-        // Funcion para saber si es la puerta o no
-        public abstract boolean isExit();
-
-        // Funcion para saber si es un lemming
-        public abstract boolean isLemming();
-
         // Funcion para saber si la posicion de un objeto coincide con otra posicion
         public boolean isInPosition(Position pos) {
             return this.pos.equals(pos);
@@ -76,5 +70,9 @@ public abstract class GameObject implements GameItem {
         // Funcion para saber si la posicion de un objeto coincide con la de otro
         public boolean isInPosition(GameObject other) {
             return other.pos.equals(this.pos);
+        }
+
+        public void dies(){
+            vivo = false;
         }
 }

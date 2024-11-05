@@ -19,9 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Required to avoid issues with tests
         Locale.setDefault(new Locale("es", "ES"));
-		
 		try {
-			
 			int nLevel = 1;
 			if (args.length != 0) nLevel = Integer.parseInt(args[0]);
 

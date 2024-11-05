@@ -4,21 +4,20 @@ import tp1.logic.*;
 import tp1.logic.gameobjects.Lemming;
 import tp1.view.Messages;
 
-public class WalkerRole implements LemmingRole {
+public class WalkerRole /*implements LemmingRole*/ {
 
-    @Override
+    //@Override
 	public void play(Lemming lemming) {
 	    lemming.move();
 	}
 
-    @Override
+    //@Override
 	public String getIcon(Lemming lemming) {
-        if (lemming.getDirection().equals(Direction.DOWN)) {
-            if (lemming.getPreviousDirection().equals(Direction.LEFT)) return Messages.LEMMING_LEFT;
-            else return Messages.LEMMING_RIGHT;
-        } 
-        else if (lemming.getDirection().equals(Direction.LEFT)) return Messages.LEMMING_LEFT;
-        else return Messages.LEMMING_RIGHT;
+        if(lemming.getDirection() == Direction.RIGHT) {
+            return Messages.LEMMING_RIGHT;
+        } else {
+            return Messages.LEMMING_LEFT;
+        }
     }
 
     public void start(Lemming lemming) {}

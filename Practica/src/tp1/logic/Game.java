@@ -91,46 +91,14 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			default:
 				break;
 		}
-
-		
-
 	}
 
 	// Metodos de GameWorld********************************************************************************
-		// Funcion para saber si una posicion es aire
+		// Funcion para saber si en la posicion de debajo hay una pared
 		public boolean isInAir(Position pos) {
-			return gameObjects.objectAt(pos) == -1;
+			return !gameObjects.wallAt(pos.nextPosition(Direction.DOWN));
 		}
 
-		// Funcion para saber si un objeto esta cayendo
-		public boolean isFalling(Position pos) {
-			// Comprobamos si hay un objeto en la posicion
-			int indiceAux = gameObjects.objectAt(pos);
-			// Si hay un objeto, comprobamos el objeto de debajo y vemos si es solido
-			if (indiceAux != -1) {
-			 	int indiceDebajo = gameObjects.objectAt(pos.PositionWDir(Direction.DOWN));
-				// Si no hay objeto debajo o el objeto de debajo no para la caida, el objeto esta cayendo
-				return indiceDebajo == -1 || !gameObjects.get(indiceDebajo).isSolid();
-			}
-			// Si no hay objeto en la posicion o hay un objeto que para la caida, no esta cayendo
-			return false;
-		}
-
-		// Funcion para saber si un lemming ha llegado a la puerta de salida
-		public boolean lemmingArrived(Lemming lem) {
-			return gameObjects.get(gameObjects.exitDoorIndex()).isInPosition(lem);
-		}
-
-		// Funcion para eliminar los lemmings muertos
-		public void removeDeadLemmings() {
-			deadLemmings += gameObjects.removeDeadLemmings();
-		}
-
-		// Funcion para eliminar los lemmings que han salido por la puerta
-		public void removeExitLemmings() {
-			exitLemmings += gameObjects.removeExitLemmings();
-		}
-	
 		// Funcion para saber si un objeto esta dentro de los limites del tablero
 		public boolean isInsideLimits(Position pos) {
 			return pos.isInsideLimits(DIM_X, DIM_Y);
@@ -149,6 +117,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		// Funcion para obtener el numero de lemmings en el tablero
 		public int numLemmingsInBoard() {
+			updateNumLemmings();
 			return numLemmings;
 		}
 
@@ -172,43 +141,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return lemmingsToWin - exitLemmings;
 		}
 
-		// Funcion para obtener que hay que mostrar en una posicion
-		/*public String positionToString(int col, int row) {	
-			Position pos = new Position(col, row);
-			int aux = 0;
-			StringBuilder str = new StringBuilder();
-
-			// Si esta la puerta en la posicion
-			if (gameObjects.getExitDoor().getPos().equals(pos)) {
-				if((aux = gameObjects.objectAt(pos)) != -1){
-					str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
-				}
-				str.append(Messages.EXIT_DOOR);
-			}
-			// Si hay una pared en la posicion
-			//wall.isInPosition(pos)
-			else if(gameObjects.objectAt(pos) != -1) {
-				str.append(Messages.WALL);
-			}
-			// Si hay un lemming en la posicion
-			else if ((aux = gameObjects.objectAt(pos)) != -1) {
-				str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
-			}
-			// Si no hay nada en la posicion
-			else {
-				str.append(Messages.EMPTY);
-			}
-			return str.toString();
-		}*/
-
 		public String positionToString(int col, int row) {	
-			Position pos = new Position(col, row);
-			int aux = 0;
-			StringBuilder str = new StringBuilder();
-			if((aux = gameObjects.objectAt(pos)) != -1) {
-				str.append(gameObjects.get(aux).toString());
-			}
-			return str.toString();
+			return gameObjects.positionToString(col, row);
 		}
 
 	// Metodos de GameModel********************************************************************************
@@ -219,10 +153,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		// Funcion para ejecutar un ciclo
 		public void update() {
-			// Eliminamos los lemmings muertos
-			removeDeadLemmings();
-			// Eliminamos los lemmings que han salido por la puerta
-			removeExitLemmings();
+			//Eliminamos los objetos muertos, ya sea porque los lemmings han muerto o han llegado a la puerta
+			// O un rol de excavador ha eliminado una pared
+			gameObjects.removeDeadObjects();
 			// Actualizamos los objetos
 			gameObjects.update();
 			cycle++;	
@@ -253,6 +186,14 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return "";
 		}
 
+		public boolean isExit(Position pos){
+			return gameObjects.exitAt(pos);
+		}
+
+		public boolean isWall(Position pos){
+			return gameObjects.wallAt(pos);
+		}
+
 		// Funcion para obtener el tablero segun el nivel
 		public void initBoard(int level){
 			switch(level){
@@ -263,4 +204,41 @@ public class Game implements GameModel, GameStatus, GameWorld {
 					break;
 			}
 		}
+
+		public void addExitLemmings(){
+			exitLemmings++;
+		}
+
+		public void updateNumLemmings(){
+			numLemmings = gameObjects.numLemmings();
+		}
+
+		// Funcion para obtener que hay que mostrar en una posicion
+		/*public String positionToString(int col, int row) {	
+			Position pos = new Position(col, row);
+			int aux = 0;
+			StringBuilder str = new StringBuilder();
+
+			// Si esta la puerta en la posicion
+			if (gameObjects.getExitDoor().getPos().equals(pos)) {
+				if((aux = gameObjects.objectAt(pos)) != -1){
+					str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
+				}
+				str.append(Messages.EXIT_DOOR);
+			}
+			// Si hay una pared en la posicion
+			//wall.isInPosition(pos)
+			else if(gameObjects.objectAt(pos) != -1) {
+				str.append(Messages.WALL);
+			}
+			// Si hay un lemming en la posicion
+			else if ((aux = gameObjects.objectAt(pos)) != -1) {
+				str.append(gameObjects.getLemming(aux).getRol().getIcon(gameObjects.getLemming(aux)));
+			}
+			// Si no hay nada en la posicion
+			else {
+				str.append(Messages.EMPTY);
+			}
+			return str.toString();
+		}*/
 }
