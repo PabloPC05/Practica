@@ -27,5 +27,3 @@ DUDAS PARA AMBAR: la funcion de commandHelp de CommandGenerator y su relacion co
     abstract public LemmingRole parse(String input); en la clase LemmingRole
 
 Cómo de similar tienen que ser las implementaciones de lemmingRoleFactory y CommandGenerator y si está bien hecho como está ahora, como ponerle un rol a un lemming si la funcion setRole se implementa en gameObject sin hacer la "chapuza" de cambiarla segun que clase hija la está usando
-
-

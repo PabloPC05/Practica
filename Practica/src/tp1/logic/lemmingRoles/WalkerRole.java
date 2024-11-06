@@ -8,8 +8,8 @@ public class WalkerRole implements LemmingRole {
 
     private static final String NAME = Messages.WALKER_ROLE_NAME;
     private static final String SYMBOL = Messages.WALKER_ROLE_SYMBOL;
-    private static final String LEFT_ICON = Messages.LEMMING_RIGHT;
-    private static final String RIGHT_ICON = Messages.LEMMING_LEFT;
+    private static final String RIGHT_ICON = Messages.LEMMING_RIGHT;
+    private static final String LEFT_ICON = Messages.LEMMING_LEFT;
     private static final String HELP = Messages.WALKER_ROLE_HELP;
 
     @Override
