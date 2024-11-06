@@ -32,9 +32,13 @@ public class SetRoleCommand extends Command{
             com = new SetRoleCommand();
             role = LemmingRoleFactory.parse(commandWords[1]);
             if(role != null){
+                try{
                 col = Integer.parseInt(commandWords[2]);
                 row = Integer.parseInt(commandWords[3]);
-                
+                }catch(NumberFormatException e){
+                    //Con mensaje [ERROR] Error: columna y fila inexistentes
+                    System.err.println(Messages.INVALID_ARGUMENT);
+                }
             }
             else{
                 //Hay que añadir el mensaje de error
