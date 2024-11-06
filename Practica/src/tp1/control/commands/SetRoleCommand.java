@@ -22,7 +22,8 @@ public class SetRoleCommand extends Command{
 
     @Override
     public void execute(GameModel game, GameView view) {
-        
+        //Funcion que hay que hacer para establecer el rol al lemming en esa posicion
+        //game.setRole(role, col, row);
     }   
 
     @Override
