@@ -38,19 +38,18 @@ public class GameObjectContainer {
 		}
 
 		public void removeDeadObjects(){
-			for(int i = 0; i < gameObjects.size(); i++){
+			/*int N = gameObjects.size();
+			for(int i = 0; i < N; i++){
 				if(!gameObjects.get(i).isVivo()){
 					gameObjects.remove(i);
-				}
-			}
-			/*for(GameObject obj : gameObjects){
-				if(!obj.isVivo()){
-					gameObjects.remove(obj);
+					i--;
+					N--;	
 				}
 			}*/
+			gameObjects.removeIf(n -> !n.isVivo());
 		}
 
-		public boolean wallAt(Position pos){
+		public boolean wallAtPosition(Position pos){
 			for(int i = 0; i < gameObjects.size(); i++){
 				if(gameObjects.get(i).isSolid() && gameObjects.get(i).isInPosition(pos)){
 					return true;
@@ -60,11 +59,16 @@ public class GameObjectContainer {
 		}
 
 		public boolean exitAt(Position pos){
-			for(GameObject obj : gameObjects){
-				if(obj.isExit() && obj.isInPosition(pos)){
+			for(int i = 0; i < gameObjects.size(); i++){
+				if(gameObjects.get(i).isExit() && gameObjects.get(i).isInPosition(pos)){
 					return true;
 				}
 			}
+			/*for(GameObject obj : gameObjects){
+				if(obj.isExit() && obj.isInPosition(pos)){
+					return true;
+				}
+			}*/
 			return false;
 		}
 
@@ -90,5 +94,9 @@ public class GameObjectContainer {
 				if(!(obj.isSolid() || obj.isExit())) returnValue++;
 			}
 			return returnValue;
+		}
+
+		public void remove(GameObject obj){
+			gameObjects.remove(obj);
 		}
 }

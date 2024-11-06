@@ -9,6 +9,7 @@ package tp1.logic;
 import tp1.logic.gameobjects.Wall;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Lemming;
+import tp1.logic.gameobjects.GameObject;
 import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Interfaces.GameStatus;
 import tp1.logic.Interfaces.GameWorld;
@@ -36,7 +37,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		level = 0;
 		initBoard(1);
 		cycle = 0;
-		lemmingsToWin = 1;
+		lemmingsToWin = 2;
 		exit = false;
 		numLemmings = 0;
 		deadLemmings = 0;
@@ -50,7 +51,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		level = nivel;
 		initBoard(nivel);
 		cycle = 0;
-		lemmingsToWin = 1;
+		lemmingsToWin = 2;
 		exit = false;
 		deadLemmings = 0;
 		exitLemmings = 0;
@@ -90,6 +91,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects.add(new Lemming(0, 8, this));
 		gameObjects.add(new Lemming(2, 3, this));
 		gameObjects.add(new Lemming(9, 0, this));
+		gameObjects.add(new Lemming(4, 3, this));
+
 		numLemmings = 3;
 				break;
 		
@@ -101,7 +104,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	// Metodos de GameWorld********************************************************************************
 		// Funcion para saber si en la posicion de debajo hay una pared
 		public boolean isInAir(Position pos) {
-			return !gameObjects.wallAt(pos.nextPosition(Direction.DOWN));
+			return !gameObjects.wallAtPosition(pos.nextPosition(Direction.DOWN));
 		}
 
 
@@ -155,10 +158,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		public void update() {
 			//Eliminamos los objetos muertos, ya sea porque los lemmings han muerto o han llegado a la puerta
 			// O un rol de excavador ha eliminado una pared
-			gameObjects.removeDeadObjects();
 			// Actualizamos los objetos
 			gameObjects.update();
 			cycle++;	
+			gameObjects.removeDeadObjects();
 		}
 
 		// Funcion para reiniciar el juego
@@ -190,12 +193,14 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return gameObjects.exitAt(pos);
 		}
 
-		public boolean isWall(Position pos){
-			return gameObjects.wallAt(pos);
+		public boolean wallAtPosition(Position pos){
+			return gameObjects.wallAtPosition(pos);
 		}
 
 		// Funcion para obtener el tablero segun el nivel
 		public void initBoard(int level){
+			deadLemmings = 0;
+			exitLemmings = 0;
 			switch(level){
 				case 1:
 					InitLevel(1);
@@ -223,5 +228,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		public boolean crashingIntoLimits(Position pos){
 			return !pos.insideColsLimits(DIM_X);
+		}
+
+		public void removeGameObject(GameObject gameObject){
+			gameObjects.remove(gameObject);
 		}
 }

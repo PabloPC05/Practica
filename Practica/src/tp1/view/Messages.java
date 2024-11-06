@@ -74,6 +74,7 @@ public class Messages {
 	/* @formatter:off */
 	public static final String[] HELP_LINES = new String[] { "Available commands:",
 			"[n]one | \"\": skips cycle",
+			"[s]et[R]ole: sets the lemming in position (ROW,COL) to role ROLE",
 			"[h]elp: print this help message",
 			"[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel",
 			"[e]xit: end the execution of the game"};
@@ -106,10 +107,22 @@ public class Messages {
 	public static final String COMMAND_RESET_DETAILS = "[r]eset";
 	public static final String COMMAND_RESET_HELP = "restart the game";
 
+	// SET ROLE
+	public static final String COMMAND_SET_ROLE_NAME = "setRole";
+	public static final String COMMAND_SET_ROLE_SHORTCUT = "sr";
+	public static final String COMMAND_SET_ROLE_DETAILS = "   [s]et[R]ole ROLE ROW COL";
+	public static final String COMMAND_SET_ROLE_HELP = ": sets the lemming in position (ROW,COL) to role ROLE";
+
+
 //Roles
+	//WalkerRole
 	public static final String WALKER_ROL_SYMBOL = "W";
 	public static final String WALKER_ROL_NAME = "Walker";
 	public static final String WALKER_ROL_HELP = "[W]alker: Lemming that walks";
+	//ParachuterRole
+	public static final String PARACHUTER_ROL_SYMBOL = "P";
+	public static final String PARACHUTER_ROL_NAME = "Parachuter";
+	public static final String PARACHUTER_ROL_HELP = "[P]arachuter: Lemming falls with a parachute";
 
 //Symbols
 	public static final String EMPTY = "";

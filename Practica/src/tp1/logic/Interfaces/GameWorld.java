@@ -9,7 +9,7 @@ public interface GameWorld {
     //abstract boolean lemmingArrived(Lemming lem);
     //abstract void removengs();
     //abstract void removeExitLemmings();
-    abstract boolean isWall(Position pos);
+    abstract boolean wallAtPosition(Position pos);
     abstract boolean isExit(Position pos);
     abstract void addExitLemmings();
 }
