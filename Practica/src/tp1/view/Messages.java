@@ -67,7 +67,7 @@ public class Messages {
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
 
 	
-	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR;
+	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR + "[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE" + LINE_SEPARATOR;
 	public static final String COMMAND_HELP_TEXT = "%s: %s";
 
 	@Deprecated
@@ -77,7 +77,9 @@ public class Messages {
 			"[s]et[R]ole: sets the lemming in position (ROW,COL) to role ROLE",
 			"[h]elp: print this help message",
 			"[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel",
-			"[e]xit: end the execution of the game"};
+			"[e]xit: end the execution of the game",
+			"[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE"
+		};
 	/* @formatter:on */
 	@Deprecated
 	public static final String HELP = String.join(LINE_SEPARATOR+"   ", HELP_LINES) + LINE_SEPARATOR;
