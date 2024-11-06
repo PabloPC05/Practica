@@ -116,13 +116,13 @@ public class Messages {
 
 //Roles
 	//WalkerRole
-	public static final String WALKER_ROL_SYMBOL = "W";
-	public static final String WALKER_ROL_NAME = "Walker";
-	public static final String WALKER_ROL_HELP = "[W]alker: Lemming that walks";
+	public static final String WALKER_ROLE_SYMBOL = "W";
+	public static final String WALKER_ROLE_NAME = "Walker";
+	public static final String WALKER_ROLE_HELP = "[W]alker: Lemming that walks";
 	//ParachuterRole
-	public static final String PARACHUTER_ROL_SYMBOL = "P";
-	public static final String PARACHUTER_ROL_NAME = "Parachuter";
-	public static final String PARACHUTER_ROL_HELP = "[P]arachuter: Lemming falls with a parachute";
+	public static final String PARACHUTER_ROLE_SYMBOL = "P";
+	public static final String PARACHUTER_ROLE_NAME = "Parachuter";
+	public static final String PARACHUTER_ROLE_HELP = "[P]arachuter: Lemming falls with a parachute";
 
 //Symbols
 	public static final String EMPTY = "";

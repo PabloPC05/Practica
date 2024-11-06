@@ -2,6 +2,9 @@ package tp1.logic.gameobjects;
 
 import tp1.logic.Game;
 import tp1.logic.Position;
+
+import org.junit.runner.OrderWith;
+
 import tp1.logic.Direction;
 import tp1.logic.lemmingRoles.LemmingRole;
 //import tp1.logic.lemmingRoles.LemmingRole;
@@ -13,7 +16,7 @@ public class Lemming extends GameObject {
 	//Atributos
 	private Direction direction;
 	private int fuerzaCaida; // Con 3 se muere
-	private LemmingRole rol;
+	private LemmingRole role;
 	
 	//Constructores
 	//Constructor por defecto
@@ -21,14 +24,14 @@ public class Lemming extends GameObject {
 		super();
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
-		rol = new WalkerRole();
+		role = new WalkerRole();
 	}
 	//Constructor por defecto
 	public Lemming(int col, int row, Game game) {
 		super(new Position(col, row), true, game);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
-		rol = new WalkerRole();
+		role = new WalkerRole();
 	}
 
 	// Constructor con parametros de posicion (objeto) y direccion
@@ -36,13 +39,13 @@ public class Lemming extends GameObject {
 		super(pos, vivo, game);
 		direction = d;
 		fuerzaCaida = 0;
-		rol = new WalkerRole();
+		role = new WalkerRole();
 	}
 
 	//FUNCIONES ABSTRACTAS DE LA CLASE GAMEOBJECT
 		// Funcion para obtener el icono del lemming
 		@Override
-		public String toString(){ return rol.getIcon(this);}
+		public String toString(){ return role.getIcon(this);}
 
 		// Funcion para saber si un lemming es solido
 		@Override
@@ -53,14 +56,14 @@ public class Lemming extends GameObject {
         public boolean isExit() { return false;}
 		public void update() {
 			removeExitLemmings();
-			if (vivo) rol.play(this);
+			if (vivo) role.play(this);
 		}
 	
 	// Setters
 	//Funcion para cambiar la posicion segun la direccion
 
 
-	public void isFalling(){
+	public void falls(){
 		fuerzaCaida++;
 		pos.update(Direction.DOWN);
 	}
@@ -93,7 +96,7 @@ public class Lemming extends GameObject {
 			dies();
 			game.addDeadLemmings();
 		}
-		else if(game.isInAir(pos)) isFalling();
+		else if(game.isInAir(pos)) falls();
 		else walk();
 	}
 
@@ -104,7 +107,7 @@ public class Lemming extends GameObject {
 			return newDirection;
 		}
 
-		// Funcion para obtener el rol
+		// Funcion para obtener el role
 		public WalkerRole getRol() {
 			return new WalkerRole();
 		}
@@ -121,8 +124,10 @@ public class Lemming extends GameObject {
 			}
 		}
 
-		public void setRole(LemmingRole role){
-			rol = role;
+		@Override
+		public boolean setRole(LemmingRole role){
+			role = role;
+			return true;
 		}
 
 		public void disableRole(){

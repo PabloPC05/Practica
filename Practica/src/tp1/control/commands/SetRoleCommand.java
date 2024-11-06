@@ -15,8 +15,7 @@ public class SetRoleCommand extends Command{
     }
     @Override
     public void execute(GameModel game, GameView view) {
-        // TODO Auto-generated method stub
-        //game.setRole();
+        game.setRole(position, role);
     }
     @Override
     public Command parse(String[] commandWords) {

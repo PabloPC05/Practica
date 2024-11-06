@@ -233,4 +233,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		public void removeGameObject(GameObject gameObject){
 			gameObjects.remove(gameObject);
 		}
+
+		public void setRole(Position pos, String role){
+			gameObjects.setRole(pos, role);
+		}
 }

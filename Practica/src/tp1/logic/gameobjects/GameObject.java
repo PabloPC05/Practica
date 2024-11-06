@@ -1,6 +1,7 @@
 package tp1.logic.gameobjects;
 import tp1.logic.Position;
 import tp1.logic.Game;
+import tp1.logic.lemmingRoles.LemmingRole;
 
 public abstract class GameObject{
     
@@ -74,5 +75,11 @@ public abstract class GameObject{
 
         public void dies(){
             vivo = false;
+        }
+
+        //Esta funcion habria que implementarla en las clases hijas con un override y poniendo false en todas menos en lemming
+        //o hacerla aqui?
+        public boolean setRole(LemmingRole role){
+            return false;
         }
 }
