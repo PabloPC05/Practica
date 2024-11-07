@@ -22,33 +22,28 @@ public class SetRoleCommand extends Command{
 
     @Override
     public void execute(GameModel game, GameView view) {
-        //Funcion que hay que hacer para establecer el rol al lemming en esa posicion
-        //game.setRole(role, col, row);
+    	if(role != null) {
+    		if(!game.setRole(role, col, row)) {
+    			view.showError(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
+    		}
+    	}
+    	else {
+    		view.showError(Messages.COMMAND_SET_ROLE_ROLE_NOT_FOUND);
+    	}
     }   
 
     @Override
     public Command parse(String[] commandWords) {
         Command com = null;
-        if(matchCommandName(commandWords[0])){
-            com = new SetRoleCommand();
-            role = LemmingRoleFactory.parse(commandWords[1]);
-            if(role != null){
-                try{
-                col = Integer.parseInt(commandWords[2]);
-                row = Integer.parseInt(commandWords[3]);
-                }catch(NumberFormatException e){
-                    //Con mensaje [ERROR] Error: columna y fila inexistentes
-                    System.err.println(Messages.INVALID_ARGUMENT);
-                }
-            }
-            else{
-                //Hay que añadir el mensaje de error
-                //Con mensaje [ERROR] Error: Unknown Role
-                System.err.println(Messages.ROLE_NOT_FOUND);
-            }
-        }
+        if(matchCommandName(commandWords[0])) com = new SetRoleCommand();
+        role = LemmingRoleFactory.parse(commandWords[1]);
+        try{
+	        col = Integer.parseInt(commandWords[2]);
+	        row = Integer.parseInt(commandWords[3]);
+        }catch(NumberFormatException e) {}
         return com;
     }
+       
 
     @Override
 	protected boolean matchCommandName(String name) {

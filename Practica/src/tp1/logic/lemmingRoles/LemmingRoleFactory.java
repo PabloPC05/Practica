@@ -29,5 +29,4 @@ public class LemmingRoleFactory {
 		}
 		return roles.toString();
 	}
-
 }

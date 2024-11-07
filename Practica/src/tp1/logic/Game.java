@@ -7,6 +7,9 @@ package tp1.logic;
 //import java.security.MessageDigest;
 //import tp1.view.Messages;
 import tp1.logic.gameobjects.Wall;
+import tp1.logic.lemmingRoles.*;
+
+import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.GameObject;
@@ -91,7 +94,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects.add(new Lemming(0, 8, this));
 		gameObjects.add(new Lemming(2, 3, this));
 		gameObjects.add(new Lemming(9, 0, this));
+		gameObjects.add(new Lemming(6, 0, this, new ParachuterRole()));
+		gameObjects.add(new Lemming(6, 7, this, new ParachuterRole()));
 		gameObjects.add(new Lemming(4, 3, this));
+		
 
 		numLemmings = 3;
 				break;
@@ -234,7 +240,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			gameObjects.remove(gameObject);
 		}
 
-		/*public void setRole(Position pos, String role){
-			gameObjects.setRole(pos, role);
-		}*/
+		public boolean setRole(LemmingRole role, int col, int row) {
+			return gameObjects.setRole(role, col, row);
+		}
 }

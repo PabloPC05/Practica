@@ -2,6 +2,7 @@ package tp1.logic;
 
 import java.util.ArrayList;
 import tp1.logic.gameobjects.*;
+import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.view.Messages;
 
 public class GameObjectContainer {
@@ -98,5 +99,23 @@ public class GameObjectContainer {
 
 		public void remove(GameObject obj){
 			gameObjects.remove(obj);
+		}
+		
+		public int objectAt(Position pos) {
+			int index = -1;
+			for(int i = 0; i < gameObjects.size() && index == -1; i++) {
+				if(gameObjects.get(i).isInPosition(pos)) index = i; 
+			}
+			return index;
+		}
+		
+		public boolean setRole(LemmingRole role, int col, int row) {
+			Position pos = new Position(col, row);
+			for (int i = 0; i < gameObjects.size(); i++) {
+				if (gameObjects.get(i).isInPosition(pos) && gameObjects.get(i).setRole(role)) {
+					return true;
+				}
+			}
+			return false;
 		}
 }

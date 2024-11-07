@@ -51,6 +51,8 @@ public abstract class GameObject{
         public abstract boolean isSolid();
         // Funcion para saber si es la puerta o no
         public abstract boolean isExit();
+        //Funcion para establecer un rol a un objeto de juego
+        public abstract boolean setRole(LemmingRole rol);
 
     // Getters
         // Funcion para saber si el objeto esta vivo
@@ -79,7 +81,7 @@ public abstract class GameObject{
 
         //Esta funcion habria que implementarla en las clases hijas con un override y poniendo false en todas menos en lemming
         //o hacerla aqui?
-        public boolean setRole(LemmingRole role){
+        /*public boolean setRole(LemmingRole role){
             return false;
-        }
+        }*/
 }

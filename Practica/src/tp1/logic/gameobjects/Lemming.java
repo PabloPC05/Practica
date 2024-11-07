@@ -1,6 +1,7 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.Game;
+
 import tp1.logic.Position;
 
 import org.junit.runner.OrderWith;
@@ -18,7 +19,7 @@ public class Lemming extends GameObject {
 	private int fuerzaCaida; // Con 3 se muere
 	private LemmingRole role;
 	
-	//Constructores
+	// Constructores
 	//Constructor por defecto
 	public Lemming() {
 		super();
@@ -33,7 +34,14 @@ public class Lemming extends GameObject {
 		fuerzaCaida = 0;
 		role = new WalkerRole();
 	}
+	
+	public Lemming(int col, int row, Game game, LemmingRole role) {
+		super(new Position(col, row), true, game);
+		direction = Direction.RIGHT;
+		fuerzaCaida = 0;
+	}
 
+	
 	// Constructor con parametros de posicion (objeto) y direccion
 	public Lemming(Position pos, boolean vivo, Direction d, Direction pd, Game game) {
 		super(pos, vivo, game);
@@ -66,6 +74,10 @@ public class Lemming extends GameObject {
 	public void falls(){
 		fuerzaCaida++;
 		pos.update(Direction.DOWN);
+		if(game.leavingTheBoard(pos)) {
+			dies();
+			game.addDeadLemmings();
+		}
 	}
 
 	public void inverseDirection(){
@@ -83,11 +95,15 @@ public class Lemming extends GameObject {
 	}
 
 	public boolean crashingIntoWall(){
-		return fuerzaCaida >= 3 && game.wallAtPosition(pos.nextPosition(Direction.DOWN));
+		return  game.wallAtPosition(pos.nextPosition(Direction.DOWN));
 	}
 
 	public boolean isGonnaDie(){
-		return crashingIntoWall() || game.leavingTheBoard(pos.nextPosition(Direction.DOWN));
+		return (crashingIntoWall() && tooKinectEnergy()) || game.leavingTheBoard(pos.nextPosition(Direction.DOWN));
+	}
+	
+	public boolean tooKinectEnergy() {
+		return fuerzaCaida >= 3;
 	}
 	
 	// Mueve el lemming
@@ -126,11 +142,17 @@ public class Lemming extends GameObject {
 
 		@Override
 		public boolean setRole(LemmingRole role){
-			role = role;
+			if (this.role.equals(role)) return false;
+			this.role = role;
 			return true;
 		}
+		
+        public void featherFall() {
+        	fuerzaCaida = 0;
+        }
+
 
 		public void disableRole(){
-			
+			role = new WalkerRole();
 		}
 }

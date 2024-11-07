@@ -43,12 +43,12 @@ public class WalkerRole implements LemmingRole {
 
     @Override
     public boolean roleMatch(String input) {
-        return input.equals(NAME);
+        return input.equalsIgnoreCase(NAME) || input.equalsIgnoreCase(SYMBOL);
     }
 
     @Override
     public LemmingRole parse(String input) {
-        if (input.equalsIgnoreCase(NAME)) return new WalkerRole();
+        if (roleMatch(input)) return new WalkerRole();
         return null;
     }
 

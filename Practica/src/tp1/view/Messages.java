@@ -114,7 +114,8 @@ public class Messages {
 	public static final String COMMAND_SET_ROLE_SHORTCUT = "sr";
 	public static final String COMMAND_SET_ROLE_DETAILS = "   [s]et[R]ole ROLE ROW COL";
 	public static final String COMMAND_SET_ROLE_HELP = ": sets the lemming in position (ROW,COL) to role ROLE";
-
+	public static final String COMMAND_SET_ROLE_ROLE_NOT_FOUND = "[ERROR] Error: Unknown Role";
+	public static final String COMMAND_SET_ROLE_INVALID_ARGUMENT = "[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)";
 
 //Roles
 	//WalkerRole

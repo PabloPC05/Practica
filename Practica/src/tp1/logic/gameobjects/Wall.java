@@ -1,6 +1,7 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.Position;
+import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.view.Messages;
 import tp1.logic.Game;
 
@@ -43,5 +44,10 @@ public class Wall extends GameObject {
         @Override
         public boolean isExit() {
             return false;
+        }
+        
+        @Override
+        public boolean setRole(LemmingRole role) {
+        	return false;
         }
 }

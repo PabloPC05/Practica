@@ -10,13 +10,21 @@ public class ParachuterRole implements LemmingRole {
     private static final String ICON = Messages.LEMMING_PARACHUTE;
     private static final String HELP = Messages.PARACHUTER_ROLE_HELP;
     
+    public ParachuterRole() {
+    	
+    }
+    
     @Override
     public void start(Lemming lemming) {
     }
 
     @Override
     public void play(Lemming lemming) {
-        lemming.falls();
+        if(!lemming.crashingIntoWall()) {
+        	lemming.falls();
+            lemming.featherFall();
+        }
+        else lemming.disableRole();
     }
 
     @Override
@@ -36,7 +44,7 @@ public class ParachuterRole implements LemmingRole {
 
     @Override 
     public LemmingRole parse(String input) {
-        if (input.equalsIgnoreCase(NAME)) return new ParachuterRole();
+        if (matchRoleName(input)) return new ParachuterRole();
         return null;
     }
 
