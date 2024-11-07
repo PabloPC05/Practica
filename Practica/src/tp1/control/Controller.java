@@ -25,9 +25,7 @@ public class Controller {
 	 */
 	public void run() {
 		String[] words = null;
-
 		view.showWelcome();
-
 		view.showGame();
 		while (!game.isFinished()) {
 			words = view.getPrompt();

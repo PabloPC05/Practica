@@ -33,6 +33,8 @@ public abstract class Command {
 	}
 
 	public String helpText(){
-		return Messages.LINE_TAB.formatted(Messages.COMMAND_HELP_TEXT.formatted(getDetails(), getHelp()));
+		StringBuilder help = new StringBuilder();
+		help.append(Messages.COMMAND_HELP_TEXT.formatted(getDetails(), getHelp()));
+		return Messages.LINE_TAB.formatted(help.toString());	
 	}
 }

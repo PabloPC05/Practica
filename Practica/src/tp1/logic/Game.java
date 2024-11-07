@@ -94,9 +94,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects.add(new Lemming(0, 8, this));
 		gameObjects.add(new Lemming(2, 3, this));
 		gameObjects.add(new Lemming(9, 0, this));
-		gameObjects.add(new Lemming(6, 0, this, new ParachuterRole()));
-		gameObjects.add(new Lemming(6, 7, this, new ParachuterRole()));
-		gameObjects.add(new Lemming(4, 3, this));
 		
 
 		numLemmings = 3;

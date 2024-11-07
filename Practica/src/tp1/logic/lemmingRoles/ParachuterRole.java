@@ -9,22 +9,24 @@ public class ParachuterRole implements LemmingRole {
     private static final String SYMBOL = Messages.PARACHUTER_ROLE_SYMBOL;
     private static final String ICON = Messages.LEMMING_PARACHUTE;
     private static final String HELP = Messages.PARACHUTER_ROLE_HELP;
+    private static final String DETAILS = Messages.PARACHUTER_ROLE_DETAILS;
     
-    public ParachuterRole() {
-    	
-    }
+    public ParachuterRole() {}
+    
     
     @Override
     public void start(Lemming lemming) {
+        //Supongo que habria que comprobar antes de que se establezca el rol que no haya una pared debajo, 
+        // i.e que esté en el aire el lemming
     }
 
     @Override
     public void play(Lemming lemming) {
-        if(!lemming.crashingIntoWall()) {
-        	lemming.falls();
+        if(lemming.crashingIntoWall()) lemming.disableRole();
+        else{
+            lemming.falls();
             lemming.featherFall();
         }
-        else lemming.disableRole();
     }
 
     @Override
@@ -34,7 +36,7 @@ public class ParachuterRole implements LemmingRole {
 
     @Override
     public boolean matchRoleName(String str) {
-        return NAME.equalsIgnoreCase(str) || SYMBOL.equalsIgnoreCase(str);
+        return str.equalsIgnoreCase(NAME) || str.equalsIgnoreCase(SYMBOL);
     }
 
     @Override
@@ -55,7 +57,9 @@ public class ParachuterRole implements LemmingRole {
 
     @Override
     public String helpText() {
-        return HELP;
+        StringBuilder help = new StringBuilder();
+		help.append(Messages.COMMAND_HELP_TEXT.formatted(DETAILS, HELP));
+		return Messages.LINE_2TABS.formatted(help.toString());
     }
     
 }

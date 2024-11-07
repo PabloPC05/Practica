@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import tp1.control.commands.Command;
+import tp1.view.Messages;
 
 
 public class LemmingRoleFactory {
@@ -25,7 +26,7 @@ public class LemmingRoleFactory {
 	public static String lemmingRolesHelp() {
 		StringBuilder roles = new StringBuilder();
 		for (LemmingRole role: availableRoles) {
-			role.helpText();
+			roles.append(role.helpText());
 		}
 		return roles.toString();
 	}

@@ -3,6 +3,8 @@ package tp1.control.commands;
 import java.util.Arrays;
 import java.util.List;
 
+import tp1.view.Messages;
+
 public class CommandGenerator {
 
 	private static final List<Command> availableCommands = Arrays.asList(
@@ -26,7 +28,7 @@ public class CommandGenerator {
 	public static String commandHelp() {
 		StringBuilder commands = new StringBuilder();
 		for (Command c: availableCommands) {
-			c.helpText();
+			commands.append((c.helpText()));
 		}
 		return commands.toString();
 	}

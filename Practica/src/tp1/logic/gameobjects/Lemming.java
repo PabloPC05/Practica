@@ -39,6 +39,7 @@ public class Lemming extends GameObject {
 		super(new Position(col, row), true, game);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
+		this.role = role;
 	}
 
 	
@@ -69,7 +70,6 @@ public class Lemming extends GameObject {
 	
 	// Setters
 	//Funcion para cambiar la posicion segun la direccion
-
 
 	public void falls(){
 		fuerzaCaida++;
@@ -151,8 +151,27 @@ public class Lemming extends GameObject {
         	fuerzaCaida = 0;
         }
 
-
 		public void disableRole(){
 			role = new WalkerRole();
 		}
+
+		@Override
+        public boolean receiveInteraction(GameItem item) {
+        	return item.interactWith(this);
+        }
+        @Override
+        public boolean interactWith(Lemming lemming) {
+        	return true;
+        }
+
+		//Aquí tendríamos que escribir que ocurre cuando un lemming interactura con una pared
+        @Override
+        public boolean interactWith(Wall wall) {
+        	return false;
+        }
+
+        @Override
+        public boolean interactWith(ExitDoor door) {
+        	return false;
+        }
 }

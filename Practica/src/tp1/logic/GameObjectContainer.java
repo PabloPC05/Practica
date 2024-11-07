@@ -41,13 +41,13 @@ public class GameObjectContainer {
 		public void removeDeadObjects(){
 			/*int N = gameObjects.size();
 			for(int i = 0; i < N; i++){
-				if(!gameObjects.get(i).isVivo()){
+				if(!gameObjects.get(i).isAlive()){
 					gameObjects.remove(i);
 					i--;
 					N--;	
 				}
 			}*/
-			gameObjects.removeIf(n -> !n.isVivo());
+			gameObjects.removeIf(n -> !n.isAlive());
 		}
 
 		public boolean wallAtPosition(Position pos){

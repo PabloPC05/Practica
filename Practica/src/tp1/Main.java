@@ -10,12 +10,6 @@ import tp1.view.GameView;
 import tp1.view.Messages;
 
 public class Main {
-
-	/*
-	 * Lemmings entry point
-	 * 
-	 * @param args Arguments for the game.
-	 */
 	public static void main(String[] args) {
 		// Required to avoid issues with tests
         Locale.setDefault(new Locale("es", "ES"));

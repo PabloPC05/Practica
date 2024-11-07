@@ -3,7 +3,7 @@ import tp1.logic.Position;
 import tp1.logic.Game;
 import tp1.logic.lemmingRoles.LemmingRole;
 
-public abstract class GameObject{
+public abstract class GameObject implements GameItem {
     
     // Atributos
     protected Position pos;
@@ -56,7 +56,7 @@ public abstract class GameObject{
 
     // Getters
         // Funcion para saber si el objeto esta vivo
-        public boolean isVivo() {
+        public boolean isAlive() {
             return vivo;
         }
 
@@ -78,10 +78,4 @@ public abstract class GameObject{
         public void dies(){
             vivo = false;
         }
-
-        //Esta funcion habria que implementarla en las clases hijas con un override y poniendo false en todas menos en lemming
-        //o hacerla aqui?
-        /*public boolean setRole(LemmingRole role){
-            return false;
-        }*/
 }

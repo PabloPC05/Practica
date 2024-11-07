@@ -51,4 +51,23 @@ public class ExitDoor extends GameObject {
         public boolean setRole(LemmingRole role) {
         	return false;
         }
+
+        @Override
+        public boolean receiveInteraction(GameItem item) {
+        	return item.interactWith(this);
+        }
+        @Override
+        public boolean interactWith(Lemming lemming) {
+        	return true;
+        }
+
+        @Override
+        public boolean interactWith(Wall wall) {
+        	return false;
+        }
+
+        @Override
+        public boolean interactWith(ExitDoor door) {
+        	return false;
+        }
 }

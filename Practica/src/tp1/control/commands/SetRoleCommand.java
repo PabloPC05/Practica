@@ -12,6 +12,7 @@ public class SetRoleCommand extends Command{
 	private static final String DETAILS = Messages.COMMAND_SET_ROLE_DETAILS;
 	private static final String HELP = Messages.COMMAND_SET_ROLE_HELP;
 
+    private String roleName;
     private LemmingRole role; 
     private int col; 
     private int row;
@@ -28,26 +29,39 @@ public class SetRoleCommand extends Command{
     		}
     	}
     	else {
-    		view.showError(Messages.COMMAND_SET_ROLE_ROLE_NOT_FOUND);
+    		view.showError(Messages.UNKNOWN_ROLE.formatted(roleName));
     	}
     }   
 
     @Override
     public Command parse(String[] commandWords) {
         Command com = null;
-        if(matchCommandName(commandWords[0])) com = new SetRoleCommand();
-        role = LemmingRoleFactory.parse(commandWords[1]);
-        try{
-	        col = Integer.parseInt(commandWords[2]);
-	        row = Integer.parseInt(commandWords[3]);
-        }catch(NumberFormatException e) {}
+        if (matchCommandName(commandWords[0])) {
+            SetRoleCommand newCommand = new SetRoleCommand();
+            newCommand.roleName = commandWords[1];
+            newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
+            try {
+                newCommand.col = Integer.parseInt(commandWords[2]);
+                newCommand.row = Integer.parseInt(commandWords[3]);
+            } catch (NumberFormatException e) {}
+            com = newCommand;
+        }
         return com;
     }
        
 
     @Override
 	protected boolean matchCommandName(String name) {
-		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name) || name.equals(Messages.EMPTY);
+		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name);
 	}
+
+    @Override
+    public String getHelp() {
+        StringBuilder help = new StringBuilder();
+        help.append(super.getHelp());
+        help.append(Messages.LINE_SEPARATOR);
+        help.append(LemmingRoleFactory.lemmingRolesHelp());
+        return help.toString();
+    }
 }
 

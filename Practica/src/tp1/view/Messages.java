@@ -67,11 +67,11 @@ public class Messages {
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
 
 	
-	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR + "[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE" + LINE_SEPARATOR;
+	//public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR + "[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE" + LINE_SEPARATOR;
 	public static final String COMMAND_HELP_TEXT = "%s: %s";
 
-	@Deprecated
-	/* @formatter:off */
+	/*@Deprecated
+	@formatter:off 
 	public static final String[] HELP_LINES = new String[] { "Available commands:",
 			"[n]one | \"\": skips cycle",
 			"[s]et[R]ole: sets the lemming in position (ROW,COL) to role ROLE",
@@ -80,9 +80,9 @@ public class Messages {
 			"[e]xit: end the execution of the game",
 			"[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE"
 		};
-	/* @formatter:on */
+	 @formatter:on 
 	@Deprecated
-	public static final String HELP = String.join(LINE_SEPARATOR+"   ", HELP_LINES) + LINE_SEPARATOR;
+	public static final String HELP = String.join(LINE_SEPARATOR+"   ", HELP_LINES) + LINE_SEPARATOR;*/
 
 
 	// UPDATE (NONE)
@@ -112,20 +112,22 @@ public class Messages {
 	// SET ROLE
 	public static final String COMMAND_SET_ROLE_NAME = "setRole";
 	public static final String COMMAND_SET_ROLE_SHORTCUT = "sr";
-	public static final String COMMAND_SET_ROLE_DETAILS = "   [s]et[R]ole ROLE ROW COL";
-	public static final String COMMAND_SET_ROLE_HELP = ": sets the lemming in position (ROW,COL) to role ROLE";
-	public static final String COMMAND_SET_ROLE_ROLE_NOT_FOUND = "[ERROR] Error: Unknown Role";
-	public static final String COMMAND_SET_ROLE_INVALID_ARGUMENT = "[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)";
+	public static final String COMMAND_SET_ROLE_DETAILS = "[s]et[R]ole ROLE COL ROW";
+	public static final String COMMAND_SET_ROLE_HELP = "sets the lemming in position (COL, ROW) to role ROLE";
+	public static final String COMMAND_SET_ROLE_INVALID_ARGUMENT = "SetRoleCommand error (Incorrect position or no object in that position admits that role)";
 
 //Roles
 	//WalkerRole
 	public static final String WALKER_ROLE_SYMBOL = "W";
 	public static final String WALKER_ROLE_NAME = "Walker";
-	public static final String WALKER_ROLE_HELP = "[W]alker: Lemming that walks";
+	public static final String WALKER_ROLE_HELP = "Lemming that walks";
+	public static final String WALKER_ROLE_DETAILS = "[W]alker";
+
 	//ParachuterRole
 	public static final String PARACHUTER_ROLE_SYMBOL = "P";
 	public static final String PARACHUTER_ROLE_NAME = "Parachuter";
-	public static final String PARACHUTER_ROLE_HELP = "[P]arachuter: Lemming falls with a parachute";
+	public static final String PARACHUTER_ROLE_DETAILS = "[P]arachuter";
+	public static final String PARACHUTER_ROLE_HELP = "Lemming falls with a parachute";
 
 //Symbols
 	public static final String EMPTY = "";
