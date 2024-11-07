@@ -1,7 +1,9 @@
 package tp1.logic.lemmingRoles;
 
 import tp1.logic.*;
+import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Lemming;
+import tp1.logic.gameobjects.Wall;
 import tp1.view.Messages;
 
 public class WalkerRole implements LemmingRole {
@@ -12,6 +14,8 @@ public class WalkerRole implements LemmingRole {
     private static final String LEFT_ICON = Messages.LEMMING_LEFT;
     private static final String HELP = Messages.WALKER_ROLE_HELP;
     private static final String DETAILS = Messages.WALKER_ROLE_DETAILS;
+
+    public WalkerRole() {}
 
     @Override
 	public void play(Lemming lemming) {
@@ -58,6 +62,20 @@ public class WalkerRole implements LemmingRole {
         StringBuilder help = new StringBuilder();
 		help.append(Messages.COMMAND_HELP_TEXT.formatted(DETAILS, HELP));
 		return Messages.LINE_2TABS.formatted(help.toString());
+    }
+
+
+    public boolean interactWith(Wall wall, Lemming lem){
+        lem.disableRole();
+        return true;
+    }
+
+    public boolean interactWith(Lemming receiver, Lemming lem){
+        return true;
+    }
+
+    public boolean interactWith(ExitDoor exit, Lemming lemming){
+        return false;
     }
 }
 

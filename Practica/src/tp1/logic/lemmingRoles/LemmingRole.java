@@ -1,6 +1,6 @@
 package tp1.logic.lemmingRoles;
 
-import tp1.logic.gameobjects.Lemming;
+import tp1.logic.gameobjects.*;
 
 public interface LemmingRole {
     public void start(Lemming lemming);
@@ -12,6 +12,13 @@ public interface LemmingRole {
     abstract public boolean roleMatch(String input);
     abstract public String helpText();
     abstract public String getSymbol();
-
     abstract boolean matchRoleName(String name);
+
+
+    abstract boolean interactWith(Wall wall, Lemming lemming);
+    abstract boolean interactWith(Lemming receiver, Lemming lemming);
+    abstract boolean interactWith(ExitDoor exit, Lemming lemming);
+
+
+
 }

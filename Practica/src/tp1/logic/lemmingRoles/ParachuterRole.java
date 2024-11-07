@@ -1,6 +1,6 @@
 package tp1.logic.lemmingRoles;
 
-import tp1.logic.gameobjects.Lemming;
+import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
 public class ParachuterRole implements LemmingRole {
@@ -60,6 +60,24 @@ public class ParachuterRole implements LemmingRole {
         StringBuilder help = new StringBuilder();
 		help.append(Messages.COMMAND_HELP_TEXT.formatted(DETAILS, HELP));
 		return Messages.LINE_2TABS.formatted(help.toString());
+    }
+
+
+
+
+
+
+    public boolean interactWith(Wall wall, Lemming lem){
+        lem.disableRole();
+        return true;
+    }
+
+    public boolean interactWith(Lemming receiver, Lemming lem){
+        return true;
+    }
+
+    public boolean interactWith(ExitDoor exit, Lemming lemming){
+        return false;
     }
     
 }
