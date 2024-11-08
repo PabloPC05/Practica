@@ -48,12 +48,6 @@ public class SetRoleCommand extends Command{
         }
         return com;
     }
-       
-
-    @Override
-	protected boolean matchCommandName(String name) {
-		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name);
-	}
 
     @Override
     public String getHelp() {

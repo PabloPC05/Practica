@@ -37,11 +37,6 @@ public class Wall extends GameObject {
             return true;
         }
 
-        // Funcion para saber si es un objeto es la salida
-        @Override
-        public boolean isExit() {
-            return false;
-        }
         
         @Override
         public boolean setRole(LemmingRole role) {

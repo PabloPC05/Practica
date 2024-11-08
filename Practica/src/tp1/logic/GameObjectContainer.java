@@ -51,14 +51,14 @@ public class GameObjectContainer {
 			return false;
 		}
 
-		public boolean exitAt(Position pos){
+		/*public boolean exitAt(Position pos){
 			for(int i = 0; i < gameObjects.size(); i++){
 				if(gameObjects.get(i).isExit() && gameObjects.get(i).isInPosition(pos)){
 					return true;
 				}
 			}
 			return false;
-		}
+		}*/
 
 		public String positionToString(int col, int row){
 			String str = Messages.EMPTY;
@@ -71,13 +71,13 @@ public class GameObjectContainer {
 			return str.toString();
 		}
 
-		public int numLemmings(){
+		/*public int numLemmings(){
 			int returnValue = 0;
 			for(GameObject obj : gameObjects){
 				if(!(obj.isSolid() || obj.isExit())) returnValue++;
 			}
 			return returnValue;
-		}
+		}*/
 
 		public void remove(GameObject obj){
 			gameObjects.remove(obj);

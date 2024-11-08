@@ -11,7 +11,9 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
     private static final String HELP = Messages.PARACHUTER_ROLE_HELP;
     private static final String DETAILS = Messages.PARACHUTER_ROLE_DETAILS;
     
-    public ParachuterRole() {}
+    public ParachuterRole() {
+        super(NAME, DETAILS, HELP, ICON, SYMBOL);
+    }
     
     
     @Override
@@ -28,38 +30,12 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
         }
     }
 
-    @Override
-    public String getIcon(Lemming lemming) {
-        return ICON;
-    }
-
-    @Override
-    public boolean matchRoleName(String str) {
-        return str.equalsIgnoreCase(NAME) || str.equalsIgnoreCase(SYMBOL);
-    }
-
-    @Override
-    public String getSymbol() {
-        return SYMBOL;
-    }
-
     @Override 
     public LemmingRole parse(String input) {
-        if (matchRoleName(input)) return new ParachuterRole();
+        if (roleMatch(input)) return new ParachuterRole();
         return null;
     }
 
-    @Override
-    public boolean roleMatch(String input) {
-        return input.equals(NAME);
-    }
-
-    @Override
-    public String helpText() {
-        StringBuilder help = new StringBuilder();
-		help.append(Messages.COMMAND_HELP_TEXT.formatted(DETAILS, HELP));
-		return Messages.LINE_2TABS.formatted(help.toString());
-    }
 
     @Override
     public boolean interactWith(Wall wall, Lemming lemming) {
@@ -70,5 +46,4 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
         }
         return interaction;
     }
-
 }

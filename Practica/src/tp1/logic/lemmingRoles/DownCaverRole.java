@@ -13,43 +13,21 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
 
     private boolean hasCaved;
 
-    public DownCaverRole(){}
+    public DownCaverRole(){
+        super(NAME, DETAILS, HELP, ICON, SYMBOL);
+        hasCaved = false;
+    }
 
 
     public void start(Lemming lemming){
-        if()
-
     }
 
     public void play (Lemming lemming){
 
     }
 
-    public String getIcon(Lemming lemming){
-        return ICON;
-    }
-
     public LemmingRole parse(String input){
         if (matchRoleName(input)) return new DownCaverRole();
         return null;    
-    }
-
-    public boolean roleMatch(String input){
-        return input.equals(NAME);
-    }    
-
-    public String helpText(){
-        StringBuilder help = new StringBuilder();
-		help.append(Messages.COMMAND_HELP_TEXT.formatted(DETAILS, HELP));
-		return Messages.LINE_2TABS.formatted(help.toString());
-    }
-
-    public String getSymbol(){
-        return SYMBOL;
-
-    }
-
-    public boolean matchRoleName(String str){
-        return str.equalsIgnoreCase(NAME) || str.equalsIgnoreCase(SYMBOL);
     }
 }

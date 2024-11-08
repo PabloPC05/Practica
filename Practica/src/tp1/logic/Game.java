@@ -113,7 +113,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		// Funcion para obtener el numero de lemmings en el tablero
 		public int numLemmingsInBoard() {
-			updateNumLemmings();
 			return numLemmings;
 		}
 
@@ -182,10 +181,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return "";
 		}
 
-		public boolean isExit(Position pos){
-			return gameObjects.exitAt(pos);
-		}
-
 		public boolean wallAtPosition(Position pos){
 			return gameObjects.wallAtPosition(pos);
 		}
@@ -205,14 +200,12 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		public void addExitLemmings(){
 			exitLemmings++;
+			numLemmings--;
 		}
 
 		public void addDeadLemmings(){
 			deadLemmings++;
-		}
-
-		public void updateNumLemmings(){
-			numLemmings = gameObjects.numLemmings();
+			numLemmings--;
 		}
 
 		public boolean leavingTheBoard(Position pos){
