@@ -3,9 +3,6 @@ package tp1.logic.lemmingRoles;
 import java.util.Arrays;
 import java.util.List;
 
-import tp1.control.commands.Command;
-import tp1.view.Messages;
-
 
 public class LemmingRoleFactory {
     private static final List<LemmingRole> availableRoles = Arrays.asList(

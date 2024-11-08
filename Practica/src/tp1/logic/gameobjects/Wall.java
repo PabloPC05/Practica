@@ -3,23 +3,20 @@ package tp1.logic.gameobjects;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.view.Messages;
-import tp1.logic.Game;
+import tp1.logic.Interfaces.GameWorld;
 
 public class Wall extends GameObject {
 
     // Constructores
-        // Constructor por defecto
-        public Wall() {
-            super();
+
+        // Constructor con parametros de posicion
+        public Wall(Position pos, boolean vivo, GameWorld gameWorld) {
+            super(pos, vivo, gameWorld);
         }
 
         // Constructor con parametros de posicion
-        public Wall(Position pos, boolean vivo, Game game) {
-            super(pos, vivo, game);
-        }
-        // Constructor con parametros de posicion
-        public Wall(int col, int row, Game game) {
-            super(new Position(col, row), true, game);
+        public Wall(int col, int row, GameWorld gameWorld) {
+            super(new Position(col, row), true, gameWorld);
         }
 
     // Setters
@@ -55,18 +52,5 @@ public class Wall extends GameObject {
         public boolean receiveInteraction(GameItem item) {
         	return item.interactWith(this);
         }
-        @Override
-        public boolean interactWith(Lemming lemming) {
-        	return true;
-        }
 
-        @Override
-        public boolean interactWith(Wall wall) {
-        	return false;
-        }
-
-        @Override
-        public boolean interactWith(ExitDoor door) {
-        	return false;
-        }
 }

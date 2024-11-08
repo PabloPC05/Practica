@@ -3,7 +3,7 @@ package tp1.logic.lemmingRoles;
 import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
-public class ParachuterRole implements LemmingRole {
+public class ParachuterRole extends AbstractRole implements LemmingRole {
 
     private static final String NAME = Messages.PARACHUTER_ROLE_NAME;
     private static final String SYMBOL = Messages.PARACHUTER_ROLE_SYMBOL;
@@ -22,10 +22,9 @@ public class ParachuterRole implements LemmingRole {
 
     @Override
     public void play(Lemming lemming) {
-        if(lemming.crashingIntoWall()) lemming.disableRole();
-        else{
+        if(!lemming.interactWithEverything()){ 
             lemming.falls();
-            lemming.featherFall();
+            lemming.featherFall(); 
         }
     }
 
@@ -62,22 +61,14 @@ public class ParachuterRole implements LemmingRole {
 		return Messages.LINE_2TABS.formatted(help.toString());
     }
 
-
-
-
-
-
-    public boolean interactWith(Wall wall, Lemming lem){
-        lem.disableRole();
-        return true;
+    @Override
+    public boolean interactWith(Wall wall, Lemming lemming) {
+        boolean interaction = false; 
+        if(lemming.crashingIntoWall(wall)) {
+            lemming.disableRole();
+            interaction = true;
+        }
+        return interaction;
     }
 
-    public boolean interactWith(Lemming receiver, Lemming lem){
-        return true;
-    }
-
-    public boolean interactWith(ExitDoor exit, Lemming lemming){
-        return false;
-    }
-    
 }

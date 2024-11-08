@@ -39,14 +39,6 @@ public class GameObjectContainer {
 		}
 
 		public void removeDeadObjects(){
-			/*int N = gameObjects.size();
-			for(int i = 0; i < N; i++){
-				if(!gameObjects.get(i).isAlive()){
-					gameObjects.remove(i);
-					i--;
-					N--;	
-				}
-			}*/
 			gameObjects.removeIf(n -> !n.isAlive());
 		}
 
@@ -65,11 +57,6 @@ public class GameObjectContainer {
 					return true;
 				}
 			}
-			/*for(GameObject obj : gameObjects){
-				if(obj.isExit() && obj.isInPosition(pos)){
-					return true;
-				}
-			}*/
 			return false;
 		}
 
@@ -81,11 +68,6 @@ public class GameObjectContainer {
 					str += gameObjects.get(i).toString();
 				}
 			}
-			/*for(GameObject obj : gameObjects){
-				if(obj.isInPosition(new Position(row, col))){
-					str.append(obj.toString());
-				}
-			}*/
 			return str.toString();
 		}
 
@@ -117,5 +99,15 @@ public class GameObjectContainer {
 				}
 			}
 			return false;
+		}
+
+		public boolean receiveInteractionsFrom(GameItem obj){
+			boolean interaction = false;
+			for(int i = 0; i < gameObjects.size(); i++){
+				if(gameObjects.get(i).receiveInteraction(obj)){
+					interaction = true;
+				}
+			}
+			return interaction;
 		}
 }

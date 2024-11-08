@@ -1,18 +1,11 @@
 package tp1.logic.gameobjects;
-
-import tp1.logic.Game;
-
-import tp1.logic.Position;
-
-import org.junit.runner.OrderWith;
-
+import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.Direction;
-import tp1.logic.lemmingRoles.LemmingRole;
-//import tp1.logic.lemmingRoles.LemmingRole;
-import tp1.logic.lemmingRoles.WalkerRole;
+import tp1.logic.Position;
+import tp1.logic.lemmingRoles.*;
 
 
-public class Lemming extends GameObject {
+public class Lemming extends GameObject{
 
 	//Atributos
 	private Direction direction;
@@ -21,51 +14,41 @@ public class Lemming extends GameObject {
 	
 	// Constructores
 	//Constructor por defecto
-	public Lemming() {
-		super();
-		direction = Direction.RIGHT;
-		fuerzaCaida = 0;
-		role = new WalkerRole();
-	}
-	//Constructor por defecto
-	public Lemming(int col, int row, Game game) {
-		super(new Position(col, row), true, game);
+	public Lemming(int col, int row, GameWorld GameWorld) {
+		super(new Position(col, row), true, GameWorld);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		role = new WalkerRole();
 	}
 	
-	public Lemming(int col, int row, Game game, LemmingRole role) {
-		super(new Position(col, row), true, game);
+	public Lemming(int col, int row, GameWorld GameWorld, LemmingRole role) {
+		super(new Position(col, row), true, GameWorld);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		this.role = role;
 	}
 
-	
-	// Constructor con parametros de posicion (objeto) y direccion
-	public Lemming(Position pos, boolean vivo, Direction d, Direction pd, Game game) {
-		super(pos, vivo, game);
-		direction = d;
-		fuerzaCaida = 0;
-		role = new WalkerRole();
-	}
 
-	//FUNCIONES ABSTRACTAS DE LA CLASE GAMEOBJECT
+	//FUNCIONES ABSTRACTAS DE LA CLASE GameWorldOBJECT
 		// Funcion para obtener el icono del lemming
 		@Override
-		public String toString(){ return role.getIcon(this);}
+		public String toString(){ 
+			return role.getIcon(this);
+		}
 
 		// Funcion para saber si un lemming es solido
 		@Override
-		public boolean isSolid() { return false; }
+		public boolean isSolid() { 
+			return false; 
+		}
 
         // Funcion para saber si es un objeto es la salida
         @Override
-        public boolean isExit() { return false;}
+        public boolean isExit() { 
+			return false;
+		}
 		public void update() {
-			removeExitLemmings();
-			if (vivo) role.play(this);
+			if(vivo) role.play(this);
 		}
 	
 	// Setters
@@ -74,9 +57,9 @@ public class Lemming extends GameObject {
 	public void falls(){
 		fuerzaCaida++;
 		pos.update(Direction.DOWN);
-		if(game.leavingTheBoard(pos)) {
+		if(gameWorld.leavingTheBoard(pos)) {
 			dies();
-			game.addDeadLemmings();
+			gameWorld.addDeadLemmings();
 		}
 	}
 
@@ -88,31 +71,48 @@ public class Lemming extends GameObject {
 		}
 	}
 
+	public boolean crashingIntoLimits(){
+		return pos.nextPosition(direction).crashingIntoLimits();
+	}
+
 	// Funcion para realizar lo que ocurriria si el lemming se mueve en el eje x
 	public void walk(){
-		if(game.wallAtPosition(pos.nextPosition(direction)) || game.crashingIntoLimits(pos.nextPosition(direction))) inverseDirection();
+		//if(gameWorld.wallAtPosition(pos.nextPosition(direction)) || crashingIntoLimits()) inverseDirection();
 		pos.update(direction);
 	}
 
 	public boolean crashingIntoWall(){
-		return  game.wallAtPosition(pos.nextPosition(Direction.DOWN));
+		return  gameWorld.wallAtPosition(pos.nextPosition(Direction.DOWN));
 	}
 
-	public boolean isGonnaDie(){
-		return (crashingIntoWall() && tooKinectEnergy()) || game.leavingTheBoard(pos.nextPosition(Direction.DOWN));
+	public boolean crashingIntoWall(Wall wall){
+		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
+	}
+
+	public boolean bounceIntoWall(Wall wall){
+		return wall.isInPosition(pos.nextPosition(direction));
+	}
+
+	public boolean fallOutOfTheWorld(){
+		return gameWorld.leavingTheBoard(pos.nextPosition(Direction.DOWN));
 	}
 	
 	public boolean tooKinectEnergy() {
 		return fuerzaCaida >= 3;
 	}
+
+	public void addDeadLemmings(){
+		gameWorld.addDeadLemmings();
+	}
 	
-	// Mueve el lemming
+	// Mueve el lemming si es andante
 	public void move() {
-		if(isGonnaDie()){
+		if(crashingIntoLimits()) inverseDirection();
+		else if (fallOutOfTheWorld()) {
 			dies();
-			game.addDeadLemmings();
+			addDeadLemmings();
 		}
-		else if(game.isInAir(pos)) falls();
+		else if(gameWorld.isInAir(pos)) falls();
 		else walk();
 	}
 
@@ -128,16 +128,8 @@ public class Lemming extends GameObject {
 			return new WalkerRole();
 		}
 
-		// Funcion para saber si un lemming esta en una posicion de salida
-		public boolean lemmingIsInExit(){
-			return game.isExit(pos);
-		}
-
-		public void removeExitLemmings(){
-			if(lemmingIsInExit()){
-				game.addExitLemmings(); 
-				dies();
-			}
+		public void addExitLemmings(){
+			gameWorld.addExitLemmings();
 		}
 
 		@Override
@@ -159,19 +151,26 @@ public class Lemming extends GameObject {
         public boolean receiveInteraction(GameItem item) {
         	return item.interactWith(this);
         }
-        @Override
-        public boolean interactWith(Lemming lemming) {
-        	return true;
-        }
 
 		//Aquí tendríamos que escribir que ocurre cuando un lemming interactura con una pared
         @Override
         public boolean interactWith(Wall wall) {
-        	return false;
+        	return role.interactWith(wall, this);
         }
 
-        @Override
-        public boolean interactWith(ExitDoor door) {
-        	return false;
-        }
+		public boolean interactWithEverything() {
+			return gameWorld.receiveInteractionsFrom(this);
+		}
+
+		@Override
+		public boolean interactWith(ExitDoor exit){
+			boolean interaction = false; 
+			//Si el lemming andante llega a la puerta de salida, se va y se añade una unidad al numero de lemming que han salido
+			if(isInPosition(exit)){
+				dies();
+				addExitLemmings();
+				interaction = true;
+			}
+			return interaction;
+		}
 }

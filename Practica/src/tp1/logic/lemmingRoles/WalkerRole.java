@@ -1,12 +1,10 @@
 package tp1.logic.lemmingRoles;
 
 import tp1.logic.*;
-import tp1.logic.gameobjects.ExitDoor;
-import tp1.logic.gameobjects.Lemming;
-import tp1.logic.gameobjects.Wall;
+import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
-public class WalkerRole implements LemmingRole {
+public class WalkerRole extends AbstractRole implements LemmingRole {
 
     private static final String NAME = Messages.WALKER_ROLE_NAME;
     private static final String SYMBOL = Messages.WALKER_ROLE_SYMBOL;
@@ -19,7 +17,10 @@ public class WalkerRole implements LemmingRole {
 
     @Override
 	public void play(Lemming lemming) {
-	    lemming.move();
+        //Si no interactua con nada, se mueve con normalidad
+        if(!lemming.interactWithEverything()){ 
+            lemming.move();
+        }
 	}
 
     @Override
@@ -64,18 +65,21 @@ public class WalkerRole implements LemmingRole {
 		return Messages.LINE_2TABS.formatted(help.toString());
     }
 
-
-    public boolean interactWith(Wall wall, Lemming lem){
-        lem.disableRole();
-        return true;
-    }
-
-    public boolean interactWith(Lemming receiver, Lemming lem){
-        return true;
-    }
-
-    public boolean interactWith(ExitDoor exit, Lemming lemming){
-        return false;
+    @Override
+    public boolean interactWith(Wall wall, Lemming lemming) {
+        boolean interaction = false;
+        //Si el lemming andante choca con una pared o con los limites laterales del eje de abscisas, rebota
+        if(lemming.bounceIntoWall(wall)){
+            lemming.inverseDirection();
+            interaction = true;
+        }
+        //Si el lemming andante choca con una pared con la suficiente energia cinetica, se muere
+        else if((lemming.crashingIntoWall(wall) && lemming.tooKinectEnergy())){
+            lemming.dies();
+            lemming.addDeadLemmings();
+            interaction = true;
+        }
+        return interaction;
     }
 }
 

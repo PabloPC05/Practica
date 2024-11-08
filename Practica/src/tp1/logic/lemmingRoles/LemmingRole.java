@@ -13,12 +13,7 @@ public interface LemmingRole {
     abstract public String helpText();
     abstract public String getSymbol();
     abstract boolean matchRoleName(String name);
-
-
-    abstract boolean interactWith(Wall wall, Lemming lemming);
-    abstract boolean interactWith(Lemming receiver, Lemming lemming);
-    abstract boolean interactWith(ExitDoor exit, Lemming lemming);
-
-
-
+    abstract public boolean interactWith(Wall wall, Lemming lemming);
+    abstract public boolean interactWith(Lemming receiver, Lemming lemming);
+    abstract public boolean interactWith(ExitDoor exit, Lemming lemming);
 }

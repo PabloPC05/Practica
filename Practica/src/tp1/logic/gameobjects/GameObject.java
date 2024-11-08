@@ -1,6 +1,6 @@
 package tp1.logic.gameobjects;
 import tp1.logic.Position;
-import tp1.logic.Game;
+import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.lemmingRoles.LemmingRole;
 
 public abstract class GameObject implements GameItem {
@@ -8,28 +8,16 @@ public abstract class GameObject implements GameItem {
     // Atributos
     protected Position pos;
     protected boolean vivo;
-    protected Game game;
+    protected GameWorld gameWorld;
     
     // Constructores
         // Constructor por defecto
-        protected GameObject() {
-            pos = new Position();
-            vivo = true;
-            game = new Game();
-        }
 
         // Constructor con parametros
-        protected GameObject(Position pos, boolean vivo, Game game) {
+        protected GameObject(Position pos, boolean vivo, GameWorld game) {
             this.pos = pos;
             this.vivo = vivo;
-            this.game = game;
-        }
-
-        // Constructor solo pasando como parametro la posicion
-        protected GameObject(Position pos) {
-            this.pos = pos;
-            this.vivo = true;
-            this.game = new Game();
+            this.gameWorld = game;
         }
     
     // Setters
@@ -39,8 +27,8 @@ public abstract class GameObject implements GameItem {
         }
 
         // Funcion para fijar el juego
-        public void setGame(Game game) {
-            this.game = game;
+        public void setGame(GameWorld game) {
+            this.gameWorld = game;
         }
 
         // Funcion update
@@ -60,11 +48,6 @@ public abstract class GameObject implements GameItem {
             return vivo;
         }
 
-        //  Funcion para obtener el juego
-        public Game getGame() {
-            return new Game(game.getLevel());
-        }
-
         // Funcion para saber si la posicion de un objeto coincide con otra posicion
         public boolean isInPosition(Position pos) {
             return this.pos.isEqualTo(pos);
@@ -77,5 +60,17 @@ public abstract class GameObject implements GameItem {
 
         public void dies(){
             vivo = false;
+        }
+
+        public boolean interactWith(Lemming lemming){
+            return false;
+        }
+
+        public boolean interactWith(Wall wall){
+            return false;
+        }
+
+        public boolean interactWith(ExitDoor door){
+            return false;
         }
 }

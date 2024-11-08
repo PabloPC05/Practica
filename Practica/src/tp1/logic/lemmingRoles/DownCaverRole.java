@@ -5,7 +5,7 @@ import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.Wall;
 import tp1.view.Messages;
 
-public class DownCaverRole implements LemmingRole{
+public class DownCaverRole extends AbstractRole implements LemmingRole{
 
     private static final String NAME = Messages.DOWN_CAVER_ROLE_NAME;
     private static final String SYMBOL = Messages.DOWN_CAVER_ROLE_SYMBOL;
@@ -50,22 +50,5 @@ public class DownCaverRole implements LemmingRole{
 
     public boolean matchRoleName(String str){
         return str.equalsIgnoreCase(NAME) || str.equalsIgnoreCase(SYMBOL);
-    }
-
-
-
-
-
-    public boolean interactWith(Wall wall, Lemming lemming){
-        return false;
-
-    }
-    public boolean interactWith(Lemming receiver, Lemming lemming){
-        return false;
-
-    }
-    public boolean interactWith(ExitDoor exit, Lemming lemming){
-        return false;
-
     }
 }

@@ -1,21 +1,11 @@
 package tp1.logic;
-
-//import tp1.logic.gameobjects.ExitDoor;
-//import tp1.logic.gameobjects.Lemming;
-//import tp1.logic.gameobjects.Wall;
-//import tp1.view.ConsoleColorsAnsiCodes;
-//import java.security.MessageDigest;
-//import tp1.view.Messages;
 import tp1.logic.gameobjects.Wall;
 import tp1.logic.lemmingRoles.*;
-
-import tp1.logic.lemmingRoles.LemmingRole;
-import tp1.logic.gameobjects.ExitDoor;
-import tp1.logic.gameobjects.Lemming;
-import tp1.logic.gameobjects.GameObject;
+import tp1.logic.gameobjects.*;
 import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Interfaces.GameStatus;
 import tp1.logic.Interfaces.GameWorld;
+
 
 public class Game implements GameModel, GameStatus, GameWorld {
 
@@ -239,5 +229,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		public boolean setRole(LemmingRole role, int col, int row) {
 			return gameObjects.setRole(role, col, row);
+		}
+
+		public boolean receiveInteractionsFrom(GameItem obj){
+			return gameObjects.receiveInteractionsFrom(obj);
 		}
 }

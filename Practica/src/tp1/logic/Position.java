@@ -1,6 +1,4 @@
 package tp1.logic;
-
-
 public class Position {
 
 	// Atributos
@@ -44,6 +42,14 @@ public class Position {
 
 	public boolean insideRowsLimits(int limitY) {
 		return this.row >= 0 && this.row < limitY;
+	}
+
+	public boolean crashingIntoLimits(){
+		return !insideColsLimits(Game.DIM_X);
+	}
+
+	public boolean insideGameRowsLimits(){
+		return !insideRowsLimits(Game.DIM_Y);
 	}
 
 	public boolean isEqualTo(Position pos) {
