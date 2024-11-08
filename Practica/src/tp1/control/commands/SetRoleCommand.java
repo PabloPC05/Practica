@@ -41,12 +41,18 @@ public class SetRoleCommand extends Command{
             newCommand.roleName = commandWords[1];
             newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
             try {
-                newCommand.col = Integer.parseInt(commandWords[2]);
                 newCommand.row = Integer.parseInt(commandWords[3]);
+                newCommand.row--;
+                newCommand.col = traslateRow(commandWords[2]);
             } catch (NumberFormatException e) {}
             com = newCommand;
         }
         return com;
+    }
+
+    private int traslateRow(String column) {
+        char letter = column.toLowerCase().charAt(0);
+        return letter - 'a';
     }
 
     @Override

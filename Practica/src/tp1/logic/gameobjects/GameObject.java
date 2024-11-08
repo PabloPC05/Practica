@@ -37,8 +37,6 @@ public abstract class GameObject implements GameItem {
         public abstract String toString(); 
         // Funcion para saber si un objeto es solido
         public abstract boolean isSolid();
-        // Funcion para saber si es la puerta o no
-        public abstract boolean isExit();
         //Funcion para establecer un rol a un objeto de juego
         public abstract boolean setRole(LemmingRole rol);
 
@@ -71,6 +69,10 @@ public abstract class GameObject implements GameItem {
         }
 
         public boolean interactWith(ExitDoor door){
+            return false;
+        }
+
+        public boolean interactWith(MetalWall metalWall){
             return false;
         }
 }

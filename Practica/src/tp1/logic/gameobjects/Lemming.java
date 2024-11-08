@@ -41,12 +41,7 @@ public class Lemming extends GameObject{
 		public boolean isSolid() { 
 			return false; 
 		}
-
-        // Funcion para saber si es un objeto es la salida
-        @Override
-        public boolean isExit() { 
-			return false;
-		}
+		
 		public void update() {
 			if(vivo) role.play(this);
 		}
@@ -81,11 +76,11 @@ public class Lemming extends GameObject{
 		pos.update(direction);
 	}
 
-	public boolean crashingIntoWall(){
-		return  gameWorld.wallAtPosition(pos.nextPosition(Direction.DOWN));
+	public boolean crashingIntoWall(Wall wall){
+		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
 	}
 
-	public boolean crashingIntoWall(Wall wall){
+	public boolean crashingIntoWall(MetalWall wall){
 		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
 	}
 
@@ -107,12 +102,12 @@ public class Lemming extends GameObject{
 	
 	// Mueve el lemming si es andante
 	public void move() {
-		if(crashingIntoLimits()) inverseDirection();
+		if(gameWorld.isInAir(pos)) falls();
 		else if (fallOutOfTheWorld()) {
 			dies();
 			addDeadLemmings();
 		}
-		else if(gameWorld.isInAir(pos)) falls();
+		else if(crashingIntoLimits()) inverseDirection();
 		else walk();
 	}
 
@@ -156,6 +151,11 @@ public class Lemming extends GameObject{
         @Override
         public boolean interactWith(Wall wall) {
         	return role.interactWith(wall, this);
+        }
+
+		@Override
+        public boolean interactWith(MetalWall metalWall) {
+        	return role.interactWith(metalWall, this);
         }
 
 		public boolean interactWithEverything() {

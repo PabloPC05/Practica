@@ -4,7 +4,7 @@ import tp1.logic.Interfaces.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
-public class ResetCommand extends NoParamsCommand{
+public class ResetCommand extends Command{
 
 	// Forman parte de atributos de estado
 	 
@@ -13,23 +13,39 @@ public class ResetCommand extends NoParamsCommand{
     private static final String DETAILS = Messages.COMMAND_RESET_DETAILS;
     private static final String HELP = Messages.COMMAND_RESET_HELP;
 
+	int level;
 
 	public ResetCommand() {
 		super(NAME, SHORTCUT, DETAILS, HELP); 
+		level = - 1;
 	}
 
 	
-	public Command parse(String[] commandWords){
+    @Override
+    public Command parse(String[] commandWords) {
 		Command com = null;
-		// Si es un comando sin parametros deberia devolver this
-		// Si es un comando con parametros deberia devolver un nuevo objeto del tipo de comando correspondiente
-		if(matchCommandName(commandWords[0])) com = new ResetCommand();
-		return com;
-	}
+        if (matchCommandName(commandWords[0])) {
+			ResetCommand newCommand =  new ResetCommand();
+            if (commandWords.length > 1) {
+                try {
+                    newCommand.level = Integer.parseInt(commandWords[1]);
+                } catch (NumberFormatException e) {}
+				com = newCommand;
+            } else {
+                com = new ResetCommand();
+            }
+        }
+        return com;
+    }
 
 	@Override
 	public void execute(GameModel game, GameView view){
-		game.reset(1);
+		if(level == -1){
+			game.reset(1);
+		}
+		else{
+			game.reset(level);
+		}
 	}
 
 }
