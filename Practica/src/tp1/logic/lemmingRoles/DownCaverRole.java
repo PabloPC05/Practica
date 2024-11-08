@@ -1,8 +1,6 @@
 package tp1.logic.lemmingRoles;
 
-import tp1.logic.gameobjects.ExitDoor;
-import tp1.logic.gameobjects.Lemming;
-import tp1.logic.gameobjects.Wall;
+import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
 public class DownCaverRole extends AbstractRole implements LemmingRole{
@@ -13,10 +11,13 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
     private static final String HELP = Messages.DOWN_CAVER_ROLE_HELP;
     private static final String DETAILS = Messages.DOWN_CAVER_ROLE_DETAILS;
 
+    private boolean hasCaved;
+
     public DownCaverRole(){}
 
 
     public void start(Lemming lemming){
+        if()
 
     }
 
