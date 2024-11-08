@@ -51,7 +51,7 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
     public boolean interactWith(MetalWall metalWall, Lemming lemming){
         boolean interaction = false;
         if(lemming.crashingIntoWall(metalWall)){
-            hasCaved = true;
+            hasCaved = false;
             interaction = true;
         }
         return interaction;

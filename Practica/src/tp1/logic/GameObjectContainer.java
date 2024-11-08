@@ -10,10 +10,6 @@ public class GameObjectContainer {
 	// Atributos
 	private ArrayList<GameObject> gameObjects;
 
-	//Constantes
-	//private static final int MAXOBJECTS = 100;
-
-
 	// Constructores
 	// Constructor por defecto
 	public GameObjectContainer() {
@@ -71,14 +67,6 @@ public class GameObjectContainer {
 			return str.toString();
 		}
 
-		/*public int numLemmings(){
-			int returnValue = 0;
-			for(GameObject obj : gameObjects){
-				if(!(obj.isSolid() || obj.isExit())) returnValue++;
-			}
-			return returnValue;
-		}*/
-
 		public void remove(GameObject obj){
 			gameObjects.remove(obj);
 		}
@@ -103,8 +91,13 @@ public class GameObjectContainer {
 
 		public boolean receiveInteractionsFrom(GameItem obj){
 			boolean interaction = false;
-			for(int i = 0; i < gameObjects.size(); i++){
+			/*for(int i = 0; i < gameObjects.size(); i++){
 				if(gameObjects.get(i).receiveInteraction(obj)){
+					interaction = true;
+				}
+			}*/
+			for(GameObject gameObject : gameObjects){
+				if(gameObject.receiveInteraction(obj)){
 					interaction = true;
 				}
 			}

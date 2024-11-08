@@ -11,6 +11,7 @@ public class Lemming extends GameObject{
 	private Direction direction;
 	private int fuerzaCaida; // Con 3 se muere
 	private LemmingRole role;
+	private boolean isInAir = false;
 	
 	// Constructores
 	//Constructor por defecto
@@ -19,6 +20,7 @@ public class Lemming extends GameObject{
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		role = new WalkerRole();
+		isInAir = false;
 	}
 	
 	public Lemming(int col, int row, GameWorld GameWorld, LemmingRole role) {
@@ -26,6 +28,7 @@ public class Lemming extends GameObject{
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		this.role = role;
+		isInAir = false;
 	}
 
 
@@ -43,7 +46,10 @@ public class Lemming extends GameObject{
 		}
 		
 		public void update() {
-			if(vivo) role.play(this);
+			if(vivo){ 
+				isInAir = gameWorld.isInAir(pos);
+				role.play(this);
+			}
 		}
 	
 	// Setters
@@ -99,10 +105,14 @@ public class Lemming extends GameObject{
 	public void addDeadLemmings(){
 		gameWorld.addDeadLemmings();
 	}
+
+	public boolean isInAir(){
+		return isInAir;
+	}
 	
 	// Mueve el lemming si es andante
 	public void move() {
-		if(gameWorld.isInAir(pos)) falls();
+		if(isInAir()) falls();
 		else if (fallOutOfTheWorld()) {
 			dies();
 			addDeadLemmings();

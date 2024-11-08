@@ -4,7 +4,7 @@ import tp1.util.MyStringUtils;
 
 public class Messages {
 	
-	public static final String VERSION = "2.1";
+	public static final String VERSION = "2.2";
 
 	public static final String GAME_NAME = "Lemmings";
 
@@ -106,8 +106,8 @@ public class Messages {
 	// RESET
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";
-	public static final String COMMAND_RESET_DETAILS = "[r]eset";
-	public static final String COMMAND_RESET_HELP = "restart the game";
+	public static final String COMMAND_RESET_DETAILS = "[r]eset [numLevel]";
+	public static final String COMMAND_RESET_HELP = "reset the game to initial configuration if not numLevel else load the numLevel map";
 
 	// SET ROLE
 	public static final String COMMAND_SET_ROLE_NAME = "setRole";
