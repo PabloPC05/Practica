@@ -41,9 +41,9 @@ public class SetRoleCommand extends Command{
             newCommand.roleName = commandWords[1];
             newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
             try {
-                newCommand.row = Integer.parseInt(commandWords[3]);
-                newCommand.row--;
-                newCommand.col = traslateRow(commandWords[2]);
+                newCommand.col = Integer.parseInt(commandWords[3]);
+                newCommand.col--;
+                newCommand.row = traslateRow(commandWords[2]);
             } catch (NumberFormatException e) {}
             com = newCommand;
         }
