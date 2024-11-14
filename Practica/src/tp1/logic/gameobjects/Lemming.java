@@ -93,6 +93,10 @@ public class Lemming extends GameObject{
 	public boolean bounceIntoWall(Wall wall){
 		return wall.isInPosition(pos.nextPosition(direction));
 	}
+	
+	public boolean bounceIntoWall(MetalWall wall){
+		return wall.isInPosition(pos.nextPosition(direction));
+	}
 
 	public boolean fallOutOfTheWorld(){
 		return gameWorld.leavingTheBoard(pos.nextPosition(Direction.DOWN));

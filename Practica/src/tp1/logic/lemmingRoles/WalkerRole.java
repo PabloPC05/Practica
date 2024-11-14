@@ -61,6 +61,23 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         }
         return interaction;
     }
+    
+    @Override
+    public boolean interactWith(MetalWall wall, Lemming lemming) {
+        boolean interaction = false;
+        //Si el lemming andante (que tiene una pared debajo) choca con una pared o con los limites laterales del eje de abscisas, rebota
+        if(!lemming.isInAir() && lemming.bounceIntoWall(wall)){
+            lemming.inverseDirection();
+            interaction = true;
+        }
+        //Si el lemming andante choca con una pared con la suficiente energia cinetica, se muere
+        else if((lemming.crashingIntoWall(wall) && lemming.tooKinectEnergy())){
+            lemming.dies();
+            lemming.addDeadLemmings();
+            interaction = true;
+        }
+        return interaction;
+    }
 }
 
 

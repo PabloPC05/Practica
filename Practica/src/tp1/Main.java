@@ -15,10 +15,14 @@ public class Main {
         Locale.setDefault(new Locale("es", "ES"));
 		try {
 			int nLevel = 1;
-			if (args.length != 0) nLevel = Integer.parseInt(args[0]);
+			if (args.length != 0) {
+				nLevel = Integer.parseInt(args[0]);
+				nLevel++;
+			}
 
             Game game = new Game(nLevel);
             GameView view = args.length>1 ? new ConsoleView(game): new ConsoleColorsView(game);
+            //GameView view = new ConsoleView(game);
             Controller controller = new Controller(game, view);
 					
 			controller.run();

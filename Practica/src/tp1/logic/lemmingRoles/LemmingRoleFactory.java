@@ -6,9 +6,9 @@ import java.util.List;
 
 public class LemmingRoleFactory {
     private static final List<LemmingRole> availableRoles = Arrays.asList(
-		new WalkerRole(),
+    	new DownCaverRole(),
         new ParachuterRole(), 
-		new DownCaverRole()
+		new WalkerRole()
 	);
 
     public static LemmingRole parse(String input){

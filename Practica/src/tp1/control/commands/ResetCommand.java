@@ -41,10 +41,14 @@ public class ResetCommand extends Command{
 	@Override
 	public void execute(GameModel game, GameView view){
 		if(level == -1){
-			game.reset(1);
+			game.reset(game.getLevel());
 		}
-		else{
+		else if(game.existsLevel(level)){
 			game.reset(level);
+		}
+		else {
+			view.showError(Messages.INVALID_LEVEL_NUMBER);
+
 		}
 	}
 

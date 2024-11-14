@@ -18,15 +18,22 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
     
     @Override
     public void start(Lemming lemming) {
-        //Supongo que habria que comprobar antes de que se establezca el rol que no haya una pared debajo, 
+        // Supongo que habria que comprobar antes de que se establezca el rol que no haya una pared debajo, 
         // i.e que esté en el aire el lemming
+    	// lemming.featherFall();
     }
 
+    // Funcion play de parachuter
     @Override
     public void play(Lemming lemming) {
+    	// Si no interactua con nada, cae
         if(!lemming.interactWithEverything()){ 
             lemming.falls();
-            lemming.featherFall(); 
+        }
+        // Cuando interactua, en particular con una pared o una pared de metal
+        // se pone la fuerza de caida a 0
+        else {
+        	lemming.featherFall();
         }
     }
 
@@ -39,6 +46,16 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
 
     @Override
     public boolean interactWith(Wall wall, Lemming lemming) {
+        boolean interaction = false; 
+        if(lemming.crashingIntoWall(wall)) {
+            lemming.disableRole();
+            interaction = true;
+        }
+        return interaction;
+    }
+    
+    @Override
+    public boolean interactWith(MetalWall wall, Lemming lemming) {
         boolean interaction = false; 
         if(lemming.crashingIntoWall(wall)) {
             lemming.disableRole();

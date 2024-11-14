@@ -1,6 +1,6 @@
 package tp1;
 
-/*import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -12,20 +12,17 @@ import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.jupiter.api.Test;*/
-import org.junit.Test;
-import static org.junit.Assert.fail;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import org.junit.jupiter.api.Test;
 
 public class Tests {
+	public static final String DIR = "tests/pr22/";
+	public static final String FILE_PREFIXES[] = {
+			"00_1-play"
+			, "01_1-command", "01_2-play"
+			, "01_3-newRoles"
+			, "01_4-newRoles_errors"
+			, "02_1-newRoles"
+			};
 
 	private static boolean compareOutput(Path expectedPath, Path actualPath) throws FileNotFoundException, IOException {
 		boolean same = true;
@@ -78,26 +75,25 @@ public class Tests {
 		}
 	}
 
-	@Test
-	public void test00() {
-		parameterizedTest(Paths.get("tests/pr1/00_1-play_input.txt"), Paths.get("tests/pr1/00_1-play_expected.txt"),
-				Paths.get("tests/pr1/00_1-play_output.txt"),
-				new String[] { "0", "NO_COLORS" });
-	}
-
-
-	@Test
-	public void test01() {
-		parameterizedTest(Paths.get("tests/pr1/01_1-command_input.txt"), Paths.get("tests/pr1/01_1-command_expected.txt"),
-				Paths.get("tests/pr1/01_1-command_output.txt"),
-				new String[] { "1", "NO_COLORS" });
-	}
-
-	@Test
-	public void test02() {
-		parameterizedTest(Paths.get("tests/pr1/01_2-play_input.txt"), Paths.get("tests/pr1/01_2-play_expected.txt"),
-				Paths.get("tests/pr1/01_2-play_output.txt"),
-				new String[] { "1", "NO_COLORS" });
+	private void testN(int n) {
+		String mapa = FILE_PREFIXES[n].substring(0, 2);
+		parameterizedTest(Paths.get(DIR + FILE_PREFIXES[n] + "_input.txt"), 
+				          Paths.get(DIR + FILE_PREFIXES[n] + "_expected.txt"),
+				          Paths.get(DIR + FILE_PREFIXES[n] + "_output.txt"),
+				new String[] { mapa, "NO_COLORS" });
 	}
 	
+	@Test
+	public void test00() { 	testN(0); }
+	@Test
+	public void test01() { 	testN(1); }
+	@Test
+	public void test02() { 	testN(2); }
+	@Test
+	public void test03() { 	testN(3); }
+	@Test
+	public void test04() { 	testN(4); }
+	@Test
+	public void test05() { 	testN(5); }
+
 }

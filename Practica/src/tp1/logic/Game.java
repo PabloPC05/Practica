@@ -11,6 +11,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	private static final int LEMMINGS_TO_WIN = 2;
 	public static final int DIM_X = 10;
 	public static final int DIM_Y = 10;
+	public static final int MIN_LEVEL = 1;
+	public static final int MAX_LEVEL = 3;
+
 
 	public GameObjectContainer gameObjects;
 	private int level;
@@ -56,6 +59,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		switch (level) {
 			case 1:
+				this.level = 1;
 				// initWalls();
 				gameObjects.add(new Wall(8, 1, this));
 				gameObjects.add(new Wall(9, 1, this));
@@ -79,16 +83,54 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				gameObjects.add(new Wall(8, 9, this));
 				gameObjects.add(new Wall(8, 8, this));
 
-				//InitExitDoor();
-				gameObjects.add(new ExitDoor(4, 5, this));
-
 				//InitLemmings();
 				gameObjects.add(new Lemming(0, 8, this));
 				gameObjects.add(new Lemming(2, 3, this));
 				gameObjects.add(new Lemming(9, 0, this));
+				
+				//InitExitDoor();
+				gameObjects.add(new ExitDoor(4, 5, this));
+				
 				numLemmings = 3;
 				break;
 			case 2:
+				this.level = 2;
+				// initWalls();
+				gameObjects.add(new Wall(8, 1, this));
+				gameObjects.add(new Wall(9, 1, this));
+
+
+				gameObjects.add(new Wall(2, 4, this));
+				gameObjects.add(new Wall(3, 4, this));
+				gameObjects.add(new Wall(4, 4, this));
+
+				gameObjects.add(new Wall(7, 5, this));
+
+				gameObjects.add(new Wall(4, 6, this));
+				gameObjects.add(new Wall(5, 6, this));
+				gameObjects.add(new Wall(6, 6, this));
+				gameObjects.add(new Wall(7, 6, this));
+
+				gameObjects.add(new Wall(0, 9, this));
+				gameObjects.add(new Wall(1, 9, this));
+
+				gameObjects.add(new Wall(9, 9, this));
+				gameObjects.add(new Wall(8, 9, this));
+				gameObjects.add(new Wall(8, 8, this));
+
+				//InitLemmings();
+				gameObjects.add(new Lemming(0, 8, this));
+				gameObjects.add(new Lemming(2, 3, this));
+				gameObjects.add(new Lemming(3, 3, this));
+				gameObjects.add(new Lemming(9, 0, this));
+				
+				//InitExitDoor();
+				gameObjects.add(new ExitDoor(4, 5, this));
+				
+				numLemmings = 4;
+				break;
+			case 3:
+				this.level = 3; 
 			//initLevel2();
 				// initWalls();
 				gameObjects.add(new Wall(8, 1, this));
@@ -115,16 +157,16 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				gameObjects.add(new Wall(3, 5, this));
 				gameObjects.add(new MetalWall(3, 6, this));
 
-				// InitExitDoor();
-				gameObjects.add(new ExitDoor(4, 5, this));
-
 				// InitLemmings();
 				gameObjects.add(new Lemming(0, 8, this));
 				gameObjects.add(new Lemming(2, 3, this));
 				gameObjects.add(new Lemming(3, 3, this));
+				gameObjects.add(new Lemming(6, 0, this));
 				gameObjects.add(new Lemming(6, 0, this, new ParachuterRole()));
-				gameObjects.add(new Lemming(6, 0, this));			
 				gameObjects.add(new Lemming(9, 0, this));
+				
+				// InitExitDoor();
+				gameObjects.add(new ExitDoor(4, 5, this));
 
 				numLemmings = 6;
 				break;
@@ -208,7 +250,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	
 		// Funcion para saber si el jugador ha perdido
 		public boolean playerLooses() {
-			return numLemmings + exitLemmings < lemmingsToWin;
+			//return numLemmings + exitLemmings < lemmingsToWin;
+			return numLemmings == 0;
 		}
 
 		public void exit() {
@@ -225,6 +268,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 					break;
 				case 2:
 					InitLevel(2);
+					break;
+				case 3:
+					InitLevel(3);
 					break;
 				default:
 					break;
@@ -263,5 +309,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		public boolean receiveInteractionsFrom(GameItem obj){
 			return gameObjects.receiveInteractionsFrom(obj);
+		}
+		
+		public boolean existsLevel(int l) {
+			return l >= MIN_LEVEL && l <= MAX_LEVEL;
 		}
 }

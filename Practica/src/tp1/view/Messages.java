@@ -32,7 +32,7 @@ public class Messages {
 	public static final String GAME_OVER = "Game over";
 	public static final String PLAYER_QUITS = "Player leaves the game";
 	public static final String PLAYER_WINS = "Player wins!";
-	public static final String PLAYER_LOOSES = "Player looses...";
+	public static final String PLAYER_LOOSES = "Player loses...";
 
 	// Position format
 	public static final String POSITION = "(%s,%s)";
@@ -69,6 +69,7 @@ public class Messages {
 	
 	//public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR + "[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE" + LINE_SEPARATOR;
 	public static final String COMMAND_HELP_TEXT = "%s: %s";
+	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";
 
 	/*@Deprecated
 	@formatter:off 
@@ -112,8 +113,8 @@ public class Messages {
 	// SET ROLE
 	public static final String COMMAND_SET_ROLE_NAME = "setRole";
 	public static final String COMMAND_SET_ROLE_SHORTCUT = "sr";
-	public static final String COMMAND_SET_ROLE_DETAILS = "[s]et[R]ole ROLE COL ROW";
-	public static final String COMMAND_SET_ROLE_HELP = "sets the lemming in position (COL, ROW) to role ROLE";
+	public static final String COMMAND_SET_ROLE_DETAILS = "[s]et[R]ole ROLE ROW COL";
+	public static final String COMMAND_SET_ROLE_HELP = "sets the lemming in position (ROW,COL) to role ROL";
 	public static final String COMMAND_SET_ROLE_INVALID_ARGUMENT = "SetRoleCommand error (Incorrect position or no object in that position admits that role)";
 
 //Roles
@@ -132,7 +133,7 @@ public class Messages {
 	//DownCaverRole
 	public static final String DOWN_CAVER_ROLE_SYMBOL = "D";
 	public static final String DOWN_CAVER_ROLE_NAME = "DownCaver";
-	public static final String DOWN_CAVER_ROLE_DETAILS = "[D]own[C]aver";
+	public static final String DOWN_CAVER_ROLE_DETAILS = "[D]own [C]aver";
 	public static final String DOWN_CAVER_ROLE_HELP = "Lemming caves downwards";
 
 //Symbols

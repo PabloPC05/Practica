@@ -5,11 +5,11 @@ import java.util.List;
 public class CommandGenerator {
 
 	private static final List<Command> availableCommands = Arrays.asList(
+		new SetRoleCommand(),
 		new UpdateCommand(),
         new ResetCommand(),
         new HelpCommand(),
-        new ExitCommand(),
-		new SetRoleCommand()
+        new ExitCommand()
 	);
 
 	public static Command parse(String[] commandWords) {		
@@ -25,7 +25,7 @@ public class CommandGenerator {
 	public static String commandHelp() {
 		StringBuilder commands = new StringBuilder();
 		for (Command c: availableCommands) {
-			commands.append((c.helpText()));
+			commands.append(c.helpText());
 		}
 		return commands.toString();
 	}
