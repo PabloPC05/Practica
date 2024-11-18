@@ -26,11 +26,6 @@ public abstract class GameObject implements GameItem {
             this.pos = pos;
         }
 
-        // Funcion para fijar el juego
-        public void setGame(GameWorld game) {
-            this.gameWorld = game;
-        }
-
         // Funcion update
         public abstract void update();
         // Funcion para obtener la representacion del objeto
@@ -56,22 +51,21 @@ public abstract class GameObject implements GameItem {
             return other.pos.isEqualTo(this.pos);
         }
 
+        // Funcion que mata a un objeto
         public void dies(){
             vivo = false;
         }
 
+        // Funciones para interactuar con los objetos del juego (por defecto no hace nada)
         public boolean interactWith(Lemming lemming){
             return false;
         }
-
         public boolean interactWith(Wall wall){
             return false;
         }
-
         public boolean interactWith(ExitDoor door){
             return false;
         }
-
         public boolean interactWith(MetalWall metalWall){
             return false;
         }

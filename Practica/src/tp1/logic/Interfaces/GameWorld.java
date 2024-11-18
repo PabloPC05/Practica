@@ -4,6 +4,7 @@ import tp1.logic.*;
 
 public interface GameWorld {
 
+    // Funciones autodescriptivas definidas en Game
     abstract boolean isInAir(Position pos);
     abstract void addExitLemmings();
     abstract boolean leavingTheBoard(Position pos);

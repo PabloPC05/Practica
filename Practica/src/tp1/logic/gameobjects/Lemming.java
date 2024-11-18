@@ -23,6 +23,7 @@ public class Lemming extends GameObject{
 		isInAir = false;
 	}
 	
+	//Constructor con parametros
 	public Lemming(int col, int row, GameWorld GameWorld, LemmingRole role) {
 		super(new Position(col, row), true, GameWorld);
 		direction = Direction.RIGHT;
@@ -45,6 +46,7 @@ public class Lemming extends GameObject{
 			return false; 
 		}
 		
+		// Funcion para actualizar el lemming
 		public void update() {
 			if(vivo){ 
 				isInAir = gameWorld.isInAir(pos);
@@ -55,6 +57,7 @@ public class Lemming extends GameObject{
 	// Setters
 	//Funcion para cambiar la posicion segun la direccion
 
+	// Funcion para que un Lemming caiga y muera si se cae de la pantalla
 	public void falls(){
 		fuerzaCaida++;
 		pos.update(Direction.DOWN);
@@ -64,6 +67,7 @@ public class Lemming extends GameObject{
 		}
 	}
 
+	// Funcion para cambiar la direccion del lemming
 	public void inverseDirection(){
 		if (direction == Direction.RIGHT) {
 			direction = Direction.LEFT;
@@ -72,6 +76,7 @@ public class Lemming extends GameObject{
 		}
 	}
 
+	// Funcion para saber si un lemming se sale de los limites
 	public boolean crashingIntoLimits(){
 		return pos.nextPosition(direction).crashingIntoLimits();
 	}
@@ -82,34 +87,42 @@ public class Lemming extends GameObject{
 		pos.update(direction);
 	}
 
+	// Funcion para saber si se choca con una pared hacia abajo
 	public boolean crashingIntoWall(Wall wall){
 		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
 	}
 
+	// Funcion para saber si se choca con una pared de metal hacia abajo
 	public boolean crashingIntoWall(MetalWall wall){
 		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
 	}
 
+	// Funcion para saber si se choca con una pared
 	public boolean bounceIntoWall(Wall wall){
 		return wall.isInPosition(pos.nextPosition(direction));
 	}
 	
+	// Funcion para saber si se choca con una pared de metal
 	public boolean bounceIntoWall(MetalWall wall){
 		return wall.isInPosition(pos.nextPosition(direction));
 	}
 
+	// Funcion para saber si un lemming se saldra de la pantalla
 	public boolean fallOutOfTheWorld(){
 		return gameWorld.leavingTheBoard(pos.nextPosition(Direction.DOWN));
 	}
 	
+	// Funcion para saber si un lemming ha caido demasiado (3 o mas)
 	public boolean tooKinectEnergy() {
 		return fuerzaCaida >= 3;
 	}
 
+	// Funcion que aumenta el numero de lemmings muertos
 	public void addDeadLemmings(){
 		gameWorld.addDeadLemmings();
 	}
 
+	// Funcion que devuelve si un Lemming esta en el aire
 	public boolean isInAir(){
 		return isInAir;
 	}
@@ -137,10 +150,12 @@ public class Lemming extends GameObject{
 			return new WalkerRole();
 		}
 
+		// Funcion para aumentar el numero de lemmings que han salido
 		public void addExitLemmings(){
 			gameWorld.addExitLemmings();
 		}
 
+		// Funcion para setear el role de un lemming (devuelve si se ha podido cambiar)
 		@Override
 		public boolean setRole(LemmingRole role){
 			if (this.role.equals(role)) return false;
@@ -148,34 +163,40 @@ public class Lemming extends GameObject{
 			return true;
 		}
 		
+		// Funcion para resetear la fuerza de caida
         public void featherFall() {
         	fuerzaCaida = 0;
         }
 
+		// Funcion para desactivar el role de un lemming (walkerRole)
 		public void disableRole(){
 			role = new WalkerRole();
 		}
 
+		// Funcion para recibir interacciones de un item del juego
 		@Override
         public boolean receiveInteraction(GameItem item) {
         	return item.interactWith(this);
         }
 
-		//Aquí tendríamos que escribir que ocurre cuando un lemming interactura con una pared
+		// Funcion para interactuar con una pared
         @Override
         public boolean interactWith(Wall wall) {
         	return role.interactWith(wall, this);
         }
 
+		// Funcion para interactuar con una pared de metal
 		@Override
         public boolean interactWith(MetalWall metalWall) {
         	return role.interactWith(metalWall, this);
         }
 
+		// Funcion para interactuar con cualquier cosa
 		public boolean interactWithEverything() {
 			return gameWorld.receiveInteractionsFrom(this);
 		}
 
+		// Funcion para interactuar con la puerta de salida
 		@Override
 		public boolean interactWith(ExitDoor exit){
 			boolean interaction = false; 

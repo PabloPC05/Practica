@@ -12,19 +12,20 @@ public class ExitCommand extends NoParamsCommand{
 	private static final String DETAILS = Messages.COMMAND_EXIT_DETAILS;
 	private static final String HELP = Messages.COMMAND_EXIT_HELP;
 
+	// Constructor
 	public ExitCommand() {
 		super(NAME, SHORTCUT, DETAILS, HELP); 
 	}
 
+	// Funcion para parsear el comando
 	@Override
 	public Command parse(String[] commandWords){
 		Command com = null;
-		// Si es un comando sin parametros deberia devolver this
-		// Si es un comando con parametros deberia devolver un nuevo objeto del tipo de comando correspondiente
 		if(matchCommandName(commandWords[0])) com = new ExitCommand();
 		return com;
 	}
 
+	// Funcion para ejecutar el comando (sale del juego)
 	@Override
 	public void execute(GameModel game, GameView view){
 		game.exit();

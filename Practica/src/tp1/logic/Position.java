@@ -26,32 +26,40 @@ public class Position {
 
 	// Funcion para establecer la posicion
 	private void add(Direction dir) {
-		col = col + dir.getcol();
-		row = row + dir.getrow();
+		// Suma la columna de la dirección a la columna actual
+		col = col + dir.getCol();
+		// Suma la fila de la dirección a la fila actual
+		row = row + dir.getRow();
 	}
 
 	// Getters
 	// Funcion para obtener la futura direccion
 	public Position nextPosition(Direction dir) {
-		return new Position(col + dir.getcol(), row + dir.getrow());
+		// Crea una nueva posición sumando la dirección a la posición actual
+		return new Position(col + dir.getCol(), row + dir.getRow());
 	}
 
+	// Verifica si la posición está dentro de los límites de las columnas
 	public boolean insideColsLimits(int limitX) {
 		return this.col >= 0 && this.col < limitX;
 	}
 
+	// Verifica si la posición está dentro de los límites de las filas
 	public boolean insideRowsLimits(int limitY) {
 		return this.row >= 0 && this.row < limitY;
 	}
 
+	// Verifica si la posición está chocando con los límites de las columnas
 	public boolean crashingIntoLimits(){
 		return !insideColsLimits(Game.DIM_X);
 	}
 
+	// Verifica si la posición está dentro de los límites de las filas del juego
 	public boolean insideGameRowsLimits(){
 		return !insideRowsLimits(Game.DIM_Y);
 	}
 
+	// Compara si esta posición es igual a otra posición
 	public boolean isEqualTo(Position pos) {
 		return this.col == pos.col && this.row == pos.row;
 	}

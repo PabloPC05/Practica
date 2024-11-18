@@ -2,6 +2,8 @@ package tp1.logic.gameobjects;
 import tp1.logic.Position;
 
 public interface GameItem {
+
+	// Funciones autodescriptivas definidas en sus clases correspondientes
 	public boolean receiveInteraction(GameItem other);
 
 	abstract public boolean interactWith(Lemming lemming);

@@ -55,9 +55,11 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		exitLemmings = 0;
 	}
 
+	// Funcion para inicializar los objetos del juego dependiendo del nivel
 	public void InitLevel(int level) {
 
 		switch (level) {
+			// Nivel 1
 			case 1:
 				this.level = 1;
 				// initWalls();
@@ -93,6 +95,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				
 				numLemmings = 3;
 				break;
+
+			// Nivel 2
 			case 2:
 				this.level = 2;
 				// initWalls();
@@ -129,6 +133,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				
 				numLemmings = 4;
 				break;
+
+			// Nivel 3
 			case 3:
 				this.level = 3; 
 			//initLevel2();
@@ -217,6 +223,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return lemmingsToWin - exitLemmings;
 		}
 
+		// Devuelve la representación en forma de string del objeto en la posición dada
 		public String positionToString(int col, int row) {	
 			return gameObjects.positionToString(col, row);
 		}
@@ -254,6 +261,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return numLemmings == 0;
 		}
 
+		// Funcion para salir del juego
 		public void exit() {
 			this.exit = true;
 		}
@@ -277,40 +285,49 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			}
 		}
 
+		// Funcion que añade 1 a los lemmings que han salido por la puerta
 		public void addExitLemmings(){
 			exitLemmings++;
 			decreaseNumLemmings();
 		}
 
+		// Funcion que decrementa el numero de lemmings
 		public void decreaseNumLemmings(){
 			numLemmings--;
 		}
 
+		// Funcion que añade 1 a los lemmings muertos
 		public void addDeadLemmings(){
 			deadLemmings++;
 			decreaseNumLemmings();
 		}
 
+		// Funcion que devuelve si la posicion esta dentro de los limites del tablero
 		public boolean leavingTheBoard(Position pos){
 			return !pos.insideRowsLimits(DIM_Y);
 		}
 
+		// Funcion que devuelve si la posicion esta chocando con los limites del tablero
 		public boolean crashingIntoLimits(Position pos){
 			return !pos.insideColsLimits(DIM_X);
 		}
 
+		// Funcion que elimina un objeto del tablero
 		public void removeGameObject(GameObject gameObject){
 			gameObjects.remove(gameObject);
 		}
 
+		// Funcion que fija el rol de un lemming en una posicion, y devuelve si se ha podido fijar
 		public boolean setRole(LemmingRole role, int col, int row) {
 			return gameObjects.setRole(role, col, row);
 		}
 
+		// Funcion que devuelve si hay una interaccion entre objetos, reaccionando a la interaccion si la hay
 		public boolean receiveInteractionsFrom(GameItem obj){
 			return gameObjects.receiveInteractionsFrom(obj);
 		}
 		
+		// Funcion que devuelve si un nivel existe
 		public boolean existsLevel(int l) {
 			return l >= MIN_LEVEL && l <= MAX_LEVEL;
 		}

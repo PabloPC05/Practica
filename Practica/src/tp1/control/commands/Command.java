@@ -32,6 +32,7 @@ public abstract class Command {
 		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name);
 	}
 
+	// Funcion general para mostrar la ayuda de todos los comandos
 	public String helpText(){
 		StringBuilder help = new StringBuilder();
 		help.append(Messages.COMMAND_HELP_TEXT.formatted(getDetails(), getHelp()));

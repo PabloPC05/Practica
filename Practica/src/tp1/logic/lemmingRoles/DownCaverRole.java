@@ -5,6 +5,7 @@ import tp1.view.Messages;
 
 public class DownCaverRole extends AbstractRole implements LemmingRole{
 
+    // Atributos
     private static final String NAME = Messages.DOWN_CAVER_ROLE_NAME;
     private static final String SYMBOL = Messages.DOWN_CAVER_ROLE_SYMBOL;
     private static final String ICON = Messages.LEMMING_DOWN_CAVER;
@@ -13,17 +14,22 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
 
     private boolean hasCaved;
 
+    // Constructor
     public DownCaverRole(){
         super(NAME, DETAILS, HELP, ICON, SYMBOL);
         hasCaved = false;
     }
 
-
+    // Metodos
+    // Funcion start de DownCaver (no hace nada)
     public void start(Lemming lemming){
     }
 
+    // Funcion play de DownCaver
     public void play (Lemming lemming){
+        // Interactua con todo lo que haya en su camino
         lemming.interactWithEverything();
+        // Si ha cavado, el lemming cae y se le pone la fuerza de caida a 0
         if(hasCaved){ 
             lemming.falls();
             lemming.featherFall();
@@ -36,27 +42,33 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
         }
     }
 
+    // Funcion que interactua con una pared
     @Override
     public boolean interactWith(Wall wall, Lemming lemming){
         boolean interaction = false;
+        // Si el lemming choca con una pared, la destruye y cava
         if(lemming.crashingIntoWall(wall)){
             wall.dies();
             hasCaved = true;
             interaction = true;
         }
+        // Devuelve si ha habido interaccion
         return interaction;
     }
 
     @Override
     public boolean interactWith(MetalWall metalWall, Lemming lemming){
         boolean interaction = false;
+        // Si el lemming choca con una pared de metal, no cava y se desactiva el rol
         if(lemming.crashingIntoWall(metalWall)){
             hasCaved = false;
             interaction = true;
         }
+        // Devuelve si ha habido interaccion
         return interaction;
     }
 
+    // Funcion para comprobar si el rol es el correcto
     public LemmingRole parse(String input){
         if (matchRoleName(input)) return new DownCaverRole();
         return null;    

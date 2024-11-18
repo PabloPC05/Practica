@@ -12,23 +12,25 @@ public class UpdateCommand extends NoParamsCommand{
 	private static final String DETAILS = Messages.COMMAND_UPDATE_DETAILS;
 	private static final String HELP = Messages.COMMAND_UPDATE_HELP;
 
+	// Constructor
 	public UpdateCommand() {
 		super(NAME, SHORTCUT, DETAILS, HELP); 
 	}
 
+	// Funcion para parsear el comando
 	public Command parse(String[] commandWords){
 		Command com = null;
-		// Si es un comando sin parametros deberia devolver this
-		// Si es un comando con parametros deberia devolver un nuevo objeto del tipo de comando correspondiente
 		if(matchCommandName(commandWords[0])) com = new UpdateCommand();
 		return com;
 	}
 
+	// Funcion para saber si el comando es correcto (overridea porque el comando puede ser vacio)
 	@Override
 	protected boolean matchCommandName(String name) {
 		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name) || name.equals(Messages.EMPTY);
 	}
 
+	// Funcion para ejecutar el comando (actualiza el juego)
 	@Override
 	public void execute(GameModel game, GameView view){
 		game.update();

@@ -1,6 +1,8 @@
 package tp1.logic.Interfaces;
 
 public interface GameStatus {
+
+    // Funciones autodescriptivas definidas en Game
     abstract int getCycle();
     abstract int getLevel();
     //abstract int getNumLemmings();

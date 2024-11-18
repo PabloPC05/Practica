@@ -32,12 +32,12 @@ public enum Direction {
 
 	// Getters
 		// Funcion para obtener la coordenada x
-		public int getcol() {
+		public int getCol() {
 			return col;
 		}
 
 		// Funcion para obtener la coordenada row
-		public int getrow() {
+		public int getRow() {
 			return row;
 		}
 

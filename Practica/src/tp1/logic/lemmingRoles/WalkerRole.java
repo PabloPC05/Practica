@@ -6,6 +6,7 @@ import tp1.view.Messages;
 
 public class WalkerRole extends AbstractRole implements LemmingRole {
 
+    // Atributos
     private static final String NAME = Messages.WALKER_ROLE_NAME;
     private static final String SYMBOL = Messages.WALKER_ROLE_SYMBOL;
     private static final String RIGHT_ICON = Messages.LEMMING_RIGHT;
@@ -13,10 +14,13 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
     private static final String HELP = Messages.WALKER_ROLE_HELP;
     private static final String DETAILS = Messages.WALKER_ROLE_DETAILS;
 
+    // Constructor
     public WalkerRole() {
         super(NAME, DETAILS, HELP, RIGHT_ICON, SYMBOL);
     }
 
+    // Metodos
+    // Funcion para que el walking lemming se mueva
     @Override
 	public void play(Lemming lemming) {
         //Si no interactua con nada, se mueve con normalidad
@@ -25,6 +29,7 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         }
 	}
 
+    // Funcion para obtener el icono del lemming segun su direccion
     @Override
 	public String getIcon(Lemming lemming) {
         if(lemming.getDirection() == Direction.RIGHT) {
@@ -34,17 +39,19 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         }
     }
 
+    // Funcion para startear el walking lemming (no hace nada)
     @Override
     public void start(Lemming lemming) {
-
     }
 
+    // Funcion que comprueba si el rol es el correcto
     @Override
     public LemmingRole parse(String input) {
         if (roleMatch(input)) return new WalkerRole();
         return null;
     }
 
+    // Funcion para interactuar con una pared
     @Override
     public boolean interactWith(Wall wall, Lemming lemming) {
         boolean interaction = false;
@@ -62,6 +69,7 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         return interaction;
     }
     
+    // Funcion para interactuar con una pared de metal
     @Override
     public boolean interactWith(MetalWall wall, Lemming lemming) {
         boolean interaction = false;

@@ -27,15 +27,20 @@ public class Controller {
 		String[] words = null;
 		view.showWelcome();
 		view.showGame();
+		// Mientras el juego no haya terminado
 		while (!game.isFinished()) {
+			// Leemos el comando
 			words = view.getPrompt();
 			Command command = CommandGenerator.parse(words);
+			// Si el comando no es nulo lo ejecutamos y mostramos el juego
 			if (command != null){
 				command.execute(game, view);
 				view.showGame();
 			}
+			// Si no, mostramos un mensaje de error
 			else view.showError(Messages.UNKNOWN_COMMAND.formatted(words[0]));
 		}
+		// Mostramos el mensaje de fin de juego
 		view.showEndMessage();
 	}
 }
