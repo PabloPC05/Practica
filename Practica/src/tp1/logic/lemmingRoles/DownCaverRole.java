@@ -22,10 +22,12 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
 
     // Metodos
     // Funcion start de DownCaver (no hace nada)
+    @Override
     public void start(Lemming lemming){
     }
 
     // Funcion play de DownCaver
+    @Override
     public void play (Lemming lemming){
         // Interactua con todo lo que haya en su camino
         lemming.interactWithEverything();
@@ -69,6 +71,7 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
     }
 
     // Funcion para comprobar si el rol es el correcto
+    @Override
     public LemmingRole parse(String input){
         if (matchRoleName(input)) return new DownCaverRole();
         return null;    

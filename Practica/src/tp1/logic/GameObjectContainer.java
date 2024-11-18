@@ -95,11 +95,10 @@ public class GameObjectContainer {
 		}
 		
 		// Establece el rol de un lemming en la posición dada
-		public boolean setRole(LemmingRole role, int col, int row) {
-			Position pos = new Position(col, row);
+		public boolean setRole(LemmingRole role, Position pos, String roleName){ 
 			// Recorre la lista de objetos para establecer el rol si están en la posición
 			for (int i = 0; i < gameObjects.size(); i++) {
-				if (gameObjects.get(i).isInPosition(pos) && gameObjects.get(i).setRole(role)) {
+				if (gameObjects.get(i).isInPosition(pos) && gameObjects.get(i).setRole(role, roleName)) {
 					return true; // Devuelve verdadero si se establece el rol
 				}
 			}

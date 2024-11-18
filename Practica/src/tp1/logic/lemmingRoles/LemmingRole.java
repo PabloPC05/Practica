@@ -16,4 +16,6 @@ public interface LemmingRole {
     abstract public boolean interactWith(MetalWall metalWall, Lemming lemming);
     abstract public boolean interactWith(Lemming receiver, Lemming lemming);
     abstract public boolean interactWith(ExitDoor exit, Lemming lemming);
+    abstract public boolean matchRoleName(String str);
+
 }

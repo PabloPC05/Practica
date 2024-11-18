@@ -36,12 +36,6 @@ public class MetalWall extends GameObject {
             return true;
         }
 
-        // Funcion para setear el rol de una pared de metal (no se puede)
-        @Override
-        public boolean setRole(LemmingRole role) {
-        	return false;
-        }
-
         // Funcion para interactuar con un objeto del juego
         @Override
         public boolean receiveInteraction(GameItem item) {

@@ -1,6 +1,7 @@
 package tp1.control.commands;
 
 import tp1.logic.Interfaces.GameModel;
+import tp1.logic.Position;
 import tp1.logic.lemmingRoles.*;
 import tp1.view.GameView;
 import tp1.view.Messages;
@@ -16,6 +17,7 @@ public class SetRoleCommand extends Command{
     private LemmingRole role; 
     private int col; 
     private int row;
+    private boolean valid = true;
 
     // Constructor
     public SetRoleCommand() {
@@ -29,6 +31,7 @@ public class SetRoleCommand extends Command{
         // Comprobamos que el comando sea correcto
         if (matchCommandName(commandWords[0])) {
             SetRoleCommand newCommand = new SetRoleCommand();
+            newCommand.valid = commandWords.length == 4;
             // Comprobamos el rol
             newCommand.roleName = commandWords[1];
             newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
@@ -46,14 +49,19 @@ public class SetRoleCommand extends Command{
     // Funcion para ejecutar el comando (cambia el rol de un lemming) y muestra un mensaje de error correspondiente si no se puede
     @Override
     public void execute(GameModel game, GameView view) {
-    	if(role != null) {
-    		if(!game.setRole(role, col, row)) {
+    	if(valid && role != null) {
+			Position pos = new Position(col, row);
+    		if(!game.setRole(role, pos, roleName)) {
     			view.showError(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
     		}
-    		view.showGame();
+            else{
+                game.update();
+                view.showGame();
+            }
     	}
     	else {
-    		view.showError(Messages.UNKNOWN_ROLE.formatted(roleName));
+    		//view.showError(Messages.UNKNOWN_ROLE.formatted(roleName));
+            view.showError(Messages.UNKNOWN_COMMAND.formatted(NAME));
     	}
     } 
 

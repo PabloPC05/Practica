@@ -1,9 +1,8 @@
 package tp1.logic.gameobjects;
 
-import tp1.logic.Position;
-import tp1.logic.lemmingRoles.LemmingRole;
-import tp1.view.Messages;
 import tp1.logic.Interfaces.GameWorld;
+import tp1.logic.Position;
+import tp1.view.Messages;
 
 public class ExitDoor extends GameObject {
 
@@ -34,12 +33,6 @@ public class ExitDoor extends GameObject {
         @Override
         public boolean isSolid() {
             return false;
-        }
-
-        // Funcion para setear el rol de una puerta de salida (no se puede)
-        @Override
-        public boolean setRole(LemmingRole role) {
-        	return false;
         }
 
         // Funcion para interactuar con un objeto del juego

@@ -1,7 +1,6 @@
 package tp1;
 
 import java.util.Locale;
-
 import tp1.control.Controller;
 import tp1.logic.Game;
 import tp1.view.ConsoleColorsView;
@@ -14,10 +13,9 @@ public class Main {
 		// Required to avoid issues with tests
         Locale.setDefault(new Locale("es", "ES"));
 		try {
-			int nLevel = 1;
+			int nLevel = 0;
 			if (args.length != 0) {
 				nLevel = Integer.parseInt(args[0]);
-				nLevel++;
 			}
 
             Game game = new Game(nLevel);

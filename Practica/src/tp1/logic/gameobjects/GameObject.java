@@ -1,6 +1,6 @@
 package tp1.logic.gameobjects;
-import tp1.logic.Position;
 import tp1.logic.Interfaces.GameWorld;
+import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
 
 public abstract class GameObject implements GameItem {
@@ -33,7 +33,9 @@ public abstract class GameObject implements GameItem {
         // Funcion para saber si un objeto es solido
         public abstract boolean isSolid();
         //Funcion para establecer un rol a un objeto de juego
-        public abstract boolean setRole(LemmingRole rol);
+        public boolean setRole(LemmingRole rol, String str){
+            return false;
+        }
 
     // Getters
         // Funcion para saber si el objeto esta vivo

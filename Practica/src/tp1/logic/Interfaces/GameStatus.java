@@ -1,5 +1,7 @@
 package tp1.logic.Interfaces;
 
+import tp1.logic.gameobjects.GameItem;
+
 public interface GameStatus {
 
     // Funciones autodescriptivas definidas en Game
@@ -12,5 +14,6 @@ public interface GameStatus {
     abstract int numLemmingsToWin();
     abstract int numLemmingsLeftToWin();
     abstract String positionToString(int col, int row);
+    abstract boolean receiveInteractionsFrom(GameItem obj);
 
 }

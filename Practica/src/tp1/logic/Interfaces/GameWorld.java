@@ -1,6 +1,6 @@
 package tp1.logic.Interfaces;
-import tp1.logic.gameobjects.GameItem;
 import tp1.logic.*;
+import tp1.logic.gameobjects.GameItem;
 
 public interface GameWorld {
 

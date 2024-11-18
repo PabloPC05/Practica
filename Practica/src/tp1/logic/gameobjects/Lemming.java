@@ -1,6 +1,6 @@
 package tp1.logic.gameobjects;
-import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.Direction;
+import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.*;
 
@@ -156,9 +156,8 @@ public class Lemming extends GameObject{
 		}
 
 		// Funcion para setear el role de un lemming (devuelve si se ha podido cambiar)
-		@Override
-		public boolean setRole(LemmingRole role){
-			if (this.role.equals(role)) return false;
+		public boolean setRole(LemmingRole role, String roleName){
+			if (this.role.matchRoleName(roleName)) return false;
 			this.role = role;
 			return true;
 		}
@@ -171,6 +170,7 @@ public class Lemming extends GameObject{
 		// Funcion para desactivar el role de un lemming (walkerRole)
 		public void disableRole(){
 			role = new WalkerRole();
+			role.play(this);
 		}
 
 		// Funcion para recibir interacciones de un item del juego

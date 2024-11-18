@@ -1,9 +1,9 @@
 package tp1.logic;
-import tp1.logic.lemmingRoles.*;
-import tp1.logic.gameobjects.*;
 import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Interfaces.GameStatus;
 import tp1.logic.Interfaces.GameWorld;
+import tp1.logic.gameobjects.*;
+import tp1.logic.lemmingRoles.*;
 
 
 public class Game implements GameModel, GameStatus, GameWorld {
@@ -11,8 +11,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	private static final int LEMMINGS_TO_WIN = 2;
 	public static final int DIM_X = 10;
 	public static final int DIM_Y = 10;
-	public static final int MIN_LEVEL = 1;
-	public static final int MAX_LEVEL = 3;
+	public static final int MIN_LEVEL = 0;
+	public static final int MAX_LEVEL = 2;
 
 
 	public GameObjectContainer gameObjects;
@@ -33,7 +33,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		gameObjects = new GameObjectContainer();
 		//initObjects();
 		level = 0;
-		initBoard(1);
+		initBoard(0);
 		cycle = 0;
 		lemmingsToWin = LEMMINGS_TO_WIN;
 		exit = false;
@@ -60,8 +60,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		switch (level) {
 			// Nivel 1
-			case 1:
-				this.level = 1;
+			case 0:
+				this.level = 0;
 				// initWalls();
 				gameObjects.add(new Wall(8, 1, this));
 				gameObjects.add(new Wall(9, 1, this));
@@ -97,8 +97,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				break;
 
 			// Nivel 2
-			case 2:
-				this.level = 2;
+			case 1:
+				this.level = 1;
 				// initWalls();
 				gameObjects.add(new Wall(8, 1, this));
 				gameObjects.add(new Wall(9, 1, this));
@@ -125,18 +125,20 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				//InitLemmings();
 				gameObjects.add(new Lemming(0, 8, this));
 				gameObjects.add(new Lemming(2, 3, this));
-				gameObjects.add(new Lemming(3, 3, this));
 				gameObjects.add(new Lemming(9, 0, this));
+
+				gameObjects.add(new ExitDoor(4, 5, this));
+
+				gameObjects.add(new Lemming(3, 3, this));
 				
 				//InitExitDoor();
-				gameObjects.add(new ExitDoor(4, 5, this));
 				
 				numLemmings = 4;
 				break;
 
 			// Nivel 3
-			case 3:
-				this.level = 3; 
+			case 2:
+				this.level = 2; 
 			//initLevel2();
 				// initWalls();
 				gameObjects.add(new Wall(8, 1, this));
@@ -166,13 +168,15 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				// InitLemmings();
 				gameObjects.add(new Lemming(0, 8, this));
 				gameObjects.add(new Lemming(2, 3, this));
+				gameObjects.add(new Lemming(9, 0, this));
+
+				gameObjects.add(new ExitDoor(4, 5, this));
+
 				gameObjects.add(new Lemming(3, 3, this));
 				gameObjects.add(new Lemming(6, 0, this));
 				gameObjects.add(new Lemming(6, 0, this, new ParachuterRole()));
-				gameObjects.add(new Lemming(9, 0, this));
 				
 				// InitExitDoor();
-				gameObjects.add(new ExitDoor(4, 5, this));
 
 				numLemmings = 6;
 				break;
@@ -240,8 +244,13 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			// O un rol de excavador ha eliminado una pared
 			// Actualizamos los objetos
 			gameObjects.update();
-			cycle++;	
+			increaseCycle();	
 			gameObjects.removeDeadObjects();
+		}
+		
+
+		public void increaseCycle(){
+			cycle++;
 		}
 
 		// Funcion para reiniciar el juego
@@ -252,7 +261,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 		// Funcion para saber si el jugador ha ganado
 		public boolean playerWins() {
-			return exitLemmings >= lemmingsToWin;
+			return exitLemmings >= lemmingsToWin && numLemmings == 0;
 		}
 	
 		// Funcion para saber si el jugador ha perdido
@@ -271,14 +280,14 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			deadLemmings = 0;
 			exitLemmings = 0;
 			switch(level){
+				case 0:
+					InitLevel(0);
+					break;
 				case 1:
 					InitLevel(1);
 					break;
 				case 2:
 					InitLevel(2);
-					break;
-				case 3:
-					InitLevel(3);
 					break;
 				default:
 					break;
@@ -318,8 +327,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		// Funcion que fija el rol de un lemming en una posicion, y devuelve si se ha podido fijar
-		public boolean setRole(LemmingRole role, int col, int row) {
-			return gameObjects.setRole(role, col, row);
+		public boolean setRole(LemmingRole role, Position pos, String roleName){ 
+			return gameObjects.setRole(role, pos, roleName);
 		}
 
 		// Funcion que devuelve si hay una interaccion entre objetos, reaccionando a la interaccion si la hay

@@ -1,9 +1,8 @@
 package tp1.logic.gameobjects;
 
-import tp1.logic.Position;
-import tp1.logic.lemmingRoles.LemmingRole;
-import tp1.view.Messages;
 import tp1.logic.Interfaces.GameWorld;
+import tp1.logic.Position;
+import tp1.view.Messages;
 
 public class Wall extends GameObject {
 
@@ -21,6 +20,7 @@ public class Wall extends GameObject {
 
     // Setters
         // Funcion update
+        @Override
         public void update() {
             // No hace nada
         }
@@ -35,12 +35,6 @@ public class Wall extends GameObject {
         @Override
         public boolean isSolid() {
             return true;
-        }
-
-        // Funcion para setear el rol de una pared (no se puede)
-        @Override
-        public boolean setRole(LemmingRole role) {
-        	return false;
         }
 
         // Funcion para interactuar con un objeto del juego
