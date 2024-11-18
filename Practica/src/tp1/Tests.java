@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 public class Tests {
-	public static final String DIR = "tests/pr22/";
+	public static final String DIR = "tests/pr22+reset/";
 	public static final String FILE_PREFIXES[] = {
 			"00_1-play"
 			, "01_1-command", "01_2-play"

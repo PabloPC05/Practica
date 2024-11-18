@@ -34,6 +34,8 @@ public class LemmingRoleFactory {
 			roles.append(role.helpText());
 		}
 		// Se devuelve la ayuda
+		roles.deleteCharAt(roles.length()-1);
+		roles.deleteCharAt(roles.length()-1);
 		return roles.toString();
 	}
 }

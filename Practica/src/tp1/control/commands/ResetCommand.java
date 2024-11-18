@@ -47,9 +47,11 @@ public class ResetCommand extends Command{
 	public void execute(GameModel game, GameView view){
 		if(level == -1){
 			game.reset(game.getLevel());
+			view.showGame();
 		}
 		else if(game.existsLevel(level)){
 			game.reset(level);
+			view.showGame();
 		}
 		else {
 			view.showError(Messages.INVALID_LEVEL_NUMBER);

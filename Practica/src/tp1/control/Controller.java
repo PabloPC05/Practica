@@ -35,7 +35,6 @@ public class Controller {
 			// Si el comando no es nulo lo ejecutamos y mostramos el juego
 			if (command != null){
 				command.execute(game, view);
-				view.showGame();
 			}
 			// Si no, mostramos un mensaje de error
 			else view.showError(Messages.UNKNOWN_COMMAND.formatted(words[0]));

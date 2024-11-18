@@ -50,6 +50,7 @@ public class SetRoleCommand extends Command{
     		if(!game.setRole(role, col, row)) {
     			view.showError(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
     		}
+    		view.showGame();
     	}
     	else {
     		view.showError(Messages.UNKNOWN_ROLE.formatted(roleName));
