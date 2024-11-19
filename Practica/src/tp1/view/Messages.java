@@ -131,7 +131,7 @@ public class Messages {
 	public static final String PARACHUTER_ROLE_HELP = "Lemming falls with a parachute";
 
 	//DownCaverRole
-	public static final String DOWN_CAVER_ROLE_SYMBOL = "D";
+	public static final String DOWN_CAVER_ROLE_SYMBOL = "Dc";
 	public static final String DOWN_CAVER_ROLE_NAME = "DownCaver";
 	public static final String DOWN_CAVER_ROLE_DETAILS = "[D]own [C]aver";
 	public static final String DOWN_CAVER_ROLE_HELP = "Lemming caves downwards";
