@@ -35,6 +35,8 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
         // se pone la fuerza de caida a 0
         else {
         	lemming.featherFall();
+            // Si choca con una pared, se desactiva el rol y se updatea el lemming con el nuevo rol
+            lemming.update();
         }
     }
 

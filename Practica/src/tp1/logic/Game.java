@@ -12,7 +12,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	public static final int DIM_X = 10;
 	public static final int DIM_Y = 10;
 	public static final int MIN_LEVEL = 0;
-	public static final int MAX_LEVEL = 2;
+	public static final int MAX_LEVEL = 3;
 
 
 	public GameObjectContainer gameObjects;
@@ -180,6 +180,37 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 				numLemmings = 6;
 				break;
+
+			case 3:
+				this.level = 3;
+				// initWalls();
+				gameObjects.add(new Wall(8, 1, this));
+				gameObjects.add(new Wall(9, 1, this));
+
+
+				gameObjects.add(new Wall(2, 4, this));
+				gameObjects.add(new Wall(3, 4, this));
+				gameObjects.add(new Wall(4, 4, this));
+
+				gameObjects.add(new Wall(7, 5, this));
+
+				gameObjects.add(new Wall(4, 6, this));
+				gameObjects.add(new Wall(5, 6, this));
+				gameObjects.add(new Wall(6, 6, this));
+				gameObjects.add(new Wall(7, 6, this));
+
+				gameObjects.add(new Wall(0, 9, this));
+				gameObjects.add(new Wall(1, 9, this));
+
+				gameObjects.add(new Wall(9, 9, this));
+				gameObjects.add(new Wall(8, 9, this));
+				gameObjects.add(new Wall(8, 8, this));
+
+				//InitLemmings();
+				gameObjects.add(new Lemming(9, 0, this));
+				numLemmings = 1;
+
+				gameObjects.add(new ExitDoor(4, 5, this));
 			default:
 				break;
 		}
@@ -288,6 +319,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 					break;
 				case 2:
 					InitLevel(2);
+					break;
+				case 3:
+					InitLevel(3);
 					break;
 				default:
 					break;

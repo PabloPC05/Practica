@@ -170,7 +170,7 @@ public class Lemming extends GameObject{
 		// Funcion para desactivar el role de un lemming (walkerRole)
 		public void disableRole(){
 			role = new WalkerRole();
-			role.play(this);
+			//role.play(this);
 		}
 
 		// Funcion para recibir interacciones de un item del juego
