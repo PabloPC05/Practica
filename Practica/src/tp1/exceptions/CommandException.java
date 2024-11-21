@@ -2,6 +2,7 @@ package tp1.exceptions;
 
 public class CommandException extends Exception {
     
+    // Constructor de la clase CommandException
     public CommandException() {
         super();
     }

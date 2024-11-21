@@ -3,6 +3,7 @@ package tp1.control;
 import tp1.control.commands.Command;
 import tp1.control.commands.CommandGenerator;
 import tp1.logic.Game;
+import tp1.exceptions.CommandParseException;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
@@ -31,13 +32,17 @@ public class Controller {
 		while (!game.isFinished()) {
 			// Leemos el comando
 			words = view.getPrompt();
-			Command command = CommandGenerator.parse(words);
-			// Si el comando no es nulo lo ejecutamos y mostramos el juego
-			if (command != null){
-				command.execute(game, view);
+			try {
+				Command command = CommandGenerator.parse(words);
+				// Si el comando no es nulo lo ejecutamos y mostramos el juego
+				if (command != null){
+					command.execute(game, view);
+				}
+				// Si no, mostramos un mensaje de error
+				else view.showError(Messages.UNKNOWN_COMMAND.formatted(words[0]));
+			} catch (CommandParseException e) {
+				view.showError(e.getMessage());
 			}
-			// Si no, mostramos un mensaje de error
-			else view.showError(Messages.UNKNOWN_COMMAND.formatted(words[0]));
 		}
 		// Mostramos el mensaje de fin de juego
 		view.showEndMessage();

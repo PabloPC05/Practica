@@ -18,13 +18,15 @@ public class CommandGenerator {
 
 	// Funcion para parsear el comando general, recorre los comandos disponibles y llama a su parse
 	public static Command parse(String[] commandWords) throws CommandParseException {		
+		// Recorremos los comandos disponibles en busca del comando introducido
 		for (Command c: availableCommands) {
 			Command command = c.parse(commandWords);
 			if (command != null) {
 				return command;
 			}
 		}
-		 throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(commandWords[0]));
+		// Si no se ha encontrado el comando, se lanza una excepcion
+		throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(commandWords[0]));
 	}
 		
 	// Funcion para mostrar la ayuda de los comandos
