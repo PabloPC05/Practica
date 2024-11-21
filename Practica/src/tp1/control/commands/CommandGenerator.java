@@ -2,6 +2,9 @@ package tp1.control.commands;
 
 import java.util.Arrays;
 import java.util.List;
+
+import tp1.exceptions.CommandParseException;
+import tp1.view.Messages;
 public class CommandGenerator {
 
 	// Constante que contiene los comandos disponibles
@@ -14,14 +17,14 @@ public class CommandGenerator {
 	);
 
 	// Funcion para parsear el comando general, recorre los comandos disponibles y llama a su parse
-	public static Command parse(String[] commandWords) {		
+	public static Command parse(String[] commandWords) throws CommandParseException {		
 		for (Command c: availableCommands) {
 			Command command = c.parse(commandWords);
 			if (command != null) {
 				return command;
 			}
 		}
-		return null;
+		 throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(commandWords[0]));
 	}
 		
 	// Funcion para mostrar la ayuda de los comandos

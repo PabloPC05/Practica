@@ -1,6 +1,8 @@
 package tp1.control.commands;
 
 import tp1.logic.Interfaces.GameModel;
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.*;
 import tp1.view.GameView;
@@ -26,7 +28,7 @@ public class SetRoleCommand extends Command{
 
     // Funcion para parsear el comando (esta compuesto por el propio comando, el nombre del rol, y la posicion ROW, COL)
     @Override
-    public Command parse(String[] commandWords) {
+    public Command parse(String[] commandWords) throws CommandParseException {
         Command com = null;
         // Comprobamos que el comando sea correcto
         if (matchCommandName(commandWords[0])) {
@@ -40,7 +42,9 @@ public class SetRoleCommand extends Command{
                 newCommand.col = Integer.parseInt(commandWords[3]);
                 newCommand.col--;
                 newCommand.row = traslateRow(commandWords[2]);
-            } catch (NumberFormatException e) {}
+             } catch (NumberFormatException e) {
+ 	            throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(row, col)));
+             }
             com = newCommand;
         }
         return com;
@@ -48,7 +52,7 @@ public class SetRoleCommand extends Command{
 
     // Funcion para ejecutar el comando (cambia el rol de un lemming) y muestra un mensaje de error correspondiente si no se puede
     @Override
-    public void execute(GameModel game, GameView view) {
+     public abstract void execute(GameModel game, GameView view) throws CommandExecuteException {
     	if(valid && role != null) {
 			Position pos = new Position(col, row);
     		if(!game.setRole(role, pos, roleName)) {
