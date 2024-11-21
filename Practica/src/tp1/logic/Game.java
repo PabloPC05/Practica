@@ -28,8 +28,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	// Constructores
 	// Constructor por defecto
 	public Game() {
-
-
 		gameObjects = new GameObjectContainer();
 		//initObjects();
 		level = 0;
