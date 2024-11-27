@@ -142,11 +142,29 @@ public class Messages {
 
 //Symbols
 	public static final String EMPTY = "";
-	public static final String METALWALL = MyStringUtils.repeat("X",ConsoleView.CELL_SIZE);
-	public static final String WALL = MyStringUtils.repeat("▓",ConsoleView.CELL_SIZE);
-	public static final String EXIT_DOOR = "🚪";
 	public static final String LEMMING_RIGHT = "B";
 	public static final String LEMMING_LEFT = "ᗺ";
 	public static final String LEMMING_PARACHUTE = "🪂";
 	public static final String LEMMING_DOWN_CAVER = "´･ω･`";
+
+
+//GameObjects
+	//Wall
+	public static final String WALL_NAME = "Wall";
+	public static final String WALL_SHORTCUT = "W";
+	public static final String WALL = MyStringUtils.repeat("▓",ConsoleView.CELL_SIZE);
+
+	//MetalWall
+	public static final String METAL_WALL_NAME = "MetalWall";
+	public static final String METAL_WALL_SHORTCUT = "MW";
+	public static final String METALWALL = MyStringUtils.repeat("X",ConsoleView.CELL_SIZE);
+
+	//ExitDoor
+	public static final String EXIT_DOOR_NAME = "ExitDoor";
+	public static final String EXIT_DOOR_SHORTCUT = "ED";
+	public static final String EXIT_DOOR = "🚪";
+
+	//Lemming
+	public static final String LEMMING_NAME = "Lemming";
+	public static final String LEMMING_SHORTCUT = "L";
 }

@@ -1,11 +1,17 @@
 package tp1.logic.gameobjects;
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.Direction;
 import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.*;
+import tp1.view.Messages;
 
 
 public class Lemming extends GameObject{
+
+	private static final String NAME = Messages.LEMMING_NAME;
+	private static final String SHORTCUT = Messages.LEMMING_SHORTCUT;
 
 	//Atributos
 	private Direction direction;
@@ -15,8 +21,16 @@ public class Lemming extends GameObject{
 	
 	// Constructores
 	//Constructor por defecto
+	public Lemming(){
+		super(NAME, SHORTCUT);
+		direction = Direction.RIGHT;
+		fuerzaCaida = 0;
+		role = new WalkerRole();
+		isInAir = false;
+	}
+
 	public Lemming(int col, int row, GameWorld GameWorld) {
-		super(new Position(col, row), true, GameWorld);
+		super(new Position(col, row), true, GameWorld, NAME, SHORTCUT);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		role = new WalkerRole();
@@ -25,9 +39,17 @@ public class Lemming extends GameObject{
 	
 	//Constructor con parametros
 	public Lemming(int col, int row, GameWorld GameWorld, LemmingRole role) {
-		super(new Position(col, row), true, GameWorld);
+		super(new Position(col, row), true, GameWorld, NAME, SHORTCUT);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
+		this.role = role;
+		isInAir = false;
+	}
+
+	public Lemming(Position pos, Direction dir, int fC, LemmingRole role, GameWorld GameWorld) {
+		super(pos, true, GameWorld, NAME, SHORTCUT);
+		direction = dir;
+		fuerzaCaida = fC;
 		this.role = role;
 		isInAir = false;
 	}
@@ -209,4 +231,9 @@ public class Lemming extends GameObject{
 			}
 			return interaction;
 		}
+	
+        @Override 
+        public GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException{
+            return null;
+        }
 }

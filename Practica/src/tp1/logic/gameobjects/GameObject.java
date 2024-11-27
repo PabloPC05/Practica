@@ -1,7 +1,11 @@
 package tp1.logic.gameobjects;
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
+import tp1.logic.Direction;
 import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
+
 
 public abstract class GameObject implements GameItem {
     
@@ -9,15 +13,31 @@ public abstract class GameObject implements GameItem {
     protected Position pos;
     protected boolean vivo;
     protected GameWorld gameWorld;
+    protected String name;
+    protected String shortcut;
     
     // Constructores
         // Constructor por defecto
 
         // Constructor con parametros
-        protected GameObject(Position pos, boolean vivo, GameWorld game) {
+        public GameObject() {
+            pos = new Position();
+            vivo = true;
+        }
+
+        public GameObject(String name, String shortcut) {
+            this.name = name;
+            this.shortcut = shortcut;
+            pos = new Position();
+            vivo = true;
+        }
+        
+        protected GameObject(Position pos, boolean vivo, GameWorld game, String name, String shortcut) {
             this.pos = pos;
             this.vivo = vivo;
             this.gameWorld = game;
+            this.name = name;
+            this.shortcut = shortcut;
         }
     
     // Setters
@@ -71,4 +91,27 @@ public abstract class GameObject implements GameItem {
         public boolean interactWith(MetalWall metalWall){
             return false;
         }
+
+        private static Position getPositionFrom(String line) throws ObjectParseException, OffBoardException{
+            return null;
+        }
+
+        private static String getObjectNameFrom(String line) throws ObjectParseException{
+            return null;
+        }
+
+        private static Direction getLemmingDirectionFrom(String line) throws ObjectParseException{
+            return null;
+        }
+
+        private static int getLemmingHeightFrom(String line) throws ObjectParseException{
+            return 0;
+        }
+
+        public static LemmingRole getLemmingRoleFrom(String line) throws ObjectParseException{
+            return null;
+        }
+
+        public abstract GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException;
+
 }
