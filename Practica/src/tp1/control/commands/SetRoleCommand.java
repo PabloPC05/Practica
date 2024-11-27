@@ -53,8 +53,20 @@ public class SetRoleCommand extends Command{
     // Funcion para ejecutar el comando (cambia el rol de un lemming) y muestra un mensaje de error correspondiente si no se puede
     @Override
      public abstract void execute(GameModel game, GameView view) throws CommandExecuteException {
-    	if(valid && role != null) {
+    	try {
+            game.setRole(role, new Position(col, row), roleName);
+            game.update();
+            view.showGame();
+        } catch (CommandExecuteException e) {
+            throw new CommandExecuteException(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
+        }
+        /*if(valid && role != null) {
 			Position pos = new Position(col, row);
+            try {
+                game.setRole(role, pos, roleName);
+            } catch (CommandExecuteException e) {
+                throw new CommandExecuteException(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
+            }
     		if(!game.setRole(role, pos, roleName)) {
     			view.showError(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
     		}
@@ -66,7 +78,7 @@ public class SetRoleCommand extends Command{
     	else {
     		//view.showError(Messages.UNKNOWN_ROLE.formatted(roleName));
             view.showError(Messages.UNKNOWN_COMMAND.formatted(NAME));
-    	}
+    	}*/
     } 
 
     // Funcion para traducir la fila de la posicion de la letra a un numero
