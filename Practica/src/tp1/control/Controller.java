@@ -2,9 +2,8 @@ package tp1.control;
 
 import tp1.control.commands.Command;
 import tp1.control.commands.CommandGenerator;
-import tp1.logic.Game;
 import tp1.exceptions.CommandException;
-import tp1.exceptions.CommandParseException;
+import tp1.logic.Game;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
@@ -41,11 +40,17 @@ public class Controller {
 				}
 				// Si no, mostramos un mensaje de error
 				else view.showError(Messages.UNKNOWN_COMMAND.formatted(words[0]));
-			}   catch (CommandException e) {
-					view.showError(e.getMessage());
+				}   catch (CommandException e) {
+					StringBuilder str = new StringBuilder(e.getMessage());
+					//str.deleteCharAt(str.length() - 1);
+					//.deleteCharAt(str.length() - 1);
+					view.showError(str.toString());
 					Throwable cause = e.getCause();			
 					if (cause != null){
-						view.showError(cause.getMessage());
+						StringBuilder causeStr = new StringBuilder(cause.getMessage());
+						//causeStr.deleteCharAt(causeStr.length() - 1);
+						//causeStr.deleteCharAt(causeStr.length() - 1);
+						view.showError(causeStr.toString());
 					}    
  			}
 		}

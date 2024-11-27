@@ -1,7 +1,7 @@
 package tp1.control.commands;
 
-import tp1.logic.Interfaces.GameModel;
 import tp1.exceptions.*;
+import tp1.logic.Interfaces.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
@@ -26,9 +26,11 @@ public abstract class Command {
 	protected String getHelp() { return help; }
 
 	// Metodos abstractos
-	public abstract void execute(GameModel game, GameView view);	  
+	public abstract void execute(GameModel game, GameView view) throws CommandExecuteException;
+		  
 	public abstract Command parse(String[] commandWords) throws CommandParseException;
 	// Usa los metodos de la clase String para saber que comando se ha introducido
+
 	protected boolean matchCommandName(String name) {
 		return getShortcut().equalsIgnoreCase(name) || getName().equalsIgnoreCase(name);
 	}

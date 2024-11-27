@@ -1,8 +1,10 @@
 package tp1.control.commands;
 
-import tp1.logic.Interfaces.GameModel;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.OffBoardException;
+import tp1.exceptions.RoleParseException;
+import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.*;
 import tp1.view.GameView;
@@ -36,14 +38,18 @@ public class SetRoleCommand extends Command{
             newCommand.valid = commandWords.length == 4;
             // Comprobamos el rol
             newCommand.roleName = commandWords[1];
-            newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
+            try {
+                newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
+            } catch (RoleParseException e) {
+                throw new CommandParseException(Messages.COMMAND_SET_ROLE_INVALID_ROLE.formatted(newCommand.roleName));
+            }
             // Comprobamos la posicion
             try {
                 newCommand.col = Integer.parseInt(commandWords[3]);
                 newCommand.col--;
                 newCommand.row = traslateRow(commandWords[2]);
              } catch (NumberFormatException e) {
- 	            throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(row, col)));
+ 	            throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(new Position(col, row).toString())));
              }
             com = newCommand;
         }
@@ -52,14 +58,19 @@ public class SetRoleCommand extends Command{
 
     // Funcion para ejecutar el comando (cambia el rol de un lemming) y muestra un mensaje de error correspondiente si no se puede
     @Override
-     public abstract void execute(GameModel game, GameView view) throws CommandExecuteException {
-    	try {
-            game.setRole(role, new Position(col, row), roleName);
+    public void execute(GameModel game, GameView view) throws CommandExecuteException {
+        try {
+            if (!game.setRole(role, new Position(col, row), roleName)) {
+                view.showError(Messages.LINE.formatted(Messages.EXECUTE_PROBLEM));
+                view.showError(Messages.LINE.formatted(Messages.COMMAND_SET_ROLE_INVALID_LEMMING.formatted(Messages.POSITION.formatted(row, col), roleName)));
+            }
             game.update();
             view.showGame();
-        } catch (CommandExecuteException e) {
-            throw new CommandExecuteException(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
+        } catch (OffBoardException e) {
+            throw new CommandExecuteException(Messages.ERROR.formatted(Messages.EXECUTE_PROBLEM), e);
         }
+
+        
         /*if(valid && role != null) {
 			Position pos = new Position(col, row);
             try {

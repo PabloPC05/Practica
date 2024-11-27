@@ -1,4 +1,7 @@
 package tp1.logic;
+
+import tp1.view.Messages;
+
 public class Position {
 
 	// Atributos
@@ -62,5 +65,10 @@ public class Position {
 	// Compara si esta posición es igual a otra posición
 	public boolean isEqualTo(Position pos) {
 		return this.col == pos.col && this.row == pos.row;
+	}
+
+	@Override
+	public String toString() {
+        return Messages.POSITION.formatted(String.valueOf(row), String.valueOf(col));
 	}
 }

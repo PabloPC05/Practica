@@ -1,5 +1,6 @@
 package tp1.control.commands;
 
+import tp1.exceptions.CommandExecuteException;
 import tp1.logic.Interfaces.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
@@ -44,7 +45,7 @@ public class ResetCommand extends Command{
 
 	// Funcion para ejecutar el comando (resetea el juego al nivel indicado, o al nivel actual si no se indica ninguno, e indica un mensaje de error si el nivel no existe)
 	@Override
-	public void execute(GameModel game, GameView view){
+	public void execute(GameModel game, GameView view) throws CommandExecuteException {
 		if(level == -1){
 			game.reset(game.getLevel());
 			view.showGame();
@@ -54,8 +55,7 @@ public class ResetCommand extends Command{
 			view.showGame();
 		}
 		else {
-			view.showError(Messages.INVALID_LEVEL_NUMBER);
-
+			throw new CommandExecuteException(Messages.ERROR.formatted(Messages.INVALID_LEVEL_NUMBER));
 		}
 	}
 

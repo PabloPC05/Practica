@@ -2,6 +2,7 @@ package tp1.logic.lemmingRoles;
 
 import java.util.Arrays;
 import java.util.List;
+import tp1.exceptions.RoleParseException;
 
 
 public class LemmingRoleFactory {
@@ -14,7 +15,7 @@ public class LemmingRoleFactory {
 	);
 
 	// Funcion para parsear el rol y saber si es correcto
-    public static LemmingRole parse(String input){
+    public static LemmingRole parse(String input) throws RoleParseException {
         for (LemmingRole role: availableRoles) {
 			LemmingRole parsedRole = role.parse(input);
 			// Si el rol es correcto, se devuelve
@@ -23,7 +24,7 @@ public class LemmingRoleFactory {
 			}
 		}
 		// Si no es correcto, se devuelve null
-		return null;
+		throw new RoleParseException(input);
     }
 
 	// Funcion para obtener la ayuda de los roles

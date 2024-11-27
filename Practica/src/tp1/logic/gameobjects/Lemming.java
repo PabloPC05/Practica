@@ -156,7 +156,8 @@ public class Lemming extends GameObject{
 		}
 
 		// Funcion para setear el role de un lemming (devuelve si se ha podido cambiar)
-		public boolean setRole(LemmingRole role, String roleName){
+		@Override
+		public boolean setRole(LemmingRole role, String roleName) {
 			if (this.role.matchRoleName(roleName)) return false;
 			this.role = role;
 			return true;

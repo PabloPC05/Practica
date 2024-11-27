@@ -65,7 +65,8 @@ public class Messages {
 	public static final String INVALID_INIT_CONF = "Invalid init configuration because %s";
 	public static final String ERROR_INVALID_INIT_CONF = "Unknown invalid init configuration";
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
-
+	// Errores de ejecución de comandos:
+	public static final String EXECUTE_PROBLEM = "Command execute problem";
 	
 	//public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR + "[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE" + LINE_SEPARATOR;
 	public static final String COMMAND_HELP_TEXT = "%s: %s";
@@ -116,6 +117,9 @@ public class Messages {
 	public static final String COMMAND_SET_ROLE_DETAILS = "[s]et[R]ole ROLE ROW COL";
 	public static final String COMMAND_SET_ROLE_HELP = "sets the lemming in position (ROW,COL) to role ROL";
 	public static final String COMMAND_SET_ROLE_INVALID_ARGUMENT = "SetRoleCommand error (Incorrect position or no object in that position admits that role)";
+	public static final String COMMAND_SET_ROLE_INVALID_POSITION = "Position %s off the board";
+	public static final String COMMAND_SET_ROLE_INVALID_LEMMING = "No lemming in position %s admits role %s";
+	public static final String COMMAND_SET_ROLE_INVALID_ROLE = "Role %s is not valid";
 
 //Roles
 	//WalkerRole

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import tp1.logic.gameobjects.*;
 import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.view.Messages;
+import tp1.exceptions.CommandExecuteException;
 
 public class GameObjectContainer {
 	
@@ -95,14 +96,12 @@ public class GameObjectContainer {
 		}
 		
 		// Establece el rol de un lemming en la posición dada
-		public boolean setRole(LemmingRole role, Position pos, String roleName){ 
-			// Recorre la lista de objetos para establecer el rol si están en la posición
+		public boolean setRole(LemmingRole role, Position pos, String roleName) {
 			for (int i = 0; i < gameObjects.size(); i++) {
 				if (gameObjects.get(i).isInPosition(pos) && gameObjects.get(i).setRole(role, roleName)) {
 					return true; // Devuelve verdadero si se establece el rol
 				}
 			}
-			// Devuelve falso si no se establece el rol
 			return false;
 		}
 

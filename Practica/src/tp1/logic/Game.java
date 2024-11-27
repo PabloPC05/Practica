@@ -1,9 +1,11 @@
 package tp1.logic;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Interfaces.GameStatus;
 import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.gameobjects.*;
 import tp1.logic.lemmingRoles.*;
+import tp1.view.Messages;
 
 
 public class Game implements GameModel, GameStatus, GameWorld {
@@ -343,6 +345,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			decreaseNumLemmings();
 		}
 
+		public boolean positionInLimits(Position pos){
+			return !leavingTheBoard(pos) && !crashingIntoLimits(pos);
+		}
+
 		// Funcion que devuelve si la posicion esta dentro de los limites del tablero
 		public boolean leavingTheBoard(Position pos){
 			return !pos.insideRowsLimits(DIM_Y);
@@ -359,7 +365,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		// Funcion que fija el rol de un lemming en una posicion, y devuelve si se ha podido fijar
-		public boolean setRole(LemmingRole role, Position pos, String roleName){ 
+		public boolean setRole(LemmingRole role, Position pos, String roleName) throws OffBoardException {
+			if(!positionInLimits(pos)){ 
+				throw new OffBoardException(Messages.ERROR.formatted(Messages.COMMAND_SET_ROLE_INVALID_POSITION.formatted(pos.toString())));
+			}
 			return gameObjects.setRole(role, pos, roleName);
 		}
 

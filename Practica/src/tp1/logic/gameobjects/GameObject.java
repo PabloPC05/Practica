@@ -33,7 +33,7 @@ public abstract class GameObject implements GameItem {
         // Funcion para saber si un objeto es solido
         public abstract boolean isSolid();
         //Funcion para establecer un rol a un objeto de juego
-        public boolean setRole(LemmingRole rol, String str){
+        public boolean setRole(LemmingRole rol, String str) {
             return false;
         }
 
