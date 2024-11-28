@@ -13,8 +13,6 @@ public abstract class GameObject implements GameItem {
     protected Position pos;
     protected boolean vivo;
     protected GameWorld gameWorld;
-    protected String name;
-    protected String shortcut;
     
     // Constructores
         // Constructor por defecto
@@ -24,20 +22,11 @@ public abstract class GameObject implements GameItem {
             pos = new Position();
             vivo = true;
         }
-
-        public GameObject(String name, String shortcut) {
-            this.name = name;
-            this.shortcut = shortcut;
-            pos = new Position();
-            vivo = true;
-        }
         
-        protected GameObject(Position pos, boolean vivo, GameWorld game, String name, String shortcut) {
+        protected GameObject(Position pos, boolean vivo, GameWorld game) {
             this.pos = pos;
             this.vivo = vivo;
             this.gameWorld = game;
-            this.name = name;
-            this.shortcut = shortcut;
         }
     
     // Setters
@@ -92,26 +81,27 @@ public abstract class GameObject implements GameItem {
             return false;
         }
 
-        private static Position getPositionFrom(String line) throws ObjectParseException, OffBoardException{
-            return null;
+        // Funcion para obtener a partir de un string la posicion de un objeto
+        protected Position getPositionFrom(String line) throws OffBoardException {
+            String[] parts = line.replaceAll("[()]", "").split(",");
+            int col = Integer.parseInt(parts[0].trim());
+            int row = Integer.parseInt(parts[1].trim());
+            Position pos = new Position(col, row);
+            if (!pos.insideLimits()) {
+                throw new OffBoardException("Position out of limits");
+            }
+            return pos;
         }
 
-        private static String getObjectNameFrom(String line) throws ObjectParseException{
-            return null;
+        // Funcion para obtener la direccion de un objeto a partir de un string
+        protected Direction getDirectionFrom(String line) {
+            if (line.equalsIgnoreCase("RIGHT")) {
+                return Direction.RIGHT;
+            } else {
+                return Direction.LEFT;
+            }
         }
 
-        private static Direction getLemmingDirectionFrom(String line) throws ObjectParseException{
-            return null;
-        }
-
-        private static int getLemmingHeightFrom(String line) throws ObjectParseException{
-            return 0;
-        }
-
-        public static LemmingRole getLemmingRoleFrom(String line) throws ObjectParseException{
-            return null;
-        }
-
-        public abstract GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException;
+        public abstract GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException;
 
 }

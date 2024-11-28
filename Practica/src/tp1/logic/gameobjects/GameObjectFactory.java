@@ -1,13 +1,9 @@
 package tp1.logic.gameobjects;
 import java.util.Arrays;
 import java.util.List;
-
-import tp1.control.commands.Command;
-import tp1.exceptions.CommandParseException;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.Interfaces.GameWorld;
-import tp1.view.Messages;
 
 // lanza ObjectParseException si line no se corresponde con ninguno
 // de los objetos disponibles (todos han devuelto null)
@@ -24,16 +20,17 @@ public class GameObjectFactory {
 	);
 
     public static GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException{
+        String[] words = line.trim().split("\\s+");
         for (GameObject go: availableGameObjects) {
-            //try {
-                GameObject gameObject = go.parse(line, game);
+            try {
+                GameObject gameObject = go.parse(words, game);
                 if (gameObject != null) {
                     return gameObject;
                 }
-            //} catch (ObjectParseException e) {
+            } catch (ObjectParseException e) {
                 // No se hace nada
-            //}
+            }
         }
-        throw new ObjectParseException(Messages.UNKNOWN_OBJECT.formatted(line));
+        throw new ObjectParseException(/*"Invalid object"*/);
     }
 }

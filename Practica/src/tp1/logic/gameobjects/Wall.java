@@ -15,12 +15,17 @@ public class Wall extends GameObject {
 
         // Constructor con parametros de posicion
         public Wall(Position pos, boolean vivo, GameWorld gameWorld) {
-            super(pos, vivo, gameWorld, NAME, SHORTCUT);
+            super(pos, vivo, gameWorld);
         }
 
         // Constructor con parametros de posicion
         public Wall(int col, int row, GameWorld gameWorld) {
-            super(new Position(col, row), true, gameWorld, NAME, SHORTCUT);
+            super(new Position(col, row), true, gameWorld);
+        }
+
+        // Constructor con parametros de posicion
+        public Wall(Position pos,  GameWorld gameWorld) {
+            super(pos, true, gameWorld);
         }
 
         public Wall(){
@@ -53,8 +58,20 @@ public class Wall extends GameObject {
         }
 
         @Override 
-        public GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException{
-            return null;
+        public GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException{
+            // Si el array es mayor que 2, no puede ser una puerta
+            // Si el primer elemento del array es distinto del shortcut o del nombre, tampoco puede ser un muro
+            if(line.length > 2 || !line[1].equalsIgnoreCase(SHORTCUT) || line[1].equalsIgnoreCase(NAME)) {
+                return null;
+            }
+            // Si la posicion no esta en lo limites del tablero, se lanza una excepcion
+            try {
+                Position pos = getPositionFrom(line[0]);
+            } catch (OffBoardException e) {
+                throw new OffBoardException("Position out of limits");
+            }
+            // Se devuelve una nueva puerta de la salida con la posicion y el juego
+            return new MetalWall(pos, game);
         }
 
 }

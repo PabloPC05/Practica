@@ -1,6 +1,7 @@
 package tp1.logic.gameobjects;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
+import tp1.exceptions.RoleParseException;
 import tp1.logic.Direction;
 import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.Position;
@@ -22,7 +23,7 @@ public class Lemming extends GameObject{
 	// Constructores
 	//Constructor por defecto
 	public Lemming(){
-		super(NAME, SHORTCUT);
+		super();
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		role = new WalkerRole();
@@ -30,7 +31,7 @@ public class Lemming extends GameObject{
 	}
 
 	public Lemming(int col, int row, GameWorld GameWorld) {
-		super(new Position(col, row), true, GameWorld, NAME, SHORTCUT);
+		super(new Position(col, row), true, GameWorld);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		role = new WalkerRole();
@@ -39,7 +40,7 @@ public class Lemming extends GameObject{
 	
 	//Constructor con parametros
 	public Lemming(int col, int row, GameWorld GameWorld, LemmingRole role) {
-		super(new Position(col, row), true, GameWorld, NAME, SHORTCUT);
+		super(new Position(col, row), true, GameWorld);
 		direction = Direction.RIGHT;
 		fuerzaCaida = 0;
 		this.role = role;
@@ -47,7 +48,7 @@ public class Lemming extends GameObject{
 	}
 
 	public Lemming(Position pos, Direction dir, int fC, LemmingRole role, GameWorld GameWorld) {
-		super(pos, true, GameWorld, NAME, SHORTCUT);
+		super(pos, true, GameWorld);
 		direction = dir;
 		fuerzaCaida = fC;
 		this.role = role;
@@ -232,8 +233,23 @@ public class Lemming extends GameObject{
 			return interaction;
 		}
 	
-        @Override 
-        public GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException{
-            return null;
-        }
+	@Override
+	public GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException {
+		if (line.length != 4 || !line[1].equalsIgnoreCase(SHORTCUT) || !line[1].equalsIgnoreCase(NAME)) {
+			return null;
+		}
+		try {
+			Position pos = getPositionFrom(line[0]);
+		} catch (OffBoardException e) {
+			throw new OffBoardException("Position out of limits", e);
+		}
+		Direction dir = getDirectionFrom(line[1]);
+		int fC = Integer.parseInt(line[2]);
+		try {
+			LemmingRole role = LemmingRoleFactory.parse(line[3]);
+		} catch (RoleParseException e) {
+			throw new ObjectParseException("Role not found", e);
+		}
+		return new Lemming(pos, dir, fC, role, game);
+	}
 }

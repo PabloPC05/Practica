@@ -11,5 +11,6 @@ public interface GameWorld {
     abstract void addDeadLemmings();
     abstract int getLevel();
     abstract boolean receiveInteractionsFrom(GameItem obj);
+    abstract boolean positionInLimits(Position pos);
 
 }

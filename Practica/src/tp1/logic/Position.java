@@ -62,6 +62,11 @@ public class Position {
 		return !insideRowsLimits(Game.DIM_Y);
 	}
 
+	// Funcion para ver si la posicion esta dentro de cualquier limite del tabler
+	public boolean insideLimits() {
+		return insideColsLimits(Game.DIM_X) && insideRowsLimits(Game.DIM_Y);
+	}
+
 	// Compara si esta posición es igual a otra posición
 	public boolean isEqualTo(Position pos) {
 		return this.col == pos.col && this.row == pos.row;
