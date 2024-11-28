@@ -2,7 +2,6 @@ package tp1.control.commands;
 
 import java.util.Arrays;
 import java.util.List;
-
 import tp1.exceptions.CommandParseException;
 import tp1.view.Messages;
 public class CommandGenerator {
@@ -12,6 +11,7 @@ public class CommandGenerator {
 		new SetRoleCommand(),
 		new UpdateCommand(),
         new ResetCommand(),
+		new LoadCommand(),
         new HelpCommand(),
         new ExitCommand()
 	);

@@ -121,6 +121,12 @@ public class Messages {
 	public static final String COMMAND_SET_ROLE_INVALID_LEMMING = "No lemming in position %s admits role %s";
 	public static final String COMMAND_SET_ROLE_INVALID_ROLE = "Role %s is not valid";
 
+	// LOAD
+	public static final String COMMAND_LOAD_NAME = "load";
+	public static final String COMMAND_LOAD_SHORTCUT = "l";
+	public static final String COMMAND_LOAD_DETAILS = "[l]oad <fileName>";
+	public static final String COMMAND_LOAD_HELP = "load the game configuration from text file <fileName>";
+
 //Roles
 	//WalkerRole
 	public static final String WALKER_ROLE_SYMBOL = "W";

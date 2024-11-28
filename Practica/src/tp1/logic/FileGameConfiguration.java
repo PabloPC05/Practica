@@ -45,6 +45,4 @@ public class FileGameConfiguration implements GameConfiguration {
         // TODO: Implement this method
         return 0;
     }
-
-
 }

@@ -64,8 +64,10 @@ public class SetRoleCommand extends Command{
                 view.showError(Messages.LINE.formatted(Messages.EXECUTE_PROBLEM));
                 view.showError(Messages.LINE.formatted(Messages.COMMAND_SET_ROLE_INVALID_LEMMING.formatted(Messages.POSITION.formatted(row, col), roleName)));
             }
-            game.update();
-            view.showGame();
+            else{
+                game.update();
+                view.showGame();
+            }
         } catch (OffBoardException e) {
             throw new CommandExecuteException(Messages.ERROR.formatted(Messages.EXECUTE_PROBLEM), e);
         }
