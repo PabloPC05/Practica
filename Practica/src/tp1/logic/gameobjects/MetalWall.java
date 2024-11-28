@@ -63,7 +63,7 @@ public class MetalWall extends GameObject {
             }
             // Si la posicion no esta en lo limites del tablero, se lanza una excepcion
             try {
-                Position pos = getPositionFrom(line[0]);
+                pos = getPositionFrom(line[0]);
             } catch (OffBoardException e) {
                 throw new OffBoardException("Position out of limits");
             }

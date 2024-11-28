@@ -239,14 +239,14 @@ public class Lemming extends GameObject{
 			return null;
 		}
 		try {
-			Position pos = getPositionFrom(line[0]);
+			pos = getPositionFrom(line[0]);
 		} catch (OffBoardException e) {
 			throw new OffBoardException("Position out of limits", e);
 		}
 		Direction dir = getDirectionFrom(line[1]);
 		int fC = Integer.parseInt(line[2]);
 		try {
-			LemmingRole role = LemmingRoleFactory.parse(line[3]);
+			role = LemmingRoleFactory.parse(line[3]);
 		} catch (RoleParseException e) {
 			throw new ObjectParseException("Role not found", e);
 		}

@@ -1,8 +1,11 @@
 package tp1.logic;
+import tp1.exceptions.GameLoadException;
 import tp1.exceptions.OffBoardException;
+import tp1.logic.Interfaces.GameConfiguration;
 import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Interfaces.GameStatus;
 import tp1.logic.Interfaces.GameWorld;
+import tp1.logic.FileGameConfiguration;
 import tp1.logic.gameobjects.*;
 import tp1.logic.lemmingRoles.*;
 import tp1.view.Messages;
@@ -25,6 +28,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	private int numLemmings;
 	private int	deadLemmings;
 	private int exitLemmings;
+
+	private GameConfiguration conf = FileGameConfiguration.NONE;
+
 	
 
 	// Constructores
@@ -380,5 +386,17 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		// Funcion que devuelve si un nivel existe
 		public boolean existsLevel(int l) {
 			return l >= MIN_LEVEL && l <= MAX_LEVEL;
+		}
+
+		// Funcion para cargar un juego
+		@Override
+		public void load(String fileName) throws GameLoadException {
+			// Intentamos cargar el juego
+			try {
+				FileGameConfiguration fileGame = new FileGameConfiguration(fileName, this);
+			} // Si no se puede cargar el juego, lanzamos una excepcion
+			catch (GameLoadException e) {
+				throw new GameLoadException(Messages.ERROR.formatted(Messages.GAME_LOAD_ERROR.formatted(fileName)));
+			}
 		}
 }

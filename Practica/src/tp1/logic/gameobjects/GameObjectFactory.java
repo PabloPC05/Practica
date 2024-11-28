@@ -29,6 +29,8 @@ public class GameObjectFactory {
                 }
             } catch (ObjectParseException e) {
                 // No se hace nada
+            } catch (OffBoardException e) {
+                throw e;
             }
         }
         throw new ObjectParseException(/*"Invalid object"*/);
