@@ -61,7 +61,7 @@ public class Wall extends GameObject {
         public GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException{
             // Si el array es mayor que 2, no puede ser una puerta
             // Si el primer elemento del array es distinto del shortcut o del nombre, tampoco puede ser un muro
-            if(line.length > 2 || !line[1].equalsIgnoreCase(SHORTCUT) || line[1].equalsIgnoreCase(NAME)) {
+            if(line.length > 2 || !(line[1].equalsIgnoreCase(SHORTCUT) || line[1].equalsIgnoreCase(NAME))) {
                 return null;
             }
             // Si la posicion no esta en lo limites del tablero, se lanza una excepcion
@@ -71,7 +71,7 @@ public class Wall extends GameObject {
                 throw new OffBoardException("Position out of limits");
             }
             // Se devuelve una nueva puerta de la salida con la posicion y el juego
-            return new MetalWall(pos, game);
+            return new Wall(pos, game);
         }
 
 }

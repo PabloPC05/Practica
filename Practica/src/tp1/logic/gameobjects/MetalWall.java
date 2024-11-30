@@ -58,7 +58,7 @@ public class MetalWall extends GameObject {
         public GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException{
             // Si el array es mayor que 2, no puede ser una puerta
             // Si el primer elemento del array es distinto del shortcut o del nombre, tampoco puede ser un muro de mtetal
-            if(line.length > 2 || !line[1].equalsIgnoreCase(SHORTCUT) || line[1].equalsIgnoreCase(NAME)) {
+            if(line.length > 2 || !(line[1].equalsIgnoreCase(SHORTCUT) || line[1].equalsIgnoreCase(NAME))) {
                 return null;
             }
             // Si la posicion no esta en lo limites del tablero, se lanza una excepcion

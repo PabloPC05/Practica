@@ -86,7 +86,7 @@ public abstract class GameObject implements GameItem {
             String[] parts = line.replaceAll("[()]", "").split(",");
             int col = Integer.parseInt(parts[0].trim());
             int row = Integer.parseInt(parts[1].trim());
-            Position pos = new Position(col, row);
+            Position pos = new Position(row, col);
             if (!pos.insideLimits()) {
                 throw new OffBoardException("Position out of limits");
             }
@@ -94,11 +94,14 @@ public abstract class GameObject implements GameItem {
         }
 
         // Funcion para obtener la direccion de un objeto a partir de un string
-        protected Direction getDirectionFrom(String line) {
+        protected Direction getDirectionFrom(String line) throws ObjectParseException {
             if (line.equalsIgnoreCase("RIGHT")) {
                 return Direction.RIGHT;
-            } else {
+            } else if(line.equalsIgnoreCase("LEFT")) {
                 return Direction.LEFT;
+            }
+            else {
+                throw new ObjectParseException();
             }
         }
 

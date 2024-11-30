@@ -5,7 +5,6 @@ import tp1.logic.Interfaces.GameConfiguration;
 import tp1.logic.Interfaces.GameModel;
 import tp1.logic.Interfaces.GameStatus;
 import tp1.logic.Interfaces.GameWorld;
-import tp1.logic.FileGameConfiguration;
 import tp1.logic.gameobjects.*;
 import tp1.logic.lemmingRoles.*;
 import tp1.view.Messages;
@@ -394,9 +393,23 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			// Intentamos cargar el juego
 			try {
 				FileGameConfiguration fileGame = new FileGameConfiguration(fileName, this);
+				setConfiguration(fileGame);
 			} // Si no se puede cargar el juego, lanzamos una excepcion
 			catch (GameLoadException e) {
-				throw new GameLoadException(Messages.ERROR.formatted(Messages.GAME_LOAD_ERROR.formatted(fileName)));
+				throw new GameLoadException(Messages.ERROR.formatted(/*Messages.GAME_LOAD_ERROR.formatted(fileName)*/));
 			}
 		}
+
+		// Funcion setter la configuracion de un juego a partir de un archivo
+		public void setConfiguration(FileGameConfiguration conf) {
+			if(conf != null) {
+				this.cycle = conf.getCycle();
+				this.numLemmings = conf.numLemmingInBoard();
+				this.deadLemmings = conf.numLemmingsDead();
+				this.exitLemmings = conf.numLemmingsExit();
+				this.lemmingsToWin = conf.numLemmingsToWin();
+				this.gameObjects = conf.getGameObjects();
+			}
+		}
+
 }

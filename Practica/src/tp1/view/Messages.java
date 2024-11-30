@@ -56,6 +56,9 @@ public class Messages {
 	// Errores de ficheros:
 	public static final String FILE_NOT_FOUND = "File not found: \"%s\"";
 	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
+	public static final String FILE_FORMAT_ERROR = "Incorrect game status \"%s\"";
+	public static final String NOT_KWNOWN_DIRECTION = "Unkown object direction: %s";
+			
 	// Errores de parseo de otras cosas:
 	public static final String INVALID_POSITION = "Invalid position: %s";
 	public static final String INVALID_COMMAND = "Invalid command: %s";

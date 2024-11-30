@@ -235,21 +235,29 @@ public class Lemming extends GameObject{
 	
 	@Override
 	public GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException {
-		if (line.length != 4 || !line[1].equalsIgnoreCase(SHORTCUT) || !line[1].equalsIgnoreCase(NAME)) {
+		if (line.length != 5 || !(line[1].equalsIgnoreCase(SHORTCUT) || line[1].equalsIgnoreCase(NAME))) {
 			return null;
 		}
+		Position position; 
 		try {
-			pos = getPositionFrom(line[0]);
+			position = getPositionFrom(line[0]);
 		} catch (OffBoardException e) {
+			// Definir mensaje de error: Object position is off board: %s
 			throw new OffBoardException("Position out of limits", e);
 		}
-		Direction dir = getDirectionFrom(line[1]);
-		int fC = Integer.parseInt(line[2]);
+		Direction dir;
 		try {
-			role = LemmingRoleFactory.parse(line[3]);
+			dir = getDirectionFrom(line[2]);
+		} catch (ObjectParseException e) {
+			// Definir mensaje de error: Invalid direction: %s
+			throw new ObjectParseException(Messages.ERROR.formatted(Messages.NOT_KWNOWN_DIRECTION));
+		}
+		int fC = Integer.parseInt(line[3]);
+		try {
+			role = LemmingRoleFactory.parse(line[4]);
 		} catch (RoleParseException e) {
 			throw new ObjectParseException("Role not found", e);
 		}
-		return new Lemming(pos, dir, fC, role, game);
+		return new Lemming(position, dir, fC, role, game);
 	}
 }

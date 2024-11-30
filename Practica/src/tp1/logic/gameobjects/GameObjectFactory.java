@@ -28,7 +28,7 @@ public class GameObjectFactory {
                     return gameObject;
                 }
             } catch (ObjectParseException e) {
-                // No se hace nada
+                e.getMessage().formatted(line);
             } catch (OffBoardException e) {
                 throw e;
             }
