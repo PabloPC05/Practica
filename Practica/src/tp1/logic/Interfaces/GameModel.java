@@ -17,5 +17,9 @@ public interface GameModel {
 	abstract public boolean existsLevel(int l);
     abstract public void increaseCycle();
 
+    // Funcion load que carga un archivo
     public void load(String fileName) throws GameLoadException;
+
+    // Funcion fija la configuracion del juego
+    public void setConfiguration(GameConfiguration configuration);
 }

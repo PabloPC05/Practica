@@ -91,6 +91,27 @@ public class FileGameConfiguration implements GameConfiguration {
         return numLemmingsToWin;
     }
 
+    // Setters
+    @Override
+    public void setGameConfig(GameConfiguration gameConfig) {
+        cycle = gameConfig.getCycle();
+        numLemmingInBoard = gameConfig.numLemmingInBoard();
+        numLemmingsDead = gameConfig.numLemmingsDead();
+        numLemmingsExit = gameConfig.numLemmingsExit();
+        numLemmingsToWin = gameConfig.numLemmingsToWin();
+        gameObjects = gameConfig.getGameObjects();
+    }
+
+    @Override
+    public void setGameConfig(int cycle, int numLemmingInBoard, int numLemmingsDead, int numLemmingsExit, int numLemmingsToWin, GameObjectContainer gameObjects) {
+        this.cycle = cycle;
+        this.numLemmingInBoard = numLemmingInBoard;
+        this.numLemmingsDead = numLemmingsDead;
+        this.numLemmingsExit = numLemmingsExit;
+        this.numLemmingsToWin = numLemmingsToWin;
+        this.gameObjects = gameObjects;
+    }
+
 }
 
 

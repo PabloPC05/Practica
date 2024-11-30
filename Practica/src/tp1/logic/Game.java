@@ -30,8 +30,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 	private GameConfiguration conf = FileGameConfiguration.NONE;
 
-	
-
 	// Constructores
 	// Constructor por defecto
 	public Game() {
@@ -291,10 +289,32 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		// Funcion para reiniciar el juego
 		public void reset(int level) {
-			gameObjects = new GameObjectContainer();
-			initBoard(level);
-			cycle = 0;
+
+			// Reset estandar
+			if (conf == FileGameConfiguration.NONE) {
+				gameObjects = new GameObjectContainer();
+				initBoard(level);
+				cycle = 0; 
+			} else {
+				// Reset con configuracion
+				setConfiguration(conf);
+			}
+			
 		}
+
+		// Funcion setter la configuracion de un juego a partir de un archivo
+		public void setConfiguration(GameConfiguration conf) {
+			if(conf != null) {
+				this.conf.setGameConfig(conf);
+				this.cycle = conf.getCycle();
+				this.numLemmings = conf.numLemmingInBoard();
+				this.deadLemmings = conf.numLemmingsDead();
+				this.exitLemmings = conf.numLemmingsExit();
+				this.lemmingsToWin = conf.numLemmingsToWin();
+				this.gameObjects = conf.getGameObjects();
+			}
+		}
+
 		// Funcion para saber si el jugador ha ganado
 		public boolean playerWins() {
 			return exitLemmings >= lemmingsToWin && numLemmings == 0;
@@ -397,18 +417,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			} // Si no se puede cargar el juego, lanzamos una excepcion
 			catch (GameLoadException e) {
 				throw new GameLoadException(Messages.ERROR.formatted(/*Messages.GAME_LOAD_ERROR.formatted(fileName)*/));
-			}
-		}
-
-		// Funcion setter la configuracion de un juego a partir de un archivo
-		public void setConfiguration(FileGameConfiguration conf) {
-			if(conf != null) {
-				this.cycle = conf.getCycle();
-				this.numLemmings = conf.numLemmingInBoard();
-				this.deadLemmings = conf.numLemmingsDead();
-				this.exitLemmings = conf.numLemmingsExit();
-				this.lemmingsToWin = conf.numLemmingsToWin();
-				this.gameObjects = conf.getGameObjects();
 			}
 		}
 

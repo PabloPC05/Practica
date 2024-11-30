@@ -70,4 +70,10 @@ public class MetalWall extends GameObject {
             // Se devuelve una nueva puerta de la salida con la posicion y el juego
             return new MetalWall(pos, game);
         }
+
+        // Funcion para clonear una pared de metal
+        @Override
+        public GameObject clone() {
+            return new MetalWall(pos, gameWorld);
+        }
 }

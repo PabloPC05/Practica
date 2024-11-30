@@ -13,6 +13,6 @@ public interface GameWorld {
     abstract boolean receiveInteractionsFrom(GameItem obj);
     abstract boolean positionInLimits(Position pos);
 
-    abstract void setConfiguration(FileGameConfiguration fileGameConfiguration);
+    abstract void setConfiguration(GameConfiguration fileGameConfiguration);
 
 }

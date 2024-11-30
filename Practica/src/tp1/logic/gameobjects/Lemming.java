@@ -260,4 +260,10 @@ public class Lemming extends GameObject{
 		}
 		return new Lemming(position, dir, fC, role, game);
 	}
+
+	// Funcion para clonar un lemming
+	@Override
+	public GameObject clone() {
+		return new Lemming(pos, direction, fuerzaCaida, role, gameWorld);
+	}
 }

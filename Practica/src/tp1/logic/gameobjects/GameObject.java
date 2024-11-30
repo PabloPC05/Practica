@@ -107,4 +107,7 @@ public abstract class GameObject implements GameItem {
 
         public abstract GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException;
 
+        // Funcion para clonar un objeto
+        public abstract GameObject clone();
+
 }

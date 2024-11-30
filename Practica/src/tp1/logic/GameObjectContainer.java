@@ -117,4 +117,16 @@ public class GameObjectContainer {
 			// Devuelve verdadero si hubo alguna interacción
 			return interaction;
 		}
+
+		// Funcion que clona el contenedor de objetos
+		public GameObjectContainer clone(){
+			// Crea un nuevo contenedor de objetos
+			GameObjectContainer newContainer = new GameObjectContainer();
+			// Recorre la lista de objetos para clonarlos
+			for (GameObject gameObject : gameObjects) {
+				newContainer.add(gameObject.clone());
+			}
+			// Devuelve el nuevo contenedor de objetos
+			return newContainer;
+		}
 }
