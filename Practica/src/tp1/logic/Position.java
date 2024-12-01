@@ -76,4 +76,8 @@ public class Position {
 	public String toString() {
         return Messages.POSITION.formatted(String.valueOf(row), String.valueOf(col));
 	}
+
+	public Position clone(){
+		return new Position(col, row);
+	}
 }

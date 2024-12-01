@@ -71,9 +71,11 @@ public class MetalWall extends GameObject {
             return new MetalWall(pos, game);
         }
 
-        // Funcion para clonear una pared de metal
         @Override
-        public GameObject clone() {
-            return new MetalWall(pos, gameWorld);
+        public MetalWall clone(){
+            Position posDuplicated = pos.clone();
+            GameWorld gameWorldDuplicated = this.gameWorld;
+            boolean vivoDuplicated = this.vivo;
+            return new MetalWall(posDuplicated, vivoDuplicated, gameWorldDuplicated);
         }
 }

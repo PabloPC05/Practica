@@ -21,5 +21,5 @@ public interface GameModel {
     public void load(String fileName) throws GameLoadException;
 
     // Funcion fija la configuracion del juego
-    public void setConfiguration(GameConfiguration configuration);
+    public void setConfiguration();
 }

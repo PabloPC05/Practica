@@ -85,7 +85,7 @@ public class GameObjectContainer {
 		}
 		
 		// Devuelve el índice del objeto en la posición dada
-		public int objectAt(Position pos) {
+		/*public int objectAt(Position pos) {
 			int index = -1;
 			// Recorre la lista de objetos para encontrar el índice del objeto en la posición
 			for(int i = 0; i < gameObjects.size() && index == -1; i++) {
@@ -93,7 +93,7 @@ public class GameObjectContainer {
 			}
 			// Devuelve el índice del objeto o -1 si no se encuentra
 			return index;
-		}
+		}*/
 		
 		// Establece el rol de un lemming en la posición dada
 		public boolean setRole(LemmingRole role, Position pos, String roleName) {

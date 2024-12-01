@@ -29,6 +29,17 @@ public class FileGameConfiguration implements GameConfiguration {
     public FileGameConfiguration() {
     }
 
+    public FileGameConfiguration clone(){
+        FileGameConfiguration duplicated = new FileGameConfiguration();
+        duplicated.cycle = this.cycle;
+        duplicated.numLemmingInBoard = this.numLemmingInBoard;
+        duplicated.numLemmingsDead = this.numLemmingsDead;
+        duplicated.numLemmingsExit = this.numLemmingsExit;
+        duplicated.numLemmingsToWin = this.numLemmingsToWin;
+        duplicated.gameObjects = this.gameObjects.clone();
+        return duplicated;
+    }
+
     public FileGameConfiguration(String fileName, GameWorld game) throws GameLoadException {
         // Leemos el archivo
         gameObjects = new GameObjectContainer();
@@ -66,7 +77,7 @@ public class FileGameConfiguration implements GameConfiguration {
 
     @Override
     public GameObjectContainer getGameObjects() {
-        return gameObjects;
+        return gameObjects.clone();
     }
 
     // Getters
@@ -89,27 +100,6 @@ public class FileGameConfiguration implements GameConfiguration {
     @Override
     public int numLemmingsToWin() {
         return numLemmingsToWin;
-    }
-
-    // Setters
-    @Override
-    public void setGameConfig(GameConfiguration gameConfig) {
-        cycle = gameConfig.getCycle();
-        numLemmingInBoard = gameConfig.numLemmingInBoard();
-        numLemmingsDead = gameConfig.numLemmingsDead();
-        numLemmingsExit = gameConfig.numLemmingsExit();
-        numLemmingsToWin = gameConfig.numLemmingsToWin();
-        gameObjects = gameConfig.getGameObjects();
-    }
-
-    @Override
-    public void setGameConfig(int cycle, int numLemmingInBoard, int numLemmingsDead, int numLemmingsExit, int numLemmingsToWin, GameObjectContainer gameObjects) {
-        this.cycle = cycle;
-        this.numLemmingInBoard = numLemmingInBoard;
-        this.numLemmingsDead = numLemmingsDead;
-        this.numLemmingsExit = numLemmingsExit;
-        this.numLemmingsToWin = numLemmingsToWin;
-        this.gameObjects = gameObjects;
     }
 
 }

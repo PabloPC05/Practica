@@ -109,5 +109,4 @@ public abstract class GameObject implements GameItem {
 
         // Funcion para clonar un objeto
         public abstract GameObject clone();
-
 }

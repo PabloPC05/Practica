@@ -74,10 +74,11 @@ public class Wall extends GameObject {
             return new Wall(pos, game);
         }
 
-        // Funcion para clonear una pared
         @Override
-        public GameObject clone() {
-            return new Wall(pos, gameWorld);
+        public Wall clone(){
+            Position posDuplicated = pos.clone();
+            GameWorld gameWorldDuplicated = this.gameWorld;
+            boolean vivoDuplicated = this.vivo;
+            return new Wall(posDuplicated, vivoDuplicated, gameWorldDuplicated);
         }
-
 }

@@ -263,7 +263,12 @@ public class Lemming extends GameObject{
 
 	// Funcion para clonar un lemming
 	@Override
-	public GameObject clone() {
-		return new Lemming(pos, direction, fuerzaCaida, role, gameWorld);
+	public Lemming clone(){
+		Position posDuplicated = pos.clone();
+		GameWorld gameWorldDuplicated = this.gameWorld;
+		Direction dirDuplicated = direction;
+		int fCDuplicated = fuerzaCaida;
+		LemmingRole roleDuplicated = role;
+		return new Lemming(posDuplicated, dirDuplicated, fCDuplicated, roleDuplicated, gameWorldDuplicated);
 	}
 }

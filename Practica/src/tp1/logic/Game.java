@@ -27,8 +27,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	private int numLemmings;
 	private int	deadLemmings;
 	private int exitLemmings;
-
-	private GameConfiguration conf = FileGameConfiguration.NONE;
+	private GameConfiguration configuration = FileGameConfiguration.NONE;
 
 	// Constructores
 	// Constructor por defecto
@@ -43,6 +42,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		numLemmings = 0;
 		deadLemmings = 0;
 		exitLemmings = 0;
+		configuration = new FileGameConfiguration();
 	}
 
 	// Constructor con parametros de nivel
@@ -56,6 +56,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		exit = false;
 		deadLemmings = 0;
 		exitLemmings = 0;
+		configuration = new FileGameConfiguration();
 	}
 
 	// Funcion para inicializar los objetos del juego dependiendo del nivel
@@ -287,34 +288,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			cycle++;
 		}
 
-		// Funcion para reiniciar el juego
-		public void reset(int level) {
-
-			// Reset estandar
-			if (conf == FileGameConfiguration.NONE) {
-				gameObjects = new GameObjectContainer();
-				initBoard(level);
-				cycle = 0; 
-			} else {
-				// Reset con configuracion
-				setConfiguration(conf);
-			}
-			
-		}
-
-		// Funcion setter la configuracion de un juego a partir de un archivo
-		public void setConfiguration(GameConfiguration conf) {
-			if(conf != null) {
-				this.conf.setGameConfig(conf);
-				this.cycle = conf.getCycle();
-				this.numLemmings = conf.numLemmingInBoard();
-				this.deadLemmings = conf.numLemmingsDead();
-				this.exitLemmings = conf.numLemmingsExit();
-				this.lemmingsToWin = conf.numLemmingsToWin();
-				this.gameObjects = conf.getGameObjects();
-			}
-		}
-
 		// Funcion para saber si el jugador ha ganado
 		public boolean playerWins() {
 			return exitLemmings >= lemmingsToWin && numLemmings == 0;
@@ -412,11 +385,38 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		public void load(String fileName) throws GameLoadException {
 			// Intentamos cargar el juego
 			try {
-				FileGameConfiguration fileGame = new FileGameConfiguration(fileName, this);
-				setConfiguration(fileGame);
+				configuration = new FileGameConfiguration(fileName, this);
+				setConfiguration();
 			} // Si no se puede cargar el juego, lanzamos una excepcion
 			catch (GameLoadException e) {
 				throw new GameLoadException(Messages.ERROR.formatted(/*Messages.GAME_LOAD_ERROR.formatted(fileName)*/));
+			}
+		}
+
+		// Funcion para reiniciar el juego
+		public void reset(int level) {
+			// Reset estandar
+			if (configuration == FileGameConfiguration.NONE) {
+				gameObjects = new GameObjectContainer();
+				initBoard(level);
+				cycle = 0; 
+			} else {
+				// Reset con configuracion
+				setConfiguration();
+			}
+			
+		}
+
+		// Funcion setter la configuracion de un juego a partir de un archivo
+		public void setConfiguration() {
+			if(configuration != null) {
+				this.cycle = configuration.getCycle();
+				this.numLemmings = configuration.numLemmingInBoard();
+				this.deadLemmings = configuration.numLemmingsDead();
+				this.exitLemmings = configuration.numLemmingsExit();
+				this.lemmingsToWin = configuration.numLemmingsToWin();
+				this.gameObjects = configuration.getGameObjects();
+				this.level = -1;
 			}
 		}
 

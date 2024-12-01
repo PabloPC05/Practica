@@ -72,10 +72,11 @@ public class ExitDoor extends GameObject {
             return new ExitDoor(pos, game);
         }
 
-        // Funcion para clonar una puerta de salida
         @Override
-        public GameObject clone() {
-            return new ExitDoor(pos, gameWorld);
+        public ExitDoor clone(){
+            Position posDuplicated = pos.clone();
+            GameWorld gameWorldDuplicated = this.gameWorld;
+            boolean vivoDuplicated = this.vivo;
+            return new ExitDoor(posDuplicated, vivoDuplicated, gameWorldDuplicated);
         }
- 
 }
