@@ -71,6 +71,7 @@ public class MetalWall extends GameObject {
             return new MetalWall(pos, game);
         }
 
+        // Funcion para clonar un muro de metal
         @Override
         public MetalWall clone(){
             Position posDuplicated = pos.clone();

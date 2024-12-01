@@ -29,6 +29,7 @@ public class FileGameConfiguration implements GameConfiguration {
     public FileGameConfiguration() {
     }
 
+    // Funcion que clona la configuración del juego del fichero
     public FileGameConfiguration clone(){
         FileGameConfiguration duplicated = new FileGameConfiguration();
         duplicated.cycle = this.cycle;
@@ -75,6 +76,7 @@ public class FileGameConfiguration implements GameConfiguration {
         }
     }
 
+    // Clonamos el contenedor de objetos
     @Override
     public GameObjectContainer getGameObjects() {
         return gameObjects.clone();
