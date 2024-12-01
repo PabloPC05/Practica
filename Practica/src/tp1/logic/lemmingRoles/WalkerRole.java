@@ -42,6 +42,7 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
     // Funcion para startear el walking lemming (no hace nada)
     @Override
     public void start(Lemming lemming) {
+        //No hace nada
     }
 
     // Funcion que comprueba si el rol es el correcto

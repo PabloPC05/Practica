@@ -4,6 +4,7 @@ import java.util.List;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.Interfaces.GameWorld;
+import tp1.view.Messages;
 
 // lanza ObjectParseException si line no se corresponde con ninguno
 // de los objetos disponibles (todos han devuelto null)
@@ -27,12 +28,10 @@ public class GameObjectFactory {
                 if (gameObject != null) {
                     return gameObject;
                 }
-            } catch (ObjectParseException e) {
-                e.getMessage().formatted(line);
-            } catch (OffBoardException e) {
+            } catch (ObjectParseException | OffBoardException e) {
                 throw e;
             }
         }
-        throw new ObjectParseException(/*"Invalid object"*/);
+        throw new ObjectParseException(Messages.UNKNOWN_GAME_OBJECT);
     }
 }

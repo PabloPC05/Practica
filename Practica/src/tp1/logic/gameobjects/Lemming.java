@@ -158,7 +158,10 @@ public class Lemming extends GameObject{
 			addDeadLemmings();
 		}
 		else if(crashingIntoLimits()) inverseDirection();
-		else walk();
+		else{ 
+			walk();
+			featherFall();
+		}
 	}
 
 	// Getters
@@ -242,21 +245,20 @@ public class Lemming extends GameObject{
 		try {
 			position = getPositionFrom(line[0]);
 		} catch (OffBoardException e) {
-			// Definir mensaje de error: Object position is off board: %s
-			throw new OffBoardException("Position out of limits", e);
+			throw e;
 		}
 		Direction dir;
 		try {
 			dir = getDirectionFrom(line[2]);
 		} catch (ObjectParseException e) {
 			// Definir mensaje de error: Invalid direction: %s
-			throw new ObjectParseException(Messages.ERROR.formatted(Messages.NOT_KWNOWN_DIRECTION));
+			throw e;
 		}
 		int fC = Integer.parseInt(line[3]);
 		try {
 			role = LemmingRoleFactory.parse(line[4]);
 		} catch (RoleParseException e) {
-			throw new ObjectParseException("Role not found", e);
+			throw new ObjectParseException(Messages.INVALID_LEMMING_ROLE);
 		}
 		return new Lemming(position, dir, fC, role, game);
 	}
@@ -271,4 +273,19 @@ public class Lemming extends GameObject{
 		LemmingRole roleDuplicated = role;
 		return new Lemming(posDuplicated, dirDuplicated, fCDuplicated, roleDuplicated, gameWorldDuplicated);
 	}
+
+    // Funcion para obtener la direccion de un objeto a partir de un string
+    private Direction getDirectionFrom(String line) throws ObjectParseException {
+        if (line.equalsIgnoreCase("RIGHT")) {
+            return Direction.RIGHT;
+        } else if(line.equalsIgnoreCase("LEFT")) {
+            return Direction.LEFT;
+        }
+        else if(line.equalsIgnoreCase("UP") || line.equalsIgnoreCase("DOWN")){
+            throw new ObjectParseException(Messages.INVALID_LEMMING_DIRECTION);
+        }
+        else {
+            throw new ObjectParseException(Messages.NOT_KWNOWN_DIRECTION);
+        }
+    }
 }

@@ -26,7 +26,7 @@ public class LoadCommand extends Command{
             game.load(fileName);
         } catch (GameLoadException e) {
             game.update();
-            throw new CommandExecuteException(e);
+            throw new CommandExecuteException(Messages.INVALID_FILE_CONFIGURATION.formatted(fileName) ,e);
         }
         view.showGame();
     }

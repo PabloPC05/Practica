@@ -66,7 +66,7 @@ public class ExitDoor extends GameObject {
             try {
                 pos = getPositionFrom(line[0]);
             } catch (OffBoardException e) {
-                throw new OffBoardException("Position out of limits");
+                throw e;
             }
             // Se devuelve una nueva puerta de la salida con la posicion y el juego
             return new ExitDoor(pos, game);

@@ -12,6 +12,4 @@ public interface GameWorld {
     abstract int getLevel();
     abstract boolean receiveInteractionsFrom(GameItem obj);
     abstract boolean positionInLimits(Position pos);
-    abstract void setConfiguration();
-
 }

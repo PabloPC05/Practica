@@ -1,5 +1,6 @@
 package tp1.control;
 
+import java.awt.event.FocusEvent;
 import tp1.control.commands.Command;
 import tp1.control.commands.CommandGenerator;
 import tp1.exceptions.CommandException;
@@ -40,18 +41,12 @@ public class Controller {
 				}
 				// Si no, mostramos un mensaje de error
 				else view.showError(Messages.UNKNOWN_COMMAND.formatted(words[0]));
-				}   catch (CommandException e) {
-					StringBuilder str = new StringBuilder(e.getMessage());
-					//str.deleteCharAt(str.length() - 1);
-					//.deleteCharAt(str.length() - 1);
-					view.showError(str.toString());
-					Throwable cause = e.getCause();			
-					if (cause != null){
-						StringBuilder causeStr = new StringBuilder(cause.getMessage());
-						//causeStr.deleteCharAt(causeStr.length() - 1);
-						//causeStr.deleteCharAt(causeStr.length() - 1);
-						view.showError(causeStr.toString());
-					}    
+			}   catch (CommandException e) {
+					if(e.getCause() != null){
+						view.showErrorWithoutNewLine(e.getMessage());
+						view.showError(e.getCause().getMessage());
+					}
+					else view.showError(e.getMessage());
  			}
 		}
 		// Mostramos el mensaje de fin de juego

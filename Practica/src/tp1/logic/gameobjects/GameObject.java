@@ -1,10 +1,10 @@
 package tp1.logic.gameobjects;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
-import tp1.logic.Direction;
 import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
+import tp1.view.Messages;
 
 
 public abstract class GameObject implements GameItem {
@@ -82,27 +82,20 @@ public abstract class GameObject implements GameItem {
         }
 
         // Funcion para obtener a partir de un string la posicion de un objeto
-        protected Position getPositionFrom(String line) throws OffBoardException {
+        protected Position getPositionFrom(String line) throws OffBoardException, ObjectParseException {
             String[] parts = line.replaceAll("[()]", "").split(",");
-            int col = Integer.parseInt(parts[0].trim());
-            int row = Integer.parseInt(parts[1].trim());
+            int col, row;
+            try {
+                col = Integer.parseInt(parts[0].trim());
+                row = Integer.parseInt(parts[1].trim());
+            } catch (NumberFormatException e) {
+                throw new ObjectParseException(Messages.OBJECT_POSITION_NOT_NUMERIC);
+            }
             Position pos = new Position(row, col);
             if (!pos.insideLimits()) {
-                throw new OffBoardException("Position out of limits");
+                throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD);
             }
             return pos;
-        }
-
-        // Funcion para obtener la direccion de un objeto a partir de un string
-        protected Direction getDirectionFrom(String line) throws ObjectParseException {
-            if (line.equalsIgnoreCase("RIGHT")) {
-                return Direction.RIGHT;
-            } else if(line.equalsIgnoreCase("LEFT")) {
-                return Direction.LEFT;
-            }
-            else {
-                throw new ObjectParseException();
-            }
         }
 
         public abstract GameObject parse(String[] line, GameWorld game) throws ObjectParseException, OffBoardException;

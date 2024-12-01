@@ -43,10 +43,10 @@ public class FileGameConfiguration implements GameConfiguration {
     public FileGameConfiguration(String fileName, GameWorld game) throws GameLoadException {
         // Leemos el archivo
         gameObjects = new GameObjectContainer();
+        String lineaAux = null;
         try (FileReader fr = new FileReader(fileName);
             BufferedReader br = new BufferedReader(fr)) {
             // Leemos la configuración del juego
-            String lineaAux;
             lineaAux = br.readLine();
             String[] linea = lineaAux.split(" ");
             if (linea.length != 5) {
@@ -64,14 +64,14 @@ public class FileGameConfiguration implements GameConfiguration {
                 gameObjects.add(GameObjectFactory.parse(lineaAux, game));
             }
         } catch (IOException e) {
-            // Lanza una excepcion con mensaje de error: File format error si el formato del archivo no es correcto
-            throw new GameLoadException(Messages.FILE_FORMAT_ERROR.formatted(fileName), e);
+            // Lanza una excepcion con mensaje de error: Filenot found si no encuentra el archivo
+            throw new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName));
         } catch (ObjectParseException e) {
-            // Lanza una excepcion con mensaje de error: File not found si no encuentra el archivo
-            throw new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName), e);
+            // Lanza una excepcion si el gameObject no es reconocido
+            throw new GameLoadException(e.getMessage().formatted(lineaAux));
         } catch (OffBoardException e) {
             // Lanza una excepcion con mensaje de error: Off board exception
-            throw new GameLoadException(e);
+            throw new GameLoadException(e.getMessage().formatted(lineaAux));
         }
     }
 

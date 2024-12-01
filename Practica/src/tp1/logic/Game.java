@@ -389,7 +389,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				setConfiguration();
 			} // Si no se puede cargar el juego, lanzamos una excepcion
 			catch (GameLoadException e) {
-				throw new GameLoadException(Messages.ERROR.formatted(/*Messages.GAME_LOAD_ERROR.formatted(fileName)*/));
+				throw e;
 			}
 		}
 
@@ -408,6 +408,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		// Funcion setter la configuracion de un juego a partir de un archivo
+		@Override
 		public void setConfiguration() {
 			if(configuration != null) {
 				this.cycle = configuration.getCycle();

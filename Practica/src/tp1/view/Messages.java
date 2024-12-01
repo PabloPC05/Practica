@@ -21,6 +21,8 @@ public class Messages {
 
 	public static final String DEBUG = "[DEBUG] Executing: %s%n";
 	public static final String ERROR = "[ERROR] Error: %s%n";
+	public static final String ERROR_WITHOUT_LINE = "[ERROR] Error: %s";
+
 	
 	// GAME STATUS
 	public static final String NUMBER_OF_CYCLES = "Number of cycles: %s";
@@ -48,7 +50,7 @@ public class Messages {
 //Commands
 	// Errores de factorías:
 	public static final String UNKNOWN_COMMAND = "Unknown command: %s";
-	public static final String UNKNOWN_GAME_OBJECT = "Unknown game object: %s";
+	public static final String UNKNOWN_GAME_OBJECT = "Unknown game object: \"%s\"";
 	public static final String UNKNOWN_ROLE = "Unknown role: %s";
 	// Errores de commandos:
 	public static final String COMMAND_PARAMETERS_MISSING = "Missing parameters";
@@ -57,17 +59,23 @@ public class Messages {
 	public static final String FILE_NOT_FOUND = "File not found: \"%s\"";
 	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
 	public static final String FILE_FORMAT_ERROR = "Incorrect game status \"%s\"";
-	public static final String NOT_KWNOWN_DIRECTION = "Unkown object direction: %s";
+	public static final String NOT_KWNOWN_DIRECTION = "Unkown object direction: \"%s\"";
 			
 	// Errores de parseo de otras cosas:
 	public static final String INVALID_POSITION = "Invalid position: %s";
+	public static final String OBJECT_POSITION_OFF_BOARD = "Object position is off board: \"%S\"";
+
 	public static final String INVALID_COMMAND = "Invalid command: %s";
+	public static final String INVALID_FILE_CONFIGURATION = "Invalid file: %s configuration";
+	public static final String INVALID_LEMMING_DIRECTION = "Invalid lemming direction: \"%s\"";
 	public static final String INVALID_DIRECTION = "Invalid direction: %s";
 	public static final String INVALID_HEIGHT = "Invalid height: %s";
 	public static final String INVALID_GAME_STATUS = "Invalid game status";
 	public static final String INVALID_INIT_CONF = "Invalid init configuration because %s";
+	public static final String INVALID_LEMMING_ROLE = "Invalid lemming role: \"%s\"";
 	public static final String ERROR_INVALID_INIT_CONF = "Unknown invalid init configuration";
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
+	public static final String OBJECT_POSITION_NOT_NUMERIC = "Invlid object position: \"%s\"";
 	// Errores de ejecución de comandos:
 	public static final String EXECUTE_PROBLEM = "Command execute problem";
 	

@@ -1,11 +1,9 @@
 package tp1.view;
 
-import static tp1.util.MyStringUtils.repeat;
-
 import java.util.Scanner;
-
 import tp1.logic.Game;
 import tp1.util.MyStringUtils;
+import static tp1.util.MyStringUtils.repeat;
 
 public class ConsoleView extends GameView {
 	
@@ -149,6 +147,11 @@ public class ConsoleView extends GameView {
 	@Override
 	public void showError(String message) {
         System.out.println(Messages.ERROR.formatted(message));		
+	}
+
+	@Override
+	public void showErrorWithoutNewLine(String message) {
+        System.out.println(Messages.ERROR_WITHOUT_LINE.formatted(message));		
 	}
 	
 	@Override
