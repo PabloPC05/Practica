@@ -4,7 +4,7 @@ import tp1.util.MyStringUtils;
 
 public class Messages {
 	
-	public static final String VERSION = "2.2";
+	public static final String VERSION = "3.0";
 
 	public static final String GAME_NAME = "Lemmings";
 
@@ -34,7 +34,7 @@ public class Messages {
 	public static final String GAME_OVER = "Game over";
 	public static final String PLAYER_QUITS = "Player leaves the game";
 	public static final String PLAYER_WINS = "Player wins!";
-	public static final String PLAYER_LOOSES = "Player loses...";
+	public static final String PLAYER_LOOSES = "Player lose...";
 
 	// Position format
 	public static final String POSITION = "(%s,%s)";
@@ -58,15 +58,15 @@ public class Messages {
 	// Errores de ficheros:
 	public static final String FILE_NOT_FOUND = "File not found: \"%s\"";
 	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
-	public static final String FILE_FORMAT_ERROR = "Incorrect game status \"%s\"";
-	public static final String NOT_KWNOWN_DIRECTION = "Unkown object direction: \"%s\"";
+	public static final String FILE_FORMAT_ERROR = "Invalid game status \"%s\"";
+	public static final String NOT_KWNOWN_DIRECTION = "Unknown object direction: \"%s\"";
 			
 	// Errores de parseo de otras cosas:
 	public static final String INVALID_POSITION = "Invalid position: %s";
-	public static final String OBJECT_POSITION_OFF_BOARD = "Object position is off board: \"%S\"";
+	public static final String OBJECT_POSITION_OFF_BOARD = "Object position is off board: \"%s\"";
 
-	public static final String INVALID_COMMAND = "Invalid command: %s";
-	public static final String INVALID_FILE_CONFIGURATION = "Invalid file: %s configuration";
+	public static final String INVALID_COMMAND = "Invalid command parameters";
+	public static final String INVALID_FILE_CONFIGURATION = "Invalid file \"%s\" configuration";
 	public static final String INVALID_LEMMING_DIRECTION = "Invalid lemming direction: \"%s\"";
 	public static final String INVALID_DIRECTION = "Invalid direction: %s";
 	public static final String INVALID_HEIGHT = "Invalid height: %s";
@@ -75,9 +75,10 @@ public class Messages {
 	public static final String INVALID_LEMMING_ROLE = "Invalid lemming role: \"%s\"";
 	public static final String ERROR_INVALID_INIT_CONF = "Unknown invalid init configuration";
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
-	public static final String OBJECT_POSITION_NOT_NUMERIC = "Invlid object position: \"%s\"";
+	public static final String OBJECT_POSITION_NOT_NUMERIC = "Invalid object position: \"%s\"";
 	// Errores de ejecución de comandos:
 	public static final String EXECUTE_PROBLEM = "Command execute problem";
+
 	
 	//public static final String HELP_AVAILABLE_COMMANDS = "Available commands:" + LINE_SEPARATOR + "[n]one: skips cycle" + LINE_SEPARATOR + "[h]elp: print this help message" + LINE_SEPARATOR + "[r]eset [nLevel]: start the nLevel game or the level 1 if not nLevel" + LINE_SEPARATOR + "[e]xit: end the execution of the game" + LINE_SEPARATOR + "[s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE" + LINE_SEPARATOR;
 	public static final String COMMAND_HELP_TEXT = "%s: %s";
@@ -126,17 +127,24 @@ public class Messages {
 	public static final String COMMAND_SET_ROLE_NAME = "setRole";
 	public static final String COMMAND_SET_ROLE_SHORTCUT = "sr";
 	public static final String COMMAND_SET_ROLE_DETAILS = "[s]et[R]ole ROLE ROW COL";
-	public static final String COMMAND_SET_ROLE_HELP = "sets the lemming in position (ROW,COL) to role ROL";
+	public static final String COMMAND_SET_ROLE_HELP = "sets the lemming in position (ROW,COL) to role ROLE";
 	public static final String COMMAND_SET_ROLE_INVALID_ARGUMENT = "SetRoleCommand error (Incorrect position or no object in that position admits that role)";
-	public static final String COMMAND_SET_ROLE_INVALID_POSITION = "Position %s off the board";
+	public static final String COMMAND_SET_ROLE_INVALID_POSITION = "Position %s is off board";
 	public static final String COMMAND_SET_ROLE_INVALID_LEMMING = "No lemming in position %s admits role %s";
-	public static final String COMMAND_SET_ROLE_INVALID_ROLE = "Role %s is not valid";
+	public static final String COMMAND_SET_ROLE_INVALID_ROLE = "Unknown role: %s";
+	public static final String COMMAND_SET_ROLE_INVALID_NUMBER_ARGS = "Incorrect parameter number";
 
 	// LOAD
 	public static final String COMMAND_LOAD_NAME = "load";
 	public static final String COMMAND_LOAD_SHORTCUT = "l";
 	public static final String COMMAND_LOAD_DETAILS = "[l]oad <fileName>";
 	public static final String COMMAND_LOAD_HELP = "load the game configuration from text file <fileName>";
+
+	// SAVE
+	public static final String COMMAND_SAVE_NAME = "save";
+	public static final String COMMAND_SAVE_SHORTCUT = "s";
+	public static final String COMMAND_SAVE_DETAILS = "[s]ave <fileName>";
+	public static final String COMMAND_SAVE_HELP = "save the actual configuration in text file <fileName>";
 
 //Roles
 	//WalkerRole

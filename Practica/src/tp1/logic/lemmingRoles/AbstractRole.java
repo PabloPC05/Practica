@@ -42,6 +42,10 @@ public class AbstractRole {
         return details;
     }
 
+    public String getName(){
+        return name;
+    }
+
     // Funcion para 
     public boolean matchRoleName(String str){
         return str.equalsIgnoreCase(name) || str.equalsIgnoreCase(symbol);

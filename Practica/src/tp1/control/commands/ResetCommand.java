@@ -51,11 +51,12 @@ public class ResetCommand extends Command{
 			view.showGame();
 		}
 		else if(game.existsLevel(level)){
+			game.resetToDefaultConfiguration();
 			game.reset(level);
 			view.showGame();
 		}
 		else {
-			throw new CommandExecuteException(Messages.ERROR.formatted(Messages.INVALID_LEVEL_NUMBER));
+			throw new CommandExecuteException(Messages.INVALID_LEVEL_NUMBER);
 		}
 	}
 

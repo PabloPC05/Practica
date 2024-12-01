@@ -27,7 +27,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 	private int numLemmings;
 	private int	deadLemmings;
 	private int exitLemmings;
-	private GameConfiguration configuration = FileGameConfiguration.NONE;
+	private GameConfiguration configuration;
 
 	// Constructores
 	// Constructor por defecto
@@ -42,7 +42,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		numLemmings = 0;
 		deadLemmings = 0;
 		exitLemmings = 0;
-		configuration = new FileGameConfiguration();
+		configuration = FileGameConfiguration.NONE;
 	}
 
 	// Constructor con parametros de nivel
@@ -56,7 +56,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		exit = false;
 		deadLemmings = 0;
 		exitLemmings = 0;
-		configuration = new FileGameConfiguration();
+		configuration = FileGameConfiguration.NONE;
 	}
 
 	// Funcion para inicializar los objetos del juego dependiendo del nivel
@@ -365,7 +365,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		// Funcion que fija el rol de un lemming en una posicion, y devuelve si se ha podido fijar
 		public boolean setRole(LemmingRole role, Position pos, String roleName) throws OffBoardException {
 			if(!positionInLimits(pos)){ 
-				throw new OffBoardException(Messages.ERROR.formatted(Messages.COMMAND_SET_ROLE_INVALID_POSITION.formatted(pos.toString())));
+				throw new OffBoardException(Messages.COMMAND_SET_ROLE_INVALID_POSITION.formatted(pos.toString()));
 			}
 			return gameObjects.setRole(role, pos, roleName);
 		}
@@ -404,7 +404,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				// Reset con configuracion
 				setConfiguration();
 			}
-			
+		}
+
+		public void resetToDefaultConfiguration() {
+			this.configuration = FileGameConfiguration.NONE;
 		}
 
 		// Funcion setter la configuracion de un juego a partir de un archivo
@@ -420,5 +423,11 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				this.level = -1;
 			}
 		}
+
+		// Funcion para guardar un juego
+		/*@Override
+		public void save(String fileName) {
+			
+		}*/
 
 }

@@ -36,12 +36,14 @@ public class SetRoleCommand extends Command{
         if (matchCommandName(commandWords[0])) {
             SetRoleCommand newCommand = new SetRoleCommand();
             newCommand.valid = commandWords.length == 4;
-            // Comprobamos el rol
+            if(!newCommand.valid) throw new CommandParseException(Messages.COMMAND_SET_ROLE_INVALID_NUMBER_ARGS);
+            // Comprobamos el rols
             newCommand.roleName = commandWords[1];
             try {
                 newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
+                newCommand.roleName = newCommand.role.getName();
             } catch (RoleParseException e) {
-                throw new CommandParseException(Messages.COMMAND_SET_ROLE_INVALID_ROLE.formatted(newCommand.roleName));
+                throw new CommandParseException(Messages.INVALID_COMMAND, e);
             }
             // Comprobamos la posicion
             try {
@@ -61,37 +63,16 @@ public class SetRoleCommand extends Command{
     public void execute(GameModel game, GameView view) throws CommandExecuteException {
         try {
             if (!game.setRole(role, new Position(col, row), roleName)) {
-                view.showError(Messages.LINE.formatted(Messages.EXECUTE_PROBLEM));
-                view.showError(Messages.LINE.formatted(Messages.COMMAND_SET_ROLE_INVALID_LEMMING.formatted(Messages.POSITION.formatted(row, col), roleName)));
+                //view.showError(Messages.LINE.formatted(Messages.EXECUTE_PROBLEM));
+                view.showError((Messages.COMMAND_SET_ROLE_INVALID_LEMMING.formatted(Messages.POSITION.formatted(row, col), roleName)));
             }
             else{
                 game.update();
                 view.showGame();
             }
         } catch (OffBoardException e) {
-            throw new CommandExecuteException(Messages.ERROR.formatted(Messages.EXECUTE_PROBLEM), e);
+            throw new CommandExecuteException((Messages.EXECUTE_PROBLEM), e);
         }
-
-        
-        /*if(valid && role != null) {
-			Position pos = new Position(col, row);
-            try {
-                game.setRole(role, pos, roleName);
-            } catch (CommandExecuteException e) {
-                throw new CommandExecuteException(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
-            }
-    		if(!game.setRole(role, pos, roleName)) {
-    			view.showError(Messages.COMMAND_SET_ROLE_INVALID_ARGUMENT);
-    		}
-            else{
-                game.update();
-                view.showGame();
-            }
-    	}
-    	else {
-    		//view.showError(Messages.UNKNOWN_ROLE.formatted(roleName));
-            view.showError(Messages.UNKNOWN_COMMAND.formatted(NAME));
-    	}*/
     } 
 
     // Funcion para traducir la fila de la posicion de la letra a un numero

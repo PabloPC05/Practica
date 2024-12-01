@@ -40,6 +40,7 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
         else{
             // Si el lemming no ha cavado, se desactiva el rol y se mueve con normalidad manteniendo la direccion que tenia
             lemming.disableRole();
+            lemming.featherFall();
             lemming.move();
         }
     }

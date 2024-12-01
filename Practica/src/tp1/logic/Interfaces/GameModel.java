@@ -18,8 +18,11 @@ public interface GameModel {
     abstract public void increaseCycle();
 
     // Funcion load que carga un archivo
-    public void load(String fileName) throws GameLoadException;
+    abstract public void load(String fileName) throws GameLoadException;
 
     // Funcion fija la configuracion del juego
-    public void setConfiguration();
+    abstract public void setConfiguration();
+
+    // Funcion que resetea la configuracion del juego
+    abstract public void resetToDefaultConfiguration();
 }
