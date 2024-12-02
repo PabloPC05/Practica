@@ -39,6 +39,8 @@ public abstract class GameObject implements GameItem {
         public abstract void update();
         // Funcion para obtener la representacion del objeto
         public abstract String toString(); 
+        // Funcion para obtener la representacion del objeto en el formato de guardado
+        public abstract String toSaveString();
         // Funcion para saber si un objeto es solido
         public abstract boolean isSolid();
         //Funcion para establecer un rol a un objeto de juego

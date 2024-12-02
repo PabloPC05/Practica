@@ -80,4 +80,12 @@ public class ExitDoor extends GameObject {
             boolean vivoDuplicated = this.vivo;
             return new ExitDoor(posDuplicated, vivoDuplicated, gameWorldDuplicated);
         }
+
+        // Funcion para guardar la representacion de una puerta en un archivo
+        @Override
+        public String toSaveString(){
+            String aux;
+            aux = pos.toString() + " ExitDoor";
+            return aux;
+        }
 }

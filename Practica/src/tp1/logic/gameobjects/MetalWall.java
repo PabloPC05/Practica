@@ -79,4 +79,12 @@ public class MetalWall extends GameObject {
             boolean vivoDuplicated = this.vivo;
             return new MetalWall(posDuplicated, vivoDuplicated, gameWorldDuplicated);
         }
+
+        // Funcion para guardar la representacion de una pared de metal en un archivo
+        @Override
+        public String toSaveString(){
+            String aux;
+            aux = pos.toString() + " MetalWall";
+            return aux;
+        }
 }

@@ -26,6 +26,10 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         //Si no interactua con nada, se mueve con normalidad
         if(!lemming.interactWithEverything()){ 
             lemming.move();
+        } 
+        // Si ha interactuado, pero sigue vivo rebota
+        else if (lemming.isAlive()) { 
+            lemming.inverseDirection();
         }
 	}
 
@@ -58,7 +62,6 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         boolean interaction = false;
         //Si el lemming andante (que tiene una pared debajo) choca con una pared o con los limites laterales del eje de abscisas, rebota
         if(!lemming.isInAir() && lemming.bounceIntoWall(wall)){
-            lemming.inverseDirection();
             interaction = true;
         }
         //Si el lemming andante choca con una pared con la suficiente energia cinetica, se muere
@@ -76,7 +79,6 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         boolean interaction = false;
         //Si el lemming andante (que tiene una pared debajo) choca con una pared o con los limites laterales del eje de abscisas, rebota
         if(!lemming.isInAir() && lemming.bounceIntoWall(wall)){
-            lemming.inverseDirection();
             interaction = true;
         }
         //Si el lemming andante choca con una pared con la suficiente energia cinetica, se muere

@@ -288,4 +288,12 @@ public class Lemming extends GameObject{
             throw new ObjectParseException(Messages.NOT_KWNOWN_DIRECTION);
         }
     }
+
+	/// Funcion para guardar la representacion de un lemming en un archivo
+	@Override
+	public String toSaveString(){
+		String aux;
+		aux = pos.toString() + " ExitDoor " + direction.toString() + " " + fuerzaCaida + " " + role.getName();
+		return aux;
+	}
 }

@@ -2,6 +2,7 @@ package tp1.logic.Interfaces;
 
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.GameLoadException;
+import tp1.exceptions.GameSaveException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
@@ -20,6 +21,9 @@ public interface GameModel {
 
     // Funcion load que carga un archivo
     abstract public void load(String fileName) throws GameLoadException;
+
+    // Funcion save que guarda un archivo
+    abstract public void save(String fileName) throws GameSaveException;
 
     // Funcion fija la configuracion del juego
     abstract public void setConfiguration();

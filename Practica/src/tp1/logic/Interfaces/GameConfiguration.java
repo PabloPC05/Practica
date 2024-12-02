@@ -1,6 +1,7 @@
 package tp1.logic.Interfaces;
 
 import tp1.logic.GameObjectContainer;
+import tp1.exceptions.GameSaveException;
 
 public interface GameConfiguration {
 
@@ -12,5 +13,7 @@ public interface GameConfiguration {
     public int numLemmingsToWin();
 
     public GameObjectContainer getGameObjects();
+
+    public void save(String fileName) throws GameSaveException;
 
 }

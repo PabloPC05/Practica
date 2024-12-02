@@ -1,6 +1,7 @@
 package tp1.logic;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.GameLoadException;
+import tp1.exceptions.GameSaveException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.Interfaces.GameConfiguration;
 import tp1.logic.Interfaces.GameModel;
@@ -394,6 +395,18 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			}
 		}
 
+		// Funcion para guardar un juego
+		@Override
+		public void save(String fileName) throws GameSaveException {
+			// Intentamos guardar el juego
+			try {
+				configuration.save(fileName);
+			} // Si no se puede guardar el juego, lanzamos una excepcion
+			catch (GameSaveException e) {
+				throw e;
+			}
+		}
+
 		// Funcion para reiniciar el juego
 		public void reset(int level) throws CommandExecuteException {
 			// Reset estandar
@@ -428,11 +441,5 @@ public class Game implements GameModel, GameStatus, GameWorld {
 				this.level = -1;
 			}
 		}
-
-		// Funcion para guardar un juego
-		/*@Override
-		public void save(String fileName) {
-			
-		}*/
 
 }

@@ -12,7 +12,7 @@ public class CommandGenerator {
 		new UpdateCommand(),
         new ResetCommand(),
 		new LoadCommand(),
-		//new SaveCommand(),
+		new SaveCommand(),
         new HelpCommand(),
         new ExitCommand()
 	);

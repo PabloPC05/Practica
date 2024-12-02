@@ -82,4 +82,12 @@ public class Wall extends GameObject {
             boolean vivoDuplicated = this.vivo;
             return new Wall(posDuplicated, vivoDuplicated, gameWorldDuplicated);
         }
+
+        // Funcion para guardar la representacion de una pared en un archivo
+        @Override
+        public String toSaveString(){
+            String aux;
+            aux = pos.toString() + " Wall";
+            return aux;
+        }
 }

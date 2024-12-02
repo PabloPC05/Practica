@@ -128,4 +128,16 @@ public class GameObjectContainer {
 			// Devuelve el nuevo contenedor de objetos
 			return newContainer;
 		}
+
+		// Devuelve un string con la representación de los objetos del juego
+		public String toString() {
+			// Crea una cadena vacía
+			String str = "";
+			// Recorre la lista de objetos para añadir su representación en cadena
+			for (GameObject gameObject : gameObjects) {
+				str += gameObject.toSaveString() + "\n";
+			}
+			// Devuelve la cadena resultante
+			return str;
+		}
 }

@@ -1,13 +1,17 @@
 package tp1.logic;
 
-import tp1.exceptions.CommandExecuteException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.GameSaveException;
 import tp1.logic.Interfaces.GameConfiguration;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.MetalWall;
 import tp1.logic.gameobjects.Wall;
 import tp1.logic.lemmingRoles.ParachuterRole;
+import tp1.view.Messages;
 
 
 public class GameLevelConfiguration implements GameConfiguration {
@@ -254,5 +258,19 @@ public class GameLevelConfiguration implements GameConfiguration {
 
 	}
     
-
+	// Funcion que guarda la configuración del juego en un archivo
+    @Override
+    public void save(String fileName) throws GameSaveException {
+        // Guardamos la configuración del juego en un archivo
+         try {
+            FileOutputStream stream = new FileOutputStream(fileName);
+            String auxLine;
+            auxLine = cycle + " " + numLemmingInBoard + " " + numLemmingsDead + " " + numLemmingsExit + " " + numLemmingsToWin + "\n";
+            auxLine += gameObjects.toString();
+            stream.write(auxLine.getBytes());
+            stream.close();
+        } catch (IOException e) {
+            throw new GameSaveException(Messages.FILE_NOT_FOUND.formatted(fileName));
+        }
+    }
 }

@@ -14,7 +14,7 @@ public class ResetCommand extends Command{
     private static final String DETAILS = Messages.COMMAND_RESET_DETAILS;
     private static final String HELP = Messages.COMMAND_RESET_HELP;
 
-	int level;
+	private int level;
 
 	// Constructor
 	public ResetCommand() {

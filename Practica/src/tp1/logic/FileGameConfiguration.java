@@ -2,9 +2,11 @@ package tp1.logic;
 
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import tp1.exceptions.GameLoadException;
+import tp1.exceptions.GameSaveException;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.Interfaces.GameConfiguration;
@@ -102,6 +104,22 @@ public class FileGameConfiguration implements GameConfiguration {
     @Override
     public int numLemmingsToWin() {
         return numLemmingsToWin;
+    }
+
+    // Funcion que guarda la configuración del juego en un archivo
+    @Override
+    public void save(String fileName) throws GameSaveException {
+        // Guardamos la configuración del juego en un archivo
+         try {
+            FileOutputStream stream = new FileOutputStream(fileName);
+            String auxLine;
+            auxLine = cycle + " " + numLemmingInBoard + " " + numLemmingsDead + " " + numLemmingsExit + " " + numLemmingsToWin + "\n";
+            auxLine += gameObjects.toString();
+            stream.write(auxLine.getBytes());
+            stream.close();
+        } catch (IOException e) {
+            throw new GameSaveException(Messages.FILE_NOT_FOUND.formatted(fileName));
+        }
     }
 
 }
