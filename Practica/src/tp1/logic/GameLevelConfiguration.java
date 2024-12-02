@@ -1,9 +1,8 @@
 package tp1.logic;
 
-import tp1.exceptions.InvalidLevelException;
+import tp1.exceptions.CommandExecuteException;
 
 import tp1.logic.Interfaces.GameConfiguration;
-import tp1.logic.Interfaces.GameWorld;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.MetalWall;
@@ -21,44 +20,50 @@ public class GameLevelConfiguration implements GameConfiguration {
     private int numLemmingsToWin;
     private GameObjectContainer gameObjects;
 
-    //Constantes
-    public static final GameConfiguration NONE = new GameLevelConfiguration();
+	// Constante
+	private static final int LEMMINGS_TO_WIN = 2;
 
     //Constructores
     // Constructor por defecto (nivel 0)
-    public GameLevelConfiguration(Game game) {
-        InitLevel(0, game);
+	public GameLevelConfiguration(Game game) throws CommandExecuteException {
+		cycle = 0;
+		numLemmingInBoard = 0;
+		numLemmingsDead = 0;
+		numLemmingsExit = 0;
+		numLemmingsToWin = LEMMINGS_TO_WIN;
+		gameObjects = new GameObjectContainer();
+        InitLevel(game.getLevel(), game);
     }
 
     // Constructor con nivel que lanzará una excepción si el nivel no es válido
-    public GameLevelConfiguration(int level, Game game) throws InvalidLevelException {
-
-        try {
-            switch(level){
-				case 0:
-					InitLevel(0, game);
-					break;
-				case 1:
-					InitLevel(1, game);
-					break;
-				case 2:
-					InitLevel(2, game);
-					break;
-				case 3:
-					InitLevel(3, game);
-					break;
-				default:
-                    throw new InvalidLevelException("Invalid level");
-			}
-        }
-        catch (InvalidLevelException e) {
-            throw new InvalidLevelException("Invalid level");
-        }
+    public GameLevelConfiguration(int level, Game game) throws CommandExecuteException {
+		cycle = 0;
+		numLemmingInBoard = 0;
+		numLemmingsDead = 0;
+		numLemmingsExit = 0;
+		numLemmingsToWin = LEMMINGS_TO_WIN;
+		gameObjects = new GameObjectContainer();
+		switch(level){
+			case 0:
+				InitLevel(0, game);
+				break;
+			case 1:
+				InitLevel(1, game);
+				break;
+			case 2:
+				InitLevel(2, game);
+				break;
+			case 3:
+				InitLevel(3, game);
+				break;
+			default:
+				throw new CommandExecuteException("Invalid level");
+		}
 
     }
 
     // Funcion que clone la configuración del nivel
-    public GameLevelConfiguration clone(Game game){
+    public GameLevelConfiguration clone(Game game) throws CommandExecuteException {
         GameLevelConfiguration duplicated = new GameLevelConfiguration(game);
         duplicated.cycle = this.cycle;
         duplicated.numLemmingInBoard = this.numLemmingInBoard;
@@ -97,9 +102,8 @@ public class GameLevelConfiguration implements GameConfiguration {
     }
 
     // Funcion para inicializar los objetos del juego dependiendo del nivel
-	public void InitLevel(int level, Game game) throws InvalidLevelException {
+	public void InitLevel(int level, Game game) {
 
-        try {
 		switch (level) {
 			// Nivel 1
 			case 0:
@@ -245,11 +249,9 @@ public class GameLevelConfiguration implements GameConfiguration {
 
 				gameObjects.add(new ExitDoor(4, 5, game));
 			default:
-                throw new InvalidLevelException("Invalid level");
+                break;
 		}
-    } catch (InvalidLevelException e) {
-        throw new InvalidLevelException("Invalid level");
-    }
+
 	}
     
 

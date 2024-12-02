@@ -1,4 +1,5 @@
 package tp1.logic;
+import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.GameLoadException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.Interfaces.GameConfiguration;
@@ -394,12 +395,16 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		}
 
 		// Funcion para reiniciar el juego
-		public void reset(int level) {
+		public void reset(int level) throws CommandExecuteException {
 			// Reset estandar
 			if (configuration == FileGameConfiguration.NONE) {
 				gameObjects = new GameObjectContainer();
-				initBoard(level);
-				cycle = 0; 
+				try {
+					configuration = new GameLevelConfiguration(level, this);
+					setConfiguration();
+				} catch (CommandExecuteException e) {
+					throw e;
+				}
 			} else {
 				// Reset con configuracion
 				setConfiguration();

@@ -77,8 +77,8 @@ public class SetRoleCommand extends Command{
 
     // Funcion para traducir la fila de la posicion de la letra a un numero
     private int traslateRow(String column) {
-        char letter = column.toLowerCase().charAt(0);
-        return letter - 'a';
+        char letter = column.charAt(0);
+        return letter - 'A';
     }
 
     // Funcion para obtener la ayuda del comando (los roles de los lemmings)
