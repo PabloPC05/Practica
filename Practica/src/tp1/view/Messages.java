@@ -145,6 +145,7 @@ public class Messages {
 	public static final String COMMAND_SAVE_SHORTCUT = "s";
 	public static final String COMMAND_SAVE_DETAILS = "[s]ave <fileName>";
 	public static final String COMMAND_SAVE_HELP = "save the actual configuration in text file <fileName>";
+	public static final String FILE_SAVED = LINE_TAB.formatted("File \"%s\" correctly saved");
 
 //Roles
 	//WalkerRole

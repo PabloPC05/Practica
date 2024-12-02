@@ -293,7 +293,7 @@ public class Lemming extends GameObject{
 	@Override
 	public String toSaveString(){
 		String aux;
-		aux = pos.toString() + " ExitDoor " + direction.toString() + " " + fuerzaCaida + " " + role.getName();
+		aux = pos.toString() + " Lemming " + direction.toString() + " " + fuerzaCaida + " " + role.getName();
 		return aux;
 	}
 }

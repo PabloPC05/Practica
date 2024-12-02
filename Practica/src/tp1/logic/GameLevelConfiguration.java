@@ -2,7 +2,6 @@ package tp1.logic;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.GameSaveException;
 import tp1.logic.Interfaces.GameConfiguration;
@@ -17,7 +16,8 @@ import tp1.view.Messages;
 public class GameLevelConfiguration implements GameConfiguration {
     
     //Atributos
-    private int cycle;
+	private int cycle;
+	private int level;
     private int numLemmingInBoard;
     private int numLemmingsDead;
     private int numLemmingsExit;
@@ -26,10 +26,14 @@ public class GameLevelConfiguration implements GameConfiguration {
 
 	// Constante
 	private static final int LEMMINGS_TO_WIN = 2;
+	
 
     //Constructores
+	// Constructor por defecto
+	public GameLevelConfiguration(){}
+	
     // Constructor por defecto (nivel 0)
-	public GameLevelConfiguration(Game game) throws CommandExecuteException {
+	/*public GameLevelConfiguration(Game game) throws CommandExecuteException {
 		cycle = 0;
 		numLemmingInBoard = 0;
 		numLemmingsDead = 0;
@@ -37,10 +41,10 @@ public class GameLevelConfiguration implements GameConfiguration {
 		numLemmingsToWin = LEMMINGS_TO_WIN;
 		gameObjects = new GameObjectContainer();
         InitLevel(game.getLevel(), game);
-    }
+    }*/
 
     // Constructor con nivel que lanzará una excepción si el nivel no es válido
-    public GameLevelConfiguration(int level, Game game) throws CommandExecuteException {
+    public GameLevelConfiguration(int level, Game game) {
 		cycle = 0;
 		numLemmingInBoard = 0;
 		numLemmingsDead = 0;
@@ -61,22 +65,22 @@ public class GameLevelConfiguration implements GameConfiguration {
 				InitLevel(3, game);
 				break;
 			default:
-				throw new CommandExecuteException("Invalid level");
+				break;
 		}
 
     }
 
-    // Funcion que clone la configuración del nivel
-    public GameLevelConfiguration clone(Game game) throws CommandExecuteException {
-        GameLevelConfiguration duplicated = new GameLevelConfiguration(game);
-        duplicated.cycle = this.cycle;
-        duplicated.numLemmingInBoard = this.numLemmingInBoard;
-        duplicated.numLemmingsDead = this.numLemmingsDead;
-        duplicated.numLemmingsExit = this.numLemmingsExit;
-        duplicated.numLemmingsToWin = this.numLemmingsToWin;
-        duplicated.gameObjects = this.gameObjects.clone();
-        return duplicated;
-    }
+	// Funcion que clone la configuración del nivel
+	public GameLevelConfiguration clone(Game game) throws CommandExecuteException {
+		GameLevelConfiguration duplicated = new GameLevelConfiguration();
+		duplicated.cycle = this.cycle;
+		duplicated.numLemmingInBoard = this.numLemmingInBoard;
+		duplicated.numLemmingsDead = this.numLemmingsDead;
+		duplicated.numLemmingsExit = this.numLemmingsExit;
+		duplicated.numLemmingsToWin = this.numLemmingsToWin;
+		duplicated.gameObjects = this.gameObjects.clone();
+		return duplicated;
+	}
 
     @Override
     public GameObjectContainer getGameObjects() {
@@ -259,7 +263,7 @@ public class GameLevelConfiguration implements GameConfiguration {
 	}
     
 	// Funcion que guarda la configuración del juego en un archivo
-    @Override
+    /*@Override
     public void save(String fileName) throws GameSaveException {
         // Guardamos la configuración del juego en un archivo
          try {
@@ -272,5 +276,5 @@ public class GameLevelConfiguration implements GameConfiguration {
         } catch (IOException e) {
             throw new GameSaveException(Messages.FILE_NOT_FOUND.formatted(fileName));
         }
-    }
+    }*/
 }

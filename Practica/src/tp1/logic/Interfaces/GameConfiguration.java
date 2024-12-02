@@ -1,8 +1,6 @@
 package tp1.logic.Interfaces;
 
 import tp1.logic.GameObjectContainer;
-import tp1.exceptions.GameSaveException;
-
 public interface GameConfiguration {
 
     // game status
@@ -14,6 +12,6 @@ public interface GameConfiguration {
 
     public GameObjectContainer getGameObjects();
 
-    public void save(String fileName) throws GameSaveException;
+    //public void save(String fileName) throws GameSaveException;
 
 }

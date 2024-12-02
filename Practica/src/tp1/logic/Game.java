@@ -1,5 +1,6 @@
 package tp1.logic;
-import tp1.exceptions.CommandExecuteException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import tp1.exceptions.GameLoadException;
 import tp1.exceptions.GameSaveException;
 import tp1.exceptions.OffBoardException;
@@ -33,7 +34,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 	// Constructores
 	// Constructor por defecto
-	public Game() {
+	/*public Game() {
 		gameObjects = new GameObjectContainer();
 		//initObjects();
 		level = 0;
@@ -45,189 +46,30 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		deadLemmings = 0;
 		exitLemmings = 0;
 		configuration = FileGameConfiguration.NONE;
-	}
+	}*/
 
 	// Constructor con parametros de nivel
 	public Game(int nivel) {
 		gameObjects = new GameObjectContainer();
-		//initObjects();
 		level = nivel;
-		initBoard(nivel);
+		initConfiguration(nivel);
 		cycle = 0;
 		lemmingsToWin = LEMMINGS_TO_WIN;
 		exit = false;
 		deadLemmings = 0;
 		exitLemmings = 0;
-		configuration = FileGameConfiguration.NONE;
 	}
 
-	// Funcion para inicializar los objetos del juego dependiendo del nivel
-	public void InitLevel(int level) {
-
-		switch (level) {
-			// Nivel 1
-			case 0:
-				this.level = 0;
-				// initWalls();
-				gameObjects.add(new Wall(8, 1, this));
-				gameObjects.add(new Wall(9, 1, this));
-
-
-				gameObjects.add(new Wall(2, 4, this));
-				gameObjects.add(new Wall(3, 4, this));
-				gameObjects.add(new Wall(4, 4, this));
-
-				gameObjects.add(new Wall(7, 5, this));
-
-				gameObjects.add(new Wall(4, 6, this));
-				gameObjects.add(new Wall(5, 6, this));
-				gameObjects.add(new Wall(6, 6, this));
-				gameObjects.add(new Wall(7, 6, this));
-
-				gameObjects.add(new Wall(0, 9, this));
-				gameObjects.add(new Wall(1, 9, this));
-
-				gameObjects.add(new Wall(9, 9, this));
-				gameObjects.add(new Wall(8, 9, this));
-				gameObjects.add(new Wall(8, 8, this));
-
-				//InitLemmings();
-				gameObjects.add(new Lemming(0, 8, this));
-				gameObjects.add(new Lemming(2, 3, this));
-				gameObjects.add(new Lemming(9, 0, this));
-				
-				//InitExitDoor();
-				gameObjects.add(new ExitDoor(4, 5, this));
-				
-				numLemmings = 3;
-				break;
-
-			// Nivel 2
-			case 1:
-				this.level = 1;
-				// initWalls();
-				gameObjects.add(new Wall(8, 1, this));
-				gameObjects.add(new Wall(9, 1, this));
-
-
-				gameObjects.add(new Wall(2, 4, this));
-				gameObjects.add(new Wall(3, 4, this));
-				gameObjects.add(new Wall(4, 4, this));
-
-				gameObjects.add(new Wall(7, 5, this));
-
-				gameObjects.add(new Wall(4, 6, this));
-				gameObjects.add(new Wall(5, 6, this));
-				gameObjects.add(new Wall(6, 6, this));
-				gameObjects.add(new Wall(7, 6, this));
-
-				gameObjects.add(new Wall(0, 9, this));
-				gameObjects.add(new Wall(1, 9, this));
-
-				gameObjects.add(new Wall(9, 9, this));
-				gameObjects.add(new Wall(8, 9, this));
-				gameObjects.add(new Wall(8, 8, this));
-
-				//InitLemmings();
-				gameObjects.add(new Lemming(0, 8, this));
-				gameObjects.add(new Lemming(2, 3, this));
-				gameObjects.add(new Lemming(9, 0, this));
-
-				gameObjects.add(new ExitDoor(4, 5, this));
-
-				gameObjects.add(new Lemming(3, 3, this));
-				
-				//InitExitDoor();
-				
-				numLemmings = 4;
-				break;
-
-			// Nivel 3
-			case 2:
-				this.level = 2; 
-			//initLevel2();
-				// initWalls();
-				gameObjects.add(new Wall(8, 1, this));
-				gameObjects.add(new Wall(9, 1, this));
-
-
-				gameObjects.add(new Wall(2, 4, this));
-				gameObjects.add(new Wall(3, 4, this));
-				gameObjects.add(new Wall(4, 4, this));
-
-				gameObjects.add(new Wall(7, 5, this));
-
-				gameObjects.add(new Wall(4, 6, this));
-				gameObjects.add(new Wall(5, 6, this));
-				gameObjects.add(new Wall(6, 6, this));
-				gameObjects.add(new Wall(7, 6, this));
-
-				gameObjects.add(new Wall(0, 9, this));
-				gameObjects.add(new Wall(1, 9, this));
-
-				gameObjects.add(new Wall(9, 9, this));
-				gameObjects.add(new Wall(8, 9, this));
-				gameObjects.add(new Wall(8, 8, this));
-				gameObjects.add(new Wall(3, 5, this));
-				gameObjects.add(new MetalWall(3, 6, this));
-
-				// InitLemmings();
-				gameObjects.add(new Lemming(0, 8, this));
-				gameObjects.add(new Lemming(2, 3, this));
-				gameObjects.add(new Lemming(9, 0, this));
-
-				gameObjects.add(new ExitDoor(4, 5, this));
-
-				gameObjects.add(new Lemming(3, 3, this));
-				gameObjects.add(new Lemming(6, 0, this));
-				gameObjects.add(new Lemming(6, 0, this, new ParachuterRole()));
-				
-				// InitExitDoor();
-
-				numLemmings = 6;
-				break;
-
-			case 3:
-				this.level = 3;
-				// initWalls();
-				gameObjects.add(new Wall(8, 1, this));
-				gameObjects.add(new Wall(9, 1, this));
-
-
-				gameObjects.add(new Wall(2, 4, this));
-				gameObjects.add(new Wall(3, 4, this));
-				gameObjects.add(new Wall(4, 4, this));
-
-				gameObjects.add(new Wall(7, 5, this));
-
-				gameObjects.add(new Wall(4, 6, this));
-				gameObjects.add(new Wall(5, 6, this));
-				gameObjects.add(new Wall(6, 6, this));
-				gameObjects.add(new Wall(7, 6, this));
-
-				gameObjects.add(new Wall(0, 9, this));
-				gameObjects.add(new Wall(1, 9, this));
-
-				gameObjects.add(new Wall(9, 9, this));
-				gameObjects.add(new Wall(8, 9, this));
-				gameObjects.add(new Wall(8, 8, this));
-
-				//InitLemmings();
-				gameObjects.add(new Lemming(9, 0, this));
-				numLemmings = 1;
-
-				gameObjects.add(new ExitDoor(4, 5, this));
-			default:
-				break;
+		private void initConfiguration(int nLevel)  {
+			configuration = new GameLevelConfiguration(nLevel, this);
+			setConfiguration();
 		}
-	}
 
 	// Metodos de GameWorld********************************************************************************
 		// Funcion para saber si en la posicion de debajo hay una pared
 		public boolean isInAir(Position pos) {
 			return !gameObjects.wallAtPosition(pos.nextPosition(Direction.DOWN));
 		}
-
 
 	// Metodos de GameStatus********************************************************************************
 		// Funcion para obtener el ciclo
@@ -306,28 +148,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			this.exit = true;
 		}
 
-		// Funcion para obtener el tablero segun el nivel
-		public void initBoard(int level){
-			deadLemmings = 0;
-			exitLemmings = 0;
-			switch(level){
-				case 0:
-					InitLevel(0);
-					break;
-				case 1:
-					InitLevel(1);
-					break;
-				case 2:
-					InitLevel(2);
-					break;
-				case 3:
-					InitLevel(3);
-					break;
-				default:
-					break;
-			}
-		}
-
 		// Funcion que añade 1 a los lemmings que han salido por la puerta
 		public void addExitLemmings(){
 			exitLemmings++;
@@ -400,30 +220,45 @@ public class Game implements GameModel, GameStatus, GameWorld {
 		public void save(String fileName) throws GameSaveException {
 			// Intentamos guardar el juego
 			try {
-				configuration.save(fileName);
+				//configuration.save(fileName);
+				saveFile(fileName);
 			} // Si no se puede guardar el juego, lanzamos una excepcion
 			catch (GameSaveException e) {
 				throw e;
 			}
 		}
 
+		 public void saveFile(String fileName) throws GameSaveException {
+        // Guardamos la configuración del juego en un archivo
+         try {
+            FileOutputStream stream = new FileOutputStream(fileName);
+            String auxLine;
+            auxLine = cycle + " " + numLemmings + " " + deadLemmings + " " + exitLemmings + " " + LEMMINGS_TO_WIN + "\n";
+            auxLine += gameObjects.toString();
+            stream.write(auxLine.getBytes());
+            stream.close();
+        } catch (IOException e) {
+            throw new GameSaveException(Messages.FILE_NOT_FOUND.formatted(fileName));
+        }
+    }
+
 		// Funcion para reiniciar el juego
-		public void reset(int level) throws CommandExecuteException {
+		public void reset(int level) {
 			// Reset estandar
-			if (configuration == FileGameConfiguration.NONE) {
-				gameObjects = new GameObjectContainer();
-				try {
-					configuration = new GameLevelConfiguration(level, this);
-					setConfiguration();
-				} catch (CommandExecuteException e) {
-					throw e;
-				}
+			// Si el comando de reset ha sido simplemente poner "reset"
+			if (level == -1) {
+				//gameObjects = new GameObjectContainer();
+				setConfiguration();
+			// Si el comando de reset ha incluido un nivel : "reset X"
 			} else {
 				// Reset con configuracion
+				configuration = new GameLevelConfiguration(level, this);
 				setConfiguration();
 			}
 		}
 
+		// Funcion para resetear la configuracion del juego
+		@Override
 		public void resetToDefaultConfiguration() {
 			this.configuration = FileGameConfiguration.NONE;
 		}

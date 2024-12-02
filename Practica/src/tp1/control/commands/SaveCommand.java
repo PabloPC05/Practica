@@ -24,11 +24,12 @@ public class SaveCommand extends Command{
     public void execute(GameModel game, GameView view) throws CommandExecuteException {
         try {
             game.save(fileName);
+            view.showMessage(Messages.FILE_SAVED.formatted(fileName));
         } catch (GameSaveException e) {
             game.update();
             throw new CommandExecuteException(Messages.INVALID_FILE_CONFIGURATION.formatted(fileName) ,e);
         }
-        view.showGame();
+        //view.showGame();
     }
 
 
