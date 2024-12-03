@@ -43,7 +43,7 @@ public class GameLevelConfiguration implements GameConfiguration {
         InitLevel(game.getLevel(), game);
     }*/
 
-    // Constructor con nivel que lanzará una excepción si el nivel no es válido
+    // Constructor con nivel
     public GameLevelConfiguration(int level, Game game) {
 		cycle = 0;
 		numLemmingInBoard = 0;

@@ -233,8 +233,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
          try {
             FileOutputStream stream = new FileOutputStream(fileName);
             String auxLine;
+			// Guardamos la configuración del juego
             auxLine = cycle + " " + numLemmings + " " + deadLemmings + " " + exitLemmings + " " + LEMMINGS_TO_WIN + "\n";
-            auxLine += gameObjects.toString();
+            // Guardamos los objetos del juego
+			auxLine += gameObjects.toString();
             stream.write(auxLine.getBytes());
             stream.close();
         } catch (IOException e) {

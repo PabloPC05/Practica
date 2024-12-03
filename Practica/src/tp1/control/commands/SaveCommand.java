@@ -20,9 +20,11 @@ public class SaveCommand extends Command{
         super(NAME, SHORTCUT, DETAILS, HELP);
     }
 
+    // Ejecuta el comando save
     @Override
     public void execute(GameModel game, GameView view) throws CommandExecuteException {
         try {
+            // Intenta guardar el juego en el archivo
             game.save(fileName);
             view.showMessage(Messages.FILE_SAVED.formatted(fileName));
         } catch (GameSaveException e) {
