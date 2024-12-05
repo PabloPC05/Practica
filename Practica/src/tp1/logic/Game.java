@@ -230,8 +230,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
 		 public void saveFile(String fileName) throws GameSaveException {
         // Guardamos la configuración del juego en un archivo
-         try {
-            FileOutputStream stream = new FileOutputStream(fileName);
+         try (FileOutputStream stream = new FileOutputStream(fileName)){
             String auxLine;
 			// Guardamos la configuración del juego
             auxLine = cycle + " " + numLemmings + " " + deadLemmings + " " + exitLemmings + " " + LEMMINGS_TO_WIN + "\n";
@@ -241,8 +240,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
             stream.close();
         } catch (IOException e) {
             throw new GameSaveException(Messages.FILE_NOT_FOUND.formatted(fileName));
-        }
-    }
+        	}
+    	}
 
 		// Funcion para reiniciar el juego
 		public void reset(int level) {
