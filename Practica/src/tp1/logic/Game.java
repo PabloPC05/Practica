@@ -237,7 +237,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
             // Guardamos los objetos del juego
 			auxLine += gameObjects.toString();
             stream.write(auxLine.getBytes());
-            stream.close();
         } catch (IOException e) {
             throw new GameSaveException(Messages.FILE_NOT_FOUND.formatted(fileName));
         	}

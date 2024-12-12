@@ -47,8 +47,7 @@ public class FileGameConfiguration implements GameConfiguration {
         // Leemos el archivo
         gameObjects = new GameObjectContainer();
         String lineaAux = null;
-        try (FileReader fr = new FileReader(fileName);
-            BufferedReader br = new BufferedReader(fr)) {
+        try (FileReader fr = new FileReader(fileName); BufferedReader br = new BufferedReader(fr)) {
             // Leemos la configuración del juego
             lineaAux = br.readLine();
             String[] linea = lineaAux.split(" ");
