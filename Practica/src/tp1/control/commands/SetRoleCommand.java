@@ -18,6 +18,7 @@ public class SetRoleCommand extends Command{
 	private static final String HELP = Messages.COMMAND_SET_ROLE_HELP;
 
     private String roleName;
+    private String roleInfo;
     private LemmingRole role; 
     private int col; 
     private int row;
@@ -31,14 +32,19 @@ public class SetRoleCommand extends Command{
     // Funcion para parsear el comando (esta compuesto por el propio comando, el nombre del rol, y la posicion ROW, COL)
     @Override
     public Command parse(String[] commandWords) throws CommandParseException {
+        int i = 0;
         Command com = null;
         // Comprobamos que el comando sea correcto
         if (matchCommandName(commandWords[0])) {
             SetRoleCommand newCommand = new SetRoleCommand();
-            newCommand.valid = commandWords.length == 4;
+            newCommand.valid = commandWords.length >= 4;
             if(!newCommand.valid) throw new CommandParseException(Messages.COMMAND_SET_ROLE_INVALID_NUMBER_ARGS);
             // Comprobamos el rols
             newCommand.roleName = commandWords[1];
+            if(commandWords.length > 4){
+                newCommand.roleName = newCommand.roleName + ' ' + commandWords[2];
+                i++;
+            }
             try {
                 newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
                 newCommand.roleName = newCommand.role.getName();
@@ -47,9 +53,9 @@ public class SetRoleCommand extends Command{
             }
             // Comprobamos la posicion
             try {
-                newCommand.col = Integer.parseInt(commandWords[3]);
+                newCommand.col = Integer.parseInt(commandWords[3+i]);
                 newCommand.col--;
-                newCommand.row = traslateRow(commandWords[2]);
+                newCommand.row = traslateRow(commandWords[2+i]);
              } catch (NumberFormatException e) {
  	            throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(new Position(col, row).toString())));
              }

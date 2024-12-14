@@ -115,6 +115,16 @@ public class Lemming extends GameObject{
 		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
 	}
 
+	// Funcion para saber si se choca con una pared hacia abajo
+	public boolean crashingIntoWallWDir(Wall wall, Direction dir){
+		return wall.isInPosition(pos.nextPosition(dir));
+	}
+
+	public boolean crashingIntoWallWDir(MetalWall wall, Direction dir){
+		return wall.isInPosition(pos.nextPosition(dir));
+	}
+
+
 	// Funcion para saber si se choca con una pared de metal hacia abajo
 	public boolean crashingIntoWall(MetalWall wall){
 		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
