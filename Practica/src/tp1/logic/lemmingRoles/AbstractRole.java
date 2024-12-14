@@ -76,4 +76,9 @@ public class AbstractRole {
     public boolean roleMatch(String input){
         return input.equalsIgnoreCase(name) || input.equalsIgnoreCase(symbol);
     }
+
+    // Funcion para comprobar si el rol es solido
+    public boolean isSolid(){
+        return false;
+    }
 }

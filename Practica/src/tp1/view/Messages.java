@@ -166,12 +166,28 @@ public class Messages {
 	public static final String DOWN_CAVER_ROLE_DETAILS = "[D]own [C]aver";
 	public static final String DOWN_CAVER_ROLE_HELP = "Lemming caves downwards";
 
+	//BlockerRole
+	public static final String BLOCKER_ROLE_SYMBOL = "B";
+	public static final String BLOCKER_ROLE_NAME = "Blocker";
+	public static final String BLOCKER_ROLE_DETAILS = "[B]locker";
+	public static final String BLOCKER_ROLE_HELP = "Lemming that blocks the way";
+
+	//HorizontalCaverRole
+	public static final String HORIZONTAL_CAVER_ROLE_SYMBOL = "Hc";
+	public static final String HORIZONTAL_CAVER_ROLE_NAME = "HorizontalCaver";
+	public static final String HORIZONTAL_CAVER_ROLE_DETAILS = "[H]orizontal [C]aver";
+	public static final String HORIZONTAL_CAVER_ROLE_HELP = "Lemming caves horizontally";
+
+
 //Symbols
 	public static final String EMPTY = "";
 	public static final String LEMMING_RIGHT = "B";
 	public static final String LEMMING_LEFT = "ᗺ";
+	public static final String HORIZONTAL_CAVER_ROLE_ICON_RIGHT = ">"; //"➡️";
+	public static final String HORIZONTAL_CAVER_ROLE_ICON_LEFT = "<"; //"⬅️";
 	public static final String LEMMING_PARACHUTE = "🪂";
 	public static final String LEMMING_DOWN_CAVER = "´･ω･`";
+	public static final String LEMMING_BLOCKER = "T";
 
 
 //GameObjects
