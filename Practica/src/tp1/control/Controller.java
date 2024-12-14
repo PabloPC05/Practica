@@ -1,6 +1,5 @@
 package tp1.control;
 
-import java.awt.event.FocusEvent;
 import tp1.control.commands.Command;
 import tp1.control.commands.CommandGenerator;
 import tp1.exceptions.CommandException;

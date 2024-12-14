@@ -1,7 +1,9 @@
 package tp1.control.commands;
 
+import java.util.ArrayList;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.exceptions.RoleParseException;
 import tp1.logic.Interfaces.GameModel;
@@ -18,7 +20,7 @@ public class SetRoleCommand extends Command{
 	private static final String HELP = Messages.COMMAND_SET_ROLE_HELP;
 
     private String roleName;
-    private String roleInfo;
+    private ArrayList <String> roleInfo;
     private LemmingRole role; 
     private int col; 
     private int row;
@@ -27,12 +29,12 @@ public class SetRoleCommand extends Command{
     // Constructor
     public SetRoleCommand() {
         super(NAME, SHORTCUT, DETAILS, HELP);
+        roleInfo = new ArrayList<String>();
     }  
 
     // Funcion para parsear el comando (esta compuesto por el propio comando, el nombre del rol, y la posicion ROW, COL)
     @Override
     public Command parse(String[] commandWords) throws CommandParseException {
-        int i = 0;
         Command com = null;
         // Comprobamos que el comando sea correcto
         if (matchCommandName(commandWords[0])) {
@@ -41,24 +43,33 @@ public class SetRoleCommand extends Command{
             if(!newCommand.valid) throw new CommandParseException(Messages.COMMAND_SET_ROLE_INVALID_NUMBER_ARGS);
             // Comprobamos el rols
             newCommand.roleName = commandWords[1];
+            try {
+                    newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
+                    newCommand.roleName = newCommand.role.getName();
+                } catch (RoleParseException e) {
+                    throw new CommandParseException(Messages.INVALID_COMMAND, e);
+                }
+            String colS = commandWords[commandWords.length-1], rowS = commandWords[commandWords.length-2];
             if(commandWords.length > 4){
-                newCommand.roleName = newCommand.roleName + ' ' + commandWords[2];
-                i++;
+                newCommand.roleInfo.ensureCapacity(commandWords.length-4); 
+                for(int i = 2; i < commandWords.length-2; i++){
+                    newCommand.roleInfo.add(commandWords[i]);
+                }
+                try {
+                    newCommand.roleInfo = newCommand.role.parseInfo(newCommand.roleInfo);
+                } catch (ObjectParseException e) {
+                    String str = "";
+                    for(int i = 0; i < commandWords.length; i++){ str += ' '; str += commandWords[i];}
+                    throw new CommandParseException(e.getMessage().formatted(str));
+                }
             }
             try {
-                newCommand.role = LemmingRoleFactory.parse(newCommand.roleName);
-                newCommand.roleName = newCommand.role.getName();
-            } catch (RoleParseException e) {
-                throw new CommandParseException(Messages.INVALID_COMMAND, e);
-            }
-            // Comprobamos la posicion
-            try {
-                newCommand.col = Integer.parseInt(commandWords[3+i]);
+                newCommand.col = Integer.parseInt(colS);
                 newCommand.col--;
-                newCommand.row = traslateRow(commandWords[2+i]);
-             } catch (NumberFormatException e) {
- 	            throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(new Position(col, row).toString())));
-             }
+                newCommand.row = traslateRow(rowS);
+            } catch (NumberFormatException e) {
+                throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(new Position(col, row).toString())));
+            }
             com = newCommand;
         }
         return com;

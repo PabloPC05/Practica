@@ -5,7 +5,7 @@ package tp1.logic;
  *
  */
 public enum Direction {
-	LEFT(-1,0), RIGHT(1,0), DOWN(0,1), UP(0,-1), NONE(0,0), RIGHT_DOWN(1, -1), LEFT_DOWN(-1, -1);
+	LEFT(-1,0), RIGHT(1,0), DOWN(0,1), UP(0,-1), NONE(0,0), RIGHT_DOWN(1, 1), LEFT_DOWN(-1, 1);
 	
 	private int col;
 	private int row;

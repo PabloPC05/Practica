@@ -10,6 +10,7 @@ public class LemmingRoleFactory {
 
 	// Lista de roles disponibles
     private static final List<LemmingRole> availableRoles = Arrays.asList(
+		new DroneRole(),
 		new CaverRole(),
 		new HorizontalCaver(),
 		new BlockerRole(),

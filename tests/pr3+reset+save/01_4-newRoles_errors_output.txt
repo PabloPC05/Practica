@@ -22,7 +22,8 @@ Lemmings exit door: 0 ┃2
 
 Command > [DEBUG] Executing: setRole Walker I 2 33
 
-[ERROR] Error: Incorrect parameter number
+[ERROR] Error: Command execute problem
+[ERROR] Error: Position (-15,32) is off board
 
 Command > [DEBUG] Executing: setRole Patata I 2
 

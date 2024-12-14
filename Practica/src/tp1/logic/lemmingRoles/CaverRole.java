@@ -1,9 +1,10 @@
 package tp1.logic.lemmingRoles;
 
+import java.util.ArrayList;
+import tp1.exceptions.ObjectParseException;
 import tp1.logic.Direction;
 import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
-import tp1.logic.Direction;
 
 public class CaverRole extends AbstractRole implements LemmingRole{
 
@@ -27,13 +28,6 @@ public class CaverRole extends AbstractRole implements LemmingRole{
         hasCaved = false;
         this.direction = Direction.RIGHT;
     }
-    
-    // Constructor con parametros
-    public CaverRole(Direction direction){
-        super(NAME, DETAILS, HELP, ICON_DOWN, SYMBOL);
-        hasCaved = false;
-        this.direction = direction;
-    }
 
     // Metodos
     // Funcion start de DownCaver (no hace nada)
@@ -48,7 +42,7 @@ public class CaverRole extends AbstractRole implements LemmingRole{
         lemming.interactWithEverything();
         // Si ha cavado, el lemming cae y se le pone la fuerza de caida a 0
         if(hasCaved){ 
-            lemming.falls();
+            lemming.movesWithDirection(direction);
             lemming.featherFall();
             hasCaved = false;
         }
@@ -89,24 +83,45 @@ public class CaverRole extends AbstractRole implements LemmingRole{
     // Funcion para comprobar si el rol es el correcto
     @Override
     public LemmingRole parse(String input){
-        String[] role = input.split("\\s");
-        if (matchRoleName(role[0])){ 
-            switch(role[1]){
-                case "RIGHT":
-                    direction = Direction.RIGHT;
-                case "LEFT": 
-                    direction = Direction.LEFT;
-                case "DOWN":
-                    direction = Direction.DOWN;
-                case "RIGHT_DOWN":
-                    direction = Direction.RIGHT_DOWN;
-                case "LEFT_DOWN":
-                    direction = Direction.LEFT_DOWN;
-                default:
-                    direction = Direction.RIGHT;
-            }
-            return new CaverRole(direction);
-        }
+        if (matchRoleName(input))return new CaverRole();
         return null;    
+    }
+
+    @Override
+    public ArrayList<String> parseInfo(ArrayList<String> input) throws ObjectParseException{
+        ArrayList<String> returnValue = new ArrayList<String>(1);
+        String str = input.get(0);
+        str = str.toLowerCase();
+        switch(str){
+            case "right":
+                direction = Direction.RIGHT;
+                returnValue.add("RIGHT");
+                break;
+            case "left": 
+                direction = Direction.LEFT;
+                returnValue.add("LEFT");
+                break;
+
+            case "down":
+                direction = Direction.DOWN;
+                returnValue.add("DOWN");
+                break;
+
+            case "right_down":
+                direction = Direction.RIGHT_DOWN;
+                returnValue.add("RIGHT_DOWN");
+                break;
+
+            case "left_down":
+                direction = Direction.LEFT_DOWN;
+                returnValue.add("LEFT_DOWN");
+                break;
+
+            default:
+                direction = null;
+                returnValue.add("");
+                throw new ObjectParseException();
+        }
+        return returnValue;
     }
 }

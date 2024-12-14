@@ -184,6 +184,12 @@ public class Messages {
 	public static final String CAVER_ROLE_DETAILS = "[C]aver";
 	public static final String CAVER_ROLE_HELP = "Lemming caves in the indicated direction";
 
+	//DroneRole
+	public static final String DRONE_ROLE_SYMBOL = "D";
+	public static final String DRONE_ROLE_NAME = "Drone";
+	public static final String DRONE_ROLE_DETAILS = "[D}rone";
+	public static final String DRONE_ROLE_HELP = "Lemming moves in the indicated directions";
+
 
 //Symbols
 	public static final String EMPTY = "";
@@ -196,9 +202,10 @@ public class Messages {
 	public static final String LEMMING_BLOCKER = "T";
 	public static final String CAVER_ROLE_ICON_RIGHT = ">";
 	public static final String CAVER_ROLE_ICON_LEFT = "<";
-	public static final String CAVER_ROLE_ICON_DOWN = "↓";
+	public static final String CAVER_ROLE_ICON_DOWN = "v";
 	public static final String CAVER_ROLE_ICON_RIGHT_DOWN = "↘"; 
 	public static final String CAVER_ROLE_ICON_LEFT_DOWN = "↙";
+	public static final String DRONE_ROLE_ICON = "D";
 
 
 //GameObjects

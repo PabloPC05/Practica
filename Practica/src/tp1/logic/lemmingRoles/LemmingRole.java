@@ -1,5 +1,7 @@
 package tp1.logic.lemmingRoles;
 
+import java.util.ArrayList;
+import tp1.exceptions.ObjectParseException;
 import tp1.logic.gameobjects.*;
 
 public interface LemmingRole {
@@ -9,6 +11,7 @@ public interface LemmingRole {
     public void play (Lemming lemming);
     public String getIcon(Lemming lemming);
     abstract public LemmingRole parse(String input);
+    abstract public ArrayList<String> parseInfo(ArrayList<String> input) throws ObjectParseException;
     abstract public boolean roleMatch(String input);
     abstract public String helpText();
     abstract public String getSymbol();

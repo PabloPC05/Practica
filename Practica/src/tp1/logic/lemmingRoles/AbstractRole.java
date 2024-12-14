@@ -1,5 +1,7 @@
 package tp1.logic.lemmingRoles;
 
+import java.util.ArrayList;
+import tp1.exceptions.ObjectParseException;
 import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
@@ -80,5 +82,10 @@ public class AbstractRole {
     // Funcion para comprobar si el rol es solido
     public boolean isSolid(){
         return false;
+    }
+
+    // No hace nada en los casos generales
+    public ArrayList<String> parseInfo(ArrayList<String> input) throws ObjectParseException{
+        return null;
     }
 }

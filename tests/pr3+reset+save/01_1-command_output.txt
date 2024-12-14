@@ -24,6 +24,10 @@ Command > [DEBUG] Executing: h
 
 Available commands:
    [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE
+      [D}rone: Lemming moves in the indicated directions
+      [C]aver: Lemming caves in the indicated direction
+      [H]orizontal [C]aver: Lemming caves horizontally
+      [B]locker: Lemming that blocks the way
       [D]own [C]aver: Lemming caves downwards
       [P]arachuter: Lemming falls with a parachute
       [W]alker: Lemming that walks
@@ -38,6 +42,10 @@ Command > [DEBUG] Executing: help
 
 Available commands:
    [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE
+      [D}rone: Lemming moves in the indicated directions
+      [C]aver: Lemming caves in the indicated direction
+      [H]orizontal [C]aver: Lemming caves horizontally
+      [B]locker: Lemming that blocks the way
       [D]own [C]aver: Lemming caves downwards
       [P]arachuter: Lemming falls with a parachute
       [W]alker: Lemming that walks
@@ -196,6 +204,10 @@ Command > [DEBUG] Executing: heLP
 
 Available commands:
    [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE
+      [D}rone: Lemming moves in the indicated directions
+      [C]aver: Lemming caves in the indicated direction
+      [H]orizontal [C]aver: Lemming caves horizontally
+      [B]locker: Lemming that blocks the way
       [D]own [C]aver: Lemming caves downwards
       [P]arachuter: Lemming falls with a parachute
       [W]alker: Lemming that walks

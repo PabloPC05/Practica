@@ -79,12 +79,29 @@ public class Lemming extends GameObject{
 	
 	// Setters
 	//Funcion para cambiar la posicion segun la direccion
-
 	// Funcion para que un Lemming caiga y muera si se cae de la pantalla
 	public void falls(){
 		fuerzaCaida++;
 		pos.update(Direction.DOWN);
 		if(gameWorld.leavingTheBoard(pos)) {
+			dies();
+			gameWorld.addDeadLemmings();
+		}
+	}
+
+	public void fallsWDir(Direction direction){
+		fuerzaCaida++;
+		pos.update(direction);
+		if(gameWorld.leavingTheBoard(pos)){
+			dies();
+			gameWorld.addDeadLemmings();
+		}
+	}
+
+	public void movesWithDirection(Direction direction){
+		if(direction == Direction.DOWN || direction == Direction.RIGHT_DOWN || direction == Direction.LEFT_DOWN) fuerzaCaida++;
+		pos.update(direction);
+		if(gameWorld.leavingTheBoard(pos)){
 			dies();
 			gameWorld.addDeadLemmings();
 		}
@@ -104,10 +121,16 @@ public class Lemming extends GameObject{
 		return pos.nextPosition(direction).crashingIntoLimits();
 	}
 
+	// Funcion para saber si un lemming se sale de los limites
+	public boolean crashingIntoLimits(Direction dir){
+		return pos.nextPosition(dir).crashingIntoLimits();
+	}
+
 	// Funcion para realizar lo que ocurriria si el lemming se mueve en el eje x
 	public void walk(){
 		//if(gameWorld.wallAtPosition(pos.nextPosition(direction)) || crashingIntoLimits()) inverseDirection();
-		pos.update(direction);
+		//pos.update(direction);
+		movesWithDirection(this.direction);
 	}
 
 	// Funcion para saber si se choca con una pared hacia abajo
@@ -285,12 +308,15 @@ public class Lemming extends GameObject{
 	}
 
     // Funcion para obtener la direccion de un objeto a partir de un string
-    private Direction getDirectionFrom(String line) throws ObjectParseException {
+    public static Direction getDirectionFrom(String line) throws ObjectParseException {
         if (line.equalsIgnoreCase("RIGHT")) {
             return Direction.RIGHT;
         } else if(line.equalsIgnoreCase("LEFT")) {
             return Direction.LEFT;
         }
+		else if(line.equalsIgnoreCase("DOWN")){
+			return Direction.DOWN;
+		}
         else if(line.equalsIgnoreCase("UP") || line.equalsIgnoreCase("DOWN")){
             throw new ObjectParseException(Messages.INVALID_LEMMING_DIRECTION);
         }
