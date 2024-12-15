@@ -109,6 +109,17 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         }
         return interaction;
     }
+
+    @Override
+    public boolean interactWith(Stop stop, Lemming lemming){
+        boolean interaction = false;
+        if(lemming.crashingIntoObject(stop)){
+            lemming.setRole(new BlockerRole(stop.getTimeParalized()), Messages.BLOCKER_ROLE_NAME);
+            stop.dies();
+            return interaction;
+        }
+        return interaction;
+    }
 }
 
 

@@ -227,4 +227,10 @@ public class Messages {
 	//Lemming
 	public static final String LEMMING_NAME = "Lemming";
 	public static final String LEMMING_SHORTCUT = "L";
+
+	//Lemming
+	public static final String STOP_NAME = "Stop";
+	public static final String STOP_SHORTCUT = "S";
+	public static final String STOP = "S";
+
 }

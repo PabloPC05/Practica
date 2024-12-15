@@ -68,10 +68,10 @@ public class Lemming extends GameObject{
 			return role.getIcon(this);
 		}
 
-		// Funcion para saber si un lemming es solido
+		// Funcion para saber si un lemming es solido i.e. esta paralizado
 		@Override
-		public boolean isSolid() { 
-			return role.isSolid();
+		public boolean isSolid() {
+			return isParalized;
 		}
 		
 		// Funcion para actualizar el lemming
@@ -131,6 +131,7 @@ public class Lemming extends GameObject{
 		return pos.nextPosition(dir).crashingIntoLimits();
 	}
 
+
 	// Funcion para realizar lo que ocurriria si el lemming se mueve en el eje x
 	public void walk(){
 		//if(gameWorld.wallAtPosition(pos.nextPosition(direction)) || crashingIntoLimits()) inverseDirection();
@@ -141,6 +142,10 @@ public class Lemming extends GameObject{
 	// Funcion para saber si se choca con una pared hacia abajo
 	public boolean crashingIntoWall(Wall wall){
 		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
+	}
+
+	public boolean crashingIntoObject(Stop stop){
+		return stop.isInPosition(pos.nextPosition(direction));
 	}
 
 	// Funcion para saber si se choca con una pared hacia abajo
@@ -248,9 +253,11 @@ public class Lemming extends GameObject{
         	fuerzaCaida = 0;
         }
 
+
 		// Funcion para desactivar el role de un lemming (walkerRole)
 		public void disableRole(){
 			role = new WalkerRole();
+			isParalized = false;
 			//role.play(this);
 		}
 
@@ -270,6 +277,11 @@ public class Lemming extends GameObject{
 		@Override
         public boolean interactWith(MetalWall metalWall) {
         	return role.interactWith(metalWall, this);
+        }
+
+		@Override
+        public boolean interactWith(Stop stop) {
+        	return role.interactWith(stop, this);
         }
 
 		// Funcion para interactuar con cualquier cosa
@@ -310,7 +322,6 @@ public class Lemming extends GameObject{
 		try {
 			dir = getDirectionFrom(line[2]);
 		} catch (ObjectParseException e) {
-			// Definir mensaje de error: Invalid direction: %s
 			throw e;
 		}
 		int fC = Integer.parseInt(line[3]);

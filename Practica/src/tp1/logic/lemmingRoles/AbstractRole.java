@@ -79,13 +79,12 @@ public class AbstractRole {
         return input.equalsIgnoreCase(name) || input.equalsIgnoreCase(symbol);
     }
 
-    // Funcion para comprobar si el rol es solido
-    public boolean isSolid(){
-        return false;
-    }
-
     // No hace nada en los casos generales
     public ArrayList<String> parseInfo(ArrayList<String> input) throws ObjectParseException{
         return null;
+    }
+
+    public boolean interactWith(Stop stop, Lemming lemming){
+        return false;
     }
 }

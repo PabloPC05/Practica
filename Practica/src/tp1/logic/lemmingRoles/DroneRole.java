@@ -85,6 +85,7 @@ public class DroneRole extends AbstractRole implements LemmingRole{
                 throw e;
             }
             directions.add(dir);
+            returnValue.add(str);
         }
         return returnValue;
     }

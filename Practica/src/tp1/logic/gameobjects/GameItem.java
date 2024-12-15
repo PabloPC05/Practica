@@ -10,6 +10,8 @@ public interface GameItem {
 	abstract public boolean interactWith(Wall wall);
 	abstract public boolean interactWith(ExitDoor door);
 	abstract public boolean interactWith(MetalWall wall);
+	abstract public boolean interactWith(Stop stop);
+
 
 	abstract public boolean isSolid();
 	abstract public boolean isAlive();

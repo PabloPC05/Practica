@@ -82,6 +82,9 @@ public abstract class GameObject implements GameItem {
         public boolean interactWith(MetalWall metalWall){
             return false;
         }
+        public boolean interactWith(Stop metalWall){
+            return false;
+        }
 
         // Funcion para obtener a partir de un string la posicion de un objeto
         protected Position getPositionFrom(String line) throws OffBoardException, ObjectParseException {
