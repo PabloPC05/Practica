@@ -1,16 +1,13 @@
 package tp1.logic;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import tp1.exceptions.CommandExecuteException;
-import tp1.exceptions.GameSaveException;
 import tp1.logic.Interfaces.GameConfiguration;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.MetalWall;
+import tp1.logic.gameobjects.Stop;
 import tp1.logic.gameobjects.Wall;
 import tp1.logic.lemmingRoles.ParachuterRole;
-import tp1.view.Messages;
 
 
 public class GameLevelConfiguration implements GameConfiguration {
@@ -179,11 +176,11 @@ public class GameLevelConfiguration implements GameConfiguration {
 
 				gameObjects.add(new ExitDoor(4, 5, game));
 
-				gameObjects.add(new Lemming(3, 3, game));
+				gameObjects.add(new Stop(3, 3, game));
 				
 				//InitExitDoor();
 				
-				numLemmingInBoard = 4;
+				numLemmingInBoard = 3;
 				break;
 
 			// Nivel 3
