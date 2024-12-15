@@ -89,6 +89,26 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         }
         return interaction;
     }
+
+    // Funcion que recibe el metodo de interaccion entre lemmings
+    @Override 
+    public boolean interactWith(Lemming receiver, Lemming lemming){
+        boolean interaction = false;
+        // Si el lemming se comporta como un solido
+        if(receiver.isSolid()){
+            //Si el lemming andante (que tiene una pared debajo) choca con una pared o con los limites laterales del eje de abscisas, rebota
+            if(!lemming.isInAir() && lemming.bounceIntoSolidLemming(receiver)){
+                interaction = true;
+            }
+            //Si el lemming andante choca con una pared con la suficiente energia cinetica, se muere
+            else if((lemming.crashingIntoSolidLemming(receiver) && lemming.tooKinectEnergy())){
+                lemming.dies();
+                lemming.addDeadLemmings();
+                interaction = true;
+            }
+        }
+        return interaction;
+    }
 }
 
 

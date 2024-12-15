@@ -22,5 +22,4 @@ public interface LemmingRole {
     abstract public boolean matchRoleName(String str);
     abstract public String getName();
     abstract public boolean isSolid();
-
 }

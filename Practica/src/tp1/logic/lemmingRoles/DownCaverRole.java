@@ -71,6 +71,18 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
         return interaction;
     }
 
+    @Override
+    public boolean interactWith(Lemming receiver, Lemming lemming){
+        boolean interaction = false;
+        // Si el lemming choca con una pared de metal, no cava y se desactiva el rol
+        if(lemming.crashingIntoSolidLemming(receiver)){
+            hasCaved = false;
+            interaction = true;
+        }
+        // Devuelve si ha habido interaccion
+        return interaction;
+    }
+
     // Funcion para comprobar si el rol es el correcto
     @Override
     public LemmingRole parse(String input){

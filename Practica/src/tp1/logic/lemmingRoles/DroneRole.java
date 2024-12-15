@@ -21,7 +21,7 @@ public class DroneRole extends AbstractRole implements LemmingRole{
     // Constructor por defecto
     public DroneRole(){
         super(NAME, DETAILS, HELP, ICON, SYMBOL);
-        directions = new ArrayList <Direction>();
+        directions = new ArrayList <>();
     }
 
     // Metodos

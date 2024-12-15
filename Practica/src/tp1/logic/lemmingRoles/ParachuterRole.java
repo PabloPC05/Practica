@@ -75,4 +75,18 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
         // Devuelve si ha habido interaccion
         return interaction;
     }
+
+   // Funcion para interactuar con una pared de metal
+   @Override
+   public boolean interactWith(Lemming receiver, Lemming lemming) {
+       boolean interaction = false; 
+       // Si el lemming choca con una pared de metal, se desactiva el rol
+       if(receiver.isSolid() && lemming.crashingIntoSolidLemming(receiver)) {
+           lemming.featherFall();
+           lemming.disableRole();
+           interaction = true;
+       }
+       // Devuelve si ha habido interaccion
+       return interaction;
+   }
 }

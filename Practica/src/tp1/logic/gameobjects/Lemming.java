@@ -18,7 +18,8 @@ public class Lemming extends GameObject{
 	private Direction direction;
 	private int fuerzaCaida; // Con 3 se muere
 	private LemmingRole role;
-	private boolean isInAir = false;
+	private boolean isParalized;
+	private boolean isInAir;
 	
 	// Constructores
 	//Constructor por defecto
@@ -28,6 +29,7 @@ public class Lemming extends GameObject{
 		fuerzaCaida = 0;
 		role = new WalkerRole();
 		isInAir = false;
+		isParalized = false;
 	}
 
 	public Lemming(int col, int row, GameWorld GameWorld) {
@@ -36,6 +38,7 @@ public class Lemming extends GameObject{
 		fuerzaCaida = 0;
 		role = new WalkerRole();
 		isInAir = false;
+		isParalized = false;
 	}
 	
 	//Constructor con parametros
@@ -45,6 +48,7 @@ public class Lemming extends GameObject{
 		fuerzaCaida = 0;
 		this.role = role;
 		isInAir = false;
+		isParalized = false;
 	}
 
 	public Lemming(Position pos, Direction dir, int fC, LemmingRole role, GameWorld GameWorld) {
@@ -53,6 +57,7 @@ public class Lemming extends GameObject{
 		fuerzaCaida = fC;
 		this.role = role;
 		isInAir = false;
+		isParalized = false;
 	}
 
 
@@ -66,7 +71,7 @@ public class Lemming extends GameObject{
 		// Funcion para saber si un lemming es solido
 		@Override
 		public boolean isSolid() { 
-			return false; 
+			return role.isSolid();
 		}
 		
 		// Funcion para actualizar el lemming
@@ -153,6 +158,12 @@ public class Lemming extends GameObject{
 		return wall.isInPosition(pos.nextPosition(Direction.DOWN));
 	}
 
+	// Funcion para saber si se choca con una pared de metal hacia abajo
+	public boolean crashingIntoSolidLemming(Lemming lemming){
+		return lemming.isInPosition(pos.nextPosition(Direction.DOWN));
+	}
+
+
 	// Funcion para saber si se choca con una pared
 	public boolean bounceIntoWall(Wall wall){
 		return wall.isInPosition(pos.nextPosition(direction));
@@ -161,6 +172,11 @@ public class Lemming extends GameObject{
 	// Funcion para saber si se choca con una pared de metal
 	public boolean bounceIntoWall(MetalWall wall){
 		return wall.isInPosition(pos.nextPosition(direction));
+	}
+
+	// Funcion para saber si se choca con una pared de metal
+	public boolean bounceIntoSolidLemming(Lemming lemming){
+		return lemming.isInPosition(pos.nextPosition(direction));
 	}
 
 	// Funcion para saber si un lemming se saldra de la pantalla
@@ -181,6 +197,10 @@ public class Lemming extends GameObject{
 	// Funcion que devuelve si un Lemming esta en el aire
 	public boolean isInAir(){
 		return isInAir;
+	}
+
+	public void paralize(){
+		isParalized = true;
 	}
 	
 	// Mueve el lemming si es andante
@@ -219,6 +239,7 @@ public class Lemming extends GameObject{
 		public boolean setRole(LemmingRole role, String roleName) {
 			if (this.role.matchRoleName(roleName)) return false;
 			this.role = role;
+			role.start(this);
 			return true;
 		}
 		
@@ -254,6 +275,11 @@ public class Lemming extends GameObject{
 		// Funcion para interactuar con cualquier cosa
 		public boolean interactWithEverything() {
 			return gameWorld.receiveInteractionsFrom(this);
+		}
+
+		@Override
+		public boolean interactWith(Lemming lemming) {
+			return role.interactWith(lemming, this);
 		}
 
 		// Funcion para interactuar con la puerta de salida

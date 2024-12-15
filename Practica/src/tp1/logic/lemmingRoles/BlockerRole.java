@@ -21,6 +21,7 @@ public class BlockerRole extends AbstractRole implements LemmingRole {
     // Funcion start de blocker (no hace nada)
     @Override
     public void start(Lemming lemming) {
+        lemming.paralize();
     }
 
     // Funcion play de blocker
