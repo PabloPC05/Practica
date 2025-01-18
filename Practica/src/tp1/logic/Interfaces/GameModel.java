@@ -16,6 +16,8 @@ public interface GameModel {
     abstract public void reset(int level) throws CommandExecuteException;
     abstract public void exit();
     abstract public boolean setRole(LemmingRole role, Position pos, String roleName) throws OffBoardException;
+    abstract public boolean setRoleExtended(LemmingRole role, int n, String roleName);
+
 	abstract public boolean existsLevel(int l);
     abstract public void increaseCycle();
 

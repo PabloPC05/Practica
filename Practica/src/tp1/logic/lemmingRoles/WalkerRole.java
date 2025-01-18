@@ -120,6 +120,11 @@ public class WalkerRole extends AbstractRole implements LemmingRole {
         }
         return interaction;
     }
+
+    @Override
+    public LemmingRole clone() {
+        return new WalkerRole();
+    }
 }
 
 

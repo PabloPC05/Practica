@@ -39,7 +39,9 @@ public class BlockerRole extends AbstractRole implements LemmingRole {
     // Funcion play de blocker
     @Override
     public void play(Lemming lemming) {
-        if(decreaseParalization()) lemming.disableRole();
+        if(decreaseParalization()){ 
+            lemming.disableRole();
+        }
     }
 
     private boolean decreaseParalization(){
@@ -66,5 +68,10 @@ public class BlockerRole extends AbstractRole implements LemmingRole {
             }
         }
         return returnValue;
+    }
+
+    @Override
+    public LemmingRole clone(){
+        return new BlockerRole(timeParalized);
     }
 }

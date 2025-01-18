@@ -14,7 +14,8 @@ public class CommandGenerator {
 		new LoadCommand(),
 		new SaveCommand(),
         new HelpCommand(),
-        new ExitCommand()
+        new ExitCommand(),
+		new SetRoleCommandExtended()
 	);
 
 	// Funcion para parsear el comando general, recorre los comandos disponibles y llama a su parse

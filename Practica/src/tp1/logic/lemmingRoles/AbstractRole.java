@@ -87,4 +87,9 @@ public class AbstractRole {
     public boolean interactWith(Stop stop, Lemming lemming){
         return false;
     }
+
+    @Override
+    public LemmingRole clone(){
+        return null;
+    }
 }

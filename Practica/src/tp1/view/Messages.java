@@ -134,6 +134,14 @@ public class Messages {
 	public static final String COMMAND_SET_ROLE_INVALID_ROLE = "Unknown role: %s";
 	public static final String COMMAND_SET_ROLE_INVALID_NUMBER_ARGS = "Incorrect parameter number";
 
+
+	// SET ROLE EXTENDED
+	public static final String COMMAND_SET_ROLE_EXTENDED_NAME = "setRoleEXTENDED";
+	public static final String COMMAND_SET_ROLE_EXTENDED_SHORTCUT = "sre";
+	public static final String COMMAND_SET_ROLE_EXTENDED_DETAILS = "[s]et[R]ole[E]xpanded ROLE NUM";
+	public static final String COMMAND_SET_ROLE_EXTENDED_HELP = "sets the lemmings in the first NUM positions to role ROLE";
+
+
 	// LOAD
 	public static final String COMMAND_LOAD_NAME = "load";
 	public static final String COMMAND_LOAD_SHORTCUT = "l";

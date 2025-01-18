@@ -103,6 +103,22 @@ public class GameObjectContainer {
 			}
 			return false;
 		}
+		// Dado un role y un numero de lemmings, establecemos n lemmings a ese rol
+		public boolean setRole(LemmingRole role, int n, String roleName) {
+			boolean returnValue = false;
+			ArrayList<LemmingRole> roles = new ArrayList<LemmingRole>();
+			for(int i = 0; i < n; i++){
+				roles.add(role.clone());
+			}
+			int j = 0;
+			for (int i = 0; i < gameObjects.size() && j < n; i++) {
+				if (gameObjects.get(i).setRole(roles.get(j), roleName)) {
+					j++;
+					returnValue = true; // Devuelve verdadero si se establece el rol
+				}
+			}
+			return returnValue;
+		}
 
 		// Recibe interacciones de un objeto del juego
 		public boolean receiveInteractionsFrom(GameItem obj){

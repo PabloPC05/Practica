@@ -124,4 +124,11 @@ public class CaverRole extends AbstractRole implements LemmingRole{
         }
         return returnValue;
     }
+
+    @Override
+    public LemmingRole clone(){
+        CaverRole newRole = new CaverRole();
+        newRole.direction = this.direction;
+        return newRole;
+    }
 }

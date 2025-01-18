@@ -89,4 +89,9 @@ public class ParachuterRole extends AbstractRole implements LemmingRole {
        // Devuelve si ha habido interaccion
        return interaction;
    }
+
+    @Override
+    public LemmingRole clone() {
+        return new ParachuterRole();
+    }
 }

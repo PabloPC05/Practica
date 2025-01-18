@@ -89,4 +89,9 @@ public class DroneRole extends AbstractRole implements LemmingRole{
         }
         return returnValue;
     }
+
+    @Override
+    public LemmingRole clone(){
+        return new DroneRole();
+    }
 }

@@ -192,6 +192,11 @@ public class Game implements GameModel, GameStatus, GameWorld {
 			return gameObjects.setRole(role, pos, roleName);
 		}
 
+		// Funcion que dado un role y un numero, establece todos los n lemmings a ese rol
+		public boolean setRoleExtended(LemmingRole role, int n, String roleName) {
+			return gameObjects.setRole(role, n, roleName);
+		}
+
 		// Funcion que devuelve si hay una interaccion entre objetos, reaccionando a la interaccion si la hay
 		public boolean receiveInteractionsFrom(GameItem obj){
 			return gameObjects.receiveInteractionsFrom(obj);

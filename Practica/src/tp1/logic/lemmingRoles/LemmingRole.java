@@ -22,4 +22,5 @@ public interface LemmingRole {
     abstract public boolean interactWith(Stop stop, Lemming lemming);
     abstract public boolean matchRoleName(String str);
     abstract public String getName();
+    abstract public LemmingRole clone();
 }

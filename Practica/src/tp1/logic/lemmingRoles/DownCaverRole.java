@@ -89,4 +89,9 @@ public class DownCaverRole extends AbstractRole implements LemmingRole{
         if (matchRoleName(input)) return new DownCaverRole();
         return null;    
     }
+
+    @Override
+    public LemmingRole clone(){
+        return new DownCaverRole();
+    }
 }

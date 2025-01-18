@@ -88,4 +88,10 @@ public class HorizontalCaver extends AbstractRole implements LemmingRole{
             return LEFT_ICON;
         }
     }
+
+    // Clone
+    @Override
+    public LemmingRole clone(){
+        return new HorizontalCaver();
+    }
 }
